@@ -14,6 +14,97 @@
         "explanation": "Mass is scalar (only magnitude). The others are vectors (magnitude + direction)."
     },
     {
+        "subject": "Physics",
+        "question": "What is the acceleration due to gravity on Earth?",
+        "options": ["9.8 m/s²", "10 m/s²", "9.81 m/s²", "Both A and C"],
+        "correct_option": 3,
+        "explanation": "9.81 m/s² is the standard value, but 9.8 m/s² is often used for calculations."
+    },
+    {
+        "subject": "Physics",
+        "question": "What is the unit of electric current?",
+        "options": ["Volt", "Ampere", "Ohm", "Watt"],
+        "correct_option": 1,
+        "explanation": "Ampere (A) is the SI unit of electric current."
+    },
+    {
+        "subject": "Physics",
+        "question": "Which law states that energy cannot be created or destroyed?",
+        "options": ["Newton's First Law", "Law of Conservation of Energy", "Ohm's Law", "Boyle's Law"],
+        "correct_option": 1,
+        "explanation": "The Law of Conservation of Energy states that energy can only be transformed, not created or destroyed."
+    },
+    {
+        "subject": "Physics",
+        "question": "What is the speed of light in vacuum?",
+        "options": ["3 × 10⁶ m/s", "3 × 10⁸ m/s", "3 × 10¹⁰ m/s", "3 × 10⁵ m/s"],
+        "correct_option": 1,
+        "explanation": "Light travels at approximately 3 × 10⁸ meters per second in vacuum."
+    },
+    {
+        "subject": "Physics",
+        "question": "What is the unit of electrical resistance?",
+        "options": ["Volt", "Ampere", "Ohm", "Watt"],
+        "correct_option": 2,
+        "explanation": "Ohm (Ω) is the unit of electrical resistance."
+    },
+    {
+        "subject": "Physics",
+        "question": "Which type of lens is used to correct short-sightedness?",
+        "options": ["Convex lens", "Concave lens", "Cylindrical lens", "Bifocal lens"],
+        "correct_option": 1,
+        "explanation": "Concave (diverging) lens is used to correct short-sightedness (myopia)."
+    },
+    {
+        "subject": "Physics",
+        "question": "What is the formula for kinetic energy?",
+        "options": ["KE = mgh", "KE = ½mv²", "KE = ma", "KE = Fd"],
+        "correct_option": 1,
+        "explanation": "Kinetic energy = ½ × mass × velocity²"
+    },
+    {
+        "subject": "Physics",
+        "question": "Which colour of light has the longest wavelength?",
+        "options": ["Red", "Blue", "Green", "Violet"],
+        "correct_option": 0,
+        "explanation": "Red light has the longest wavelength (around 700 nm)."
+    },
+    {
+        "subject": "Physics",
+        "question": "What is the principle of a transformer based on?",
+        "options": ["Electromagnetic induction", "Photoelectric effect", "Thermionic emission", "Radioactivity"],
+        "correct_option": 0,
+        "explanation": "Transformers work on the principle of electromagnetic induction."
+    },
+    {
+        "subject": "Physics",
+        "question": "What is the unit of frequency?",
+        "options": ["Hertz", "Decibel", "Joule", "Newton"],
+        "correct_option": 0,
+        "explanation": "Hertz (Hz) is the unit of frequency, equal to one cycle per second."
+    },
+    {
+        "subject": "Physics",
+        "question": "Which of these is a good conductor of electricity?",
+        "options": ["Rubber", "Copper", "Wood", "Plastic"],
+        "correct_option": 1,
+        "explanation": "Copper is an excellent conductor of electricity."
+    },
+    {
+        "subject": "Physics",
+        "question": "What is the freezing point of water in Celsius?",
+        "options": ["0°C", "32°C", "100°C", "-4°C"],
+        "correct_option": 0,
+        "explanation": "Water freezes at 0°C (32°F)."
+    },
+    {
+        "subject": "Physics",
+        "question": "What type of energy does a moving car have?",
+        "options": ["Potential energy", "Kinetic energy", "Chemical energy", "Nuclear energy"],
+        "correct_option": 1,
+        "explanation": "A moving object has kinetic energy due to its motion."
+    },
+    {
         "subject": "Chemistry",
         "question": "What is the pH of a neutral solution at 25°C?",
         "options": ["0", "7", "14", "1"],
@@ -28,6 +119,97 @@
         "explanation": "Na comes from the Latin 'natrium', meaning sodium."
     },
     {
+        "subject": "Chemistry",
+        "question": "What is the chemical formula for water?",
+        "options": ["H2O", "CO2", "O2", "H2O2"],
+        "correct_option": 0,
+        "explanation": "Water is H2O - two hydrogen atoms and one oxygen atom."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "Which gas is most abundant in Earth's atmosphere?",
+        "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+        "correct_option": 2,
+        "explanation": "Nitrogen makes up about 78% of Earth's atmosphere."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "What is the atomic number of carbon?",
+        "options": ["6", "12", "14", "8"],
+        "correct_option": 0,
+        "explanation": "Carbon has atomic number 6, meaning 6 protons in its nucleus."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "Which of these is an alkali metal?",
+        "options": ["Calcium", "Sodium", "Iron", "Copper"],
+        "correct_option": 1,
+        "explanation": "Sodium is an alkali metal (Group 1)."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "What is the chemical symbol for gold?",
+        "options": ["Go", "Gd", "Au", "Ag"],
+        "correct_option": 2,
+        "explanation": "Au comes from the Latin 'aurum', meaning gold."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "Which gas is produced during photosynthesis?",
+        "options": ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+        "correct_option": 1,
+        "explanation": "Plants release oxygen as a byproduct of photosynthesis."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "What is the most abundant element in the universe?",
+        "options": ["Oxygen", "Carbon", "Helium", "Hydrogen"],
+        "correct_option": 3,
+        "explanation": "Hydrogen makes up about 75% of the universe's elemental mass."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "What is the pH of lemon juice?",
+        "options": ["Acidic (~2-3)", "Neutral (7)", "Alkaline (~8-9)", "Basic (~12)"],
+        "correct_option": 0,
+        "explanation": "Lemon juice is acidic with pH around 2-3."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "Which element is represented by the symbol 'K'?",
+        "options": ["Potassium", "Krypton", "Kryptonite", "Krypton"],
+        "correct_option": 0,
+        "explanation": "K is the symbol for Potassium (from Latin 'kalium')."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "What is the main component of natural gas?",
+        "options": ["Propane", "Butane", "Methane", "Ethane"],
+        "correct_option": 2,
+        "explanation": "Natural gas is primarily methane (CH4)."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "What type of bond involves sharing of electrons?",
+        "options": ["Ionic bond", "Covalent bond", "Metallic bond", "Hydrogen bond"],
+        "correct_option": 1,
+        "explanation": "Covalent bonds involve sharing of electrons between atoms."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "Which gas is known as 'laughing gas'?",
+        "options": ["Nitrous oxide", "Carbon dioxide", "Oxygen", "Helium"],
+        "correct_option": 0,
+        "explanation": "Nitrous oxide (N2O) is also known as laughing gas."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "What is the chemical formula for table salt?",
+        "options": ["KCl", "NaCl", "CaCl2", "MgCl2"],
+        "correct_option": 1,
+        "explanation": "Table salt is sodium chloride (NaCl)."
+    },
+    {
         "subject": "Biology",
         "question": "What is the main function of red blood cells?",
         "options": ["Fight infection", "Carry oxygen", "Clot blood", "Produce antibodies"],
@@ -40,5 +222,131 @@
         "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi apparatus"],
         "correct_option": 2,
         "explanation": "Mitochondria generate ATP, the cell's energy currency."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the largest organ in the human body?",
+        "options": ["Heart", "Liver", "Skin", "Brain"],
+        "correct_option": 2,
+        "explanation": "Skin is the largest organ, covering about 2 square meters in adults."
+    },
+    {
+        "subject": "Biology",
+        "question": "How many chambers does the human heart have?",
+        "options": ["2", "3", "4", "5"],
+        "correct_option": 2,
+        "explanation": "The human heart has 4 chambers: 2 atria and 2 ventricles."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the basic unit of life?",
+        "options": ["Atom", "Molecule", "Cell", "Tissue"],
+        "correct_option": 2,
+        "explanation": "The cell is the basic structural and functional unit of all living organisms."
+    },
+    {
+        "subject": "Biology",
+        "question": "Which blood type is known as the universal donor?",
+        "options": ["A", "B", "AB", "O"],
+        "correct_option": 3,
+        "explanation": "Type O negative blood can be donated to anyone (universal donor)."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the function of the nervous system?",
+        "options": ["Transport oxygen", "Digest food", "Control body activities", "Produce hormones"],
+        "correct_option": 2,
+        "explanation": "The nervous system controls and coordinates body activities."
+    },
+    {
+        "subject": "Biology",
+        "question": "Which vitamin is produced by the skin when exposed to sunlight?",
+        "options": ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+        "correct_option": 3,
+        "explanation": "Vitamin D is synthesized in the skin upon exposure to sunlight."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the normal resting heart rate for adults?",
+        "options": ["40-50 bpm", "60-100 bpm", "100-120 bpm", "120-140 bpm"],
+        "correct_option": 1,
+        "explanation": "Normal resting heart rate for adults is 60-100 beats per minute."
+    },
+    {
+        "subject": "Biology",
+        "question": "Which part of the brain controls balance and coordination?",
+        "options": ["Cerebrum", "Cerebellum", "Brain stem", "Medulla"],
+        "correct_option": 1,
+        "explanation": "The cerebellum controls balance, coordination, and fine muscle control."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the main function of the kidneys?",
+        "options": ["Produce urine", "Filter blood", "Both A and B", "Digest food"],
+        "correct_option": 2,
+        "explanation": "Kidneys filter blood to remove waste and produce urine."
+    },
+    {
+        "subject": "Biology",
+        "question": "Which gas do plants absorb from the atmosphere?",
+        "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+        "correct_option": 1,
+        "explanation": "Plants absorb carbon dioxide for photosynthesis."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the scientific name for the voice box?",
+        "options": ["Pharynx", "Larynx", "Trachea", "Esophagus"],
+        "correct_option": 1,
+        "explanation": "The larynx contains the vocal cords and is known as the voice box."
+    },
+    {
+        "subject": "Biology",
+        "question": "How many bones are in the adult human body?",
+        "options": ["206", "208", "210", "212"],
+        "correct_option": 0,
+        "explanation": "The adult human body has 206 bones."
+    },
+    {
+        "subject": "Biology",
+        "question": "Which enzyme breaks down starch in the mouth?",
+        "options": ["Pepsin", "Trypsin", "Amylase", "Lipase"],
+        "correct_option": 2,
+        "explanation": "Salivary amylase begins breaking down starch in the mouth."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the function of white blood cells?",
+        "options": ["Carry oxygen", "Fight infection", "Clot blood", "Transport nutrients"],
+        "correct_option": 1,
+        "explanation": "White blood cells are part of the immune system and fight infection."
+    },
+    {
+        "subject": "Biology",
+        "question": "Which part of the eye contains photoreceptors?",
+        "options": ["Cornea", "Iris", "Retina", "Lens"],
+        "correct_option": 2,
+        "explanation": "The retina contains rods and cones that detect light."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the longest bone in the human body?",
+        "options": ["Humerus", "Femur", "Tibia", "Fibula"],
+        "correct_option": 1,
+        "explanation": "The femur (thigh bone) is the longest and strongest bone."
+    },
+    {
+        "subject": "Biology",
+        "question": "Which system is responsible for breathing?",
+        "options": ["Circulatory system", "Respiratory system", "Digestive system", "Nervous system"],
+        "correct_option": 1,
+        "explanation": "The respiratory system handles breathing and gas exchange."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the main pigment in plants that absorbs light?",
+        "options": ["Chlorophyll", "Carotene", "Xanthophyll", "Anthocyanin"],
+        "correct_option": 0,
+        "explanation": "Chlorophyll is the green pigment that absorbs light for photosynthesis."
     }
 ]
