@@ -14,219 +14,230 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------- CUSTOM CSS FOR MODERN MALAYSIA THEME ----------
+# ---------- CLEAN, PROFESSIONAL CSS ----------
 st.markdown("""
 <style>
-    /* Import Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    /* Import Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     
-    /* Global Styles */
+    /* Global Reset */
     * {
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    .stApp {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    /* Main container styling */
-    .main-container {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 30px;
-        padding: 2rem;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        backdrop-filter: blur(10px);
-        margin: 1rem 0;
-    }
-    
-    /* Header with Malaysia flag colors */
-    .main-header {
-        background: linear-gradient(135deg, #cc0000 0%, #010066 50%, #ffcc00 100%);
-        padding: 2rem;
-        border-radius: 25px;
-        color: white;
-        text-align: center;
-        margin-bottom: 2rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        animation: slideIn 0.5s ease-out;
-    }
-    
-    .main-header h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
+        font-family: 'Inter', sans-serif;
         margin: 0;
-        text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-        letter-spacing: 2px;
+        padding: 0;
+        box-sizing: border-box;
     }
     
-    .main-header p {
-        font-size: 1.2rem;
-        opacity: 0.95;
-        margin: 0.5rem 0 0;
-        font-weight: 300;
+    /* Main app background */
+    .stApp {
+        background: #f0f2f6;
     }
     
-    /* Subject cards */
-    .subject-card {
+    /* Main container */
+    .main-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    
+    /* Header with Malaysia flag */
+    .header {
         background: white;
         padding: 2rem;
         border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border-bottom: 4px solid #010066;
+    }
+    
+    .header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #cc0000 0%, #010066 50%, #ffcc00 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+    
+    .header p {
+        color: #4a5568;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    
+    /* Subject Cards */
+    .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
+    .subject-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
         cursor: pointer;
-        height: 100%;
-        border: 2px solid transparent;
+        border: 1px solid #e2e8f0;
     }
     
     .subject-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        border-color: #667eea;
-    }
-    
-    .subject-card h3 {
-        color: #333;
-        font-size: 1.8rem;
-        margin: 1rem 0 0.5rem;
-        font-weight: 600;
-    }
-    
-    .subject-card p {
-        color: #666;
-        font-size: 1rem;
-        line-height: 1.6;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        border-color: #010066;
     }
     
     .subject-icon {
-        font-size: 4rem;
-        margin-bottom: 1rem;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
     }
     
-    /* Question box */
+    .subject-card h3 {
+        color: #1e293b;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    
+    .subject-card p {
+        color: #64748b;
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    
+    /* Question Box */
     .question-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2.5rem;
-        border-radius: 25px;
-        color: white;
-        margin-bottom: 2rem;
-        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
-        animation: fadeIn 0.5s ease-out;
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1.5rem;
+        border-left: 4px solid #010066;
     }
     
     .question-box h3 {
-        font-size: 1.2rem;
-        opacity: 0.9;
-        margin-bottom: 1rem;
+        color: #64748b;
+        font-size: 0.9rem;
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 0.5px;
+        margin-bottom: 1rem;
     }
     
     .question-box p {
-        font-size: 1.5rem;
+        color: #1e293b;
+        font-size: 1.3rem;
         font-weight: 600;
-        line-height: 1.6;
+        line-height: 1.5;
+    }
+    
+    .subject-tag {
+        display: inline-block;
+        background: #f1f5f9;
+        color: #475569;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-top: 1rem;
+    }
+    
+    /* Options styling */
+    .stRadio > div {
+        background: white;
+        padding: 1rem;
+        border-radius: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         margin: 1rem 0;
     }
     
-    /* Answer feedback */
-    .correct-answer {
-        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-        padding: 1.5rem;
-        border-radius: 20px;
-        color: #1a4731;
-        font-weight: 500;
-        margin: 1.5rem 0;
-        animation: slideUp 0.4s ease-out;
-        box-shadow: 0 10px 30px rgba(132, 250, 176, 0.3);
-    }
-    
-    .wrong-answer {
-        background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
-        padding: 1.5rem;
-        border-radius: 20px;
-        color: #721c24;
-        font-weight: 500;
-        margin: 1.5rem 0;
-        animation: slideUp 0.4s ease-out;
-        box-shadow: 0 10px 30px rgba(250, 208, 196, 0.3);
-    }
-    
-    /* Leaderboard styling */
-    .leaderboard-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.2rem;
-        border-radius: 15px;
-        color: white;
-        margin: 0.5rem 0;
-        text-align: center;
-        font-weight: 600;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    .leaderboard-item {
-        background: #f8f9fa;
-        padding: 0.8rem 1.2rem;
+    .stRadio label {
+        color: #1e293b !important;
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+        padding: 0.75rem !important;
+        background: #f8fafc;
         border-radius: 12px;
-        margin: 0.5rem 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
+        margin: 0.25rem 0 !important;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s ease;
     }
     
-    .leaderboard-item:hover {
-        transform: translateX(5px);
-        border-color: #667eea;
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    .stRadio label:hover {
+        background: #e2e8f0;
+        border-color: #010066;
     }
     
-    .leaderboard-rank {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #667eea;
+    .stRadio [data-testid="StyledFullScreenButton"] {
+        display: none;
     }
     
-    .leaderboard-name {
-        font-weight: 600;
-        color: #333;
+    /* Feedback messages */
+    .correct-feedback {
+        background: #f0fdf4;
+        border-left: 4px solid #22c55e;
+        padding: 1.2rem;
+        border-radius: 12px;
+        margin: 1rem 0;
+        color: #166534;
+        font-weight: 500;
+        box-shadow: 0 2px 4px rgba(34, 197, 94, 0.1);
     }
     
-    .leaderboard-score {
-        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-        padding: 0.3rem 1rem;
-        border-radius: 20px;
-        color: #1a4731;
-        font-weight: 700;
+    .wrong-feedback {
+        background: #fef2f2;
+        border-left: 4px solid #ef4444;
+        padding: 1.2rem;
+        border-radius: 12px;
+        margin: 1rem 0;
+        color: #991b1b;
+        font-weight: 500;
+        box-shadow: 0 2px 4px rgba(239, 68, 68, 0.1);
     }
     
     /* Button styling */
     .stButton button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        font-weight: 600;
-        border: none;
-        border-radius: 15px;
-        padding: 0.8rem 2rem;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 0.9rem;
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        background: #010066 !important;
+        color: white !important;
+        font-weight: 600 !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 0.75rem 2rem !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 6px rgba(1, 0, 102, 0.2) !important;
     }
     
     .stButton button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+        background: #020180 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 12px rgba(1, 0, 102, 0.3) !important;
+    }
+    
+    .stButton button:active {
+        transform: translateY(0) !important;
+    }
+    
+    /* Secondary button */
+    .secondary-button button {
+        background: white !important;
+        color: #010066 !important;
+        border: 2px solid #010066 !important;
+        box-shadow: none !important;
+    }
+    
+    .secondary-button button:hover {
+        background: #f8fafc !important;
     }
     
     /* Sidebar styling */
-    div[data-testid="stSidebar"] {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 2rem 1.5rem;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    [data-testid="stSidebar"] {
+        background: white;
+        padding: 2rem 1rem;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
     }
     
     .sidebar-header {
@@ -235,137 +246,134 @@ st.markdown("""
     }
     
     .sidebar-header h2 {
-        color: #333;
-        font-size: 2rem;
+        color: #010066;
+        font-size: 1.8rem;
         font-weight: 700;
         margin: 0;
     }
     
     .sidebar-header p {
-        color: #667eea;
-        font-weight: 500;
+        color: #64748b;
+        font-size: 0.9rem;
     }
     
-    /* Success message */
-    .success-message {
-        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    /* Metric styling */
+    [data-testid="stMetric"] {
+        background: #f8fafc;
         padding: 1rem;
-        border-radius: 15px;
-        color: #1a4731;
-        text-align: center;
-        font-weight: 600;
-        margin: 1rem 0;
-        animation: pulse 2s infinite;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
     }
     
-    /* Animations */
-    @keyframes slideIn {
-        from {
-            transform: translateY(-30px);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
+    [data-testid="stMetric"] label {
+        color: #64748b !important;
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
     }
     
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideUp {
-        from {
-            transform: translateY(20px);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.02);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-    
-    /* Radio button styling */
-    .stRadio > div {
-        background: white;
-        padding: 1rem;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    
-    .stRadio label {
-        font-size: 1.1rem;
-        padding: 0.8rem;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-    }
-    
-    .stRadio label:hover {
-        background: #f0f2f6;
+    [data-testid="stMetric"] [data-testid="stMetricValue"] {
+        color: #010066 !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
     }
     
     /* Progress bar */
     .stProgress > div > div {
-        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        background: linear-gradient(90deg, #010066, #4f46e5);
         border-radius: 10px;
     }
     
-    /* Metric styling */
-    .stMetric {
+    /* Leaderboard items */
+    .leaderboard-item {
+        background: #f8fafc;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        margin: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s ease;
+    }
+    
+    .leaderboard-item:hover {
+        border-color: #010066;
         background: white;
+    }
+    
+    .leaderboard-rank {
+        font-weight: 700;
+        color: #010066;
+        min-width: 40px;
+    }
+    
+    .leaderboard-name {
+        color: #1e293b;
+        font-weight: 600;
+        flex: 1;
+    }
+    
+    .leaderboard-score {
+        background: #010066;
+        color: white;
+        padding: 0.2rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    
+    /* Success message */
+    .success-message {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+        color: #166534;
         padding: 1rem;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 500;
+        margin: 1rem 0;
     }
     
-    .stMetric label {
-        color: #667eea;
-        font-weight: 600;
+    /* Info box */
+    .info-box {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        color: #0369a1;
+        padding: 1rem;
+        border-radius: 12px;
+        margin: 1rem 0;
     }
     
-    /* Expander styling */
-    .streamlit-expanderHeader {
-        background: white;
-        border-radius: 15px;
-        font-weight: 600;
-        color: #667eea;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    /* Select box */
+    .stSelectbox label {
+        color: #1e293b !important;
+        font-weight: 600 !important;
+    }
+    
+    .stSelectbox > div > div {
+        background: white !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
     }
     
     /* Footer */
     .footer {
         text-align: center;
-        padding: 2rem;
-        color: rgba(255,255,255,0.9);
-        font-size: 0.9rem;
+        padding: 2rem 0 1rem;
+        color: #64748b;
+        font-size: 0.85rem;
+        border-top: 1px solid #e2e8f0;
+        margin-top: 2rem;
     }
     
     .footer strong {
-        color: white;
+        color: #010066;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ---------- INITIALIZE SESSION STATE ----------
 def init_session_state():
-    """Initialize all session state variables."""
     defaults = {
         'score': 0,
         'q_index': 0,
@@ -373,11 +381,11 @@ def init_session_state():
         'quiz_started': False,
         'subject': "All",
         'feedback': None,
-        'selected_option': None,
         'leaderboard': [],
         'questions': [],
         'total_questions': 0,
-        'show_feedback': False
+        'show_feedback': False,
+        'selected_subject': None
     }
     
     for key, value in defaults.items():
@@ -386,10 +394,9 @@ def init_session_state():
 
 init_session_state()
 
-# ---------- LOAD QUESTIONS FROM JSON ----------
+# ---------- LOAD QUESTIONS ----------
 @st.cache_data(ttl=3600)
 def load_questions():
-    """Load questions from JSON file with fallback defaults."""
     try:
         with open("questions.json", "r") as f:
             questions = json.load(f)
@@ -398,58 +405,36 @@ def load_questions():
     except:
         pass
     
-    # Default questions if file not found
+    # Default questions
     return [
         {
             "subject": "Physics",
             "question": "What is the SI unit of force?",
             "options": ["Joule", "Newton", "Watt", "Pascal"],
             "correct_option": 1,
-            "explanation": "Newton (N) is the SI unit of force. 1 N = 1 kg·m/s²."
-        },
-        {
-            "subject": "Physics",
-            "question": "Which of the following is a scalar quantity?",
-            "options": ["Velocity", "Acceleration", "Mass", "Force"],
-            "correct_option": 2,
-            "explanation": "Mass is scalar (only magnitude). The others are vectors (magnitude + direction)."
+            "explanation": "Newton (N) is the SI unit of force."
         },
         {
             "subject": "Chemistry",
-            "question": "What is the pH of a neutral solution at 25°C?",
+            "question": "What is the pH of a neutral solution?",
             "options": ["0", "7", "14", "1"],
             "correct_option": 1,
-            "explanation": "pH 7 is neutral. Below 7 is acidic, above 7 is alkaline."
-        },
-        {
-            "subject": "Chemistry",
-            "question": "Which element has the symbol 'Na'?",
-            "options": ["Nitrogen", "Neon", "Sodium", "Nickel"],
-            "correct_option": 2,
-            "explanation": "Na comes from the Latin 'natrium', meaning sodium."
+            "explanation": "pH 7 is neutral."
         },
         {
             "subject": "Biology",
-            "question": "What is the main function of red blood cells?",
-            "options": ["Fight infection", "Carry oxygen", "Clot blood", "Produce antibodies"],
-            "correct_option": 1,
-            "explanation": "Red blood cells contain hemoglobin, which binds oxygen and transports it."
-        },
-        {
-            "subject": "Biology",
-            "question": "Which organelle is known as the 'powerhouse' of the cell?",
-            "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi apparatus"],
+            "question": "Which organelle is the 'powerhouse'?",
+            "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi"],
             "correct_option": 2,
-            "explanation": "Mitochondria generate ATP, the cell's energy currency."
+            "explanation": "Mitochondria produce ATP."
         }
     ]
 
 questions_db = load_questions()
 
-# ---------- GOOGLE SHEETS CONNECTION ----------
+# ---------- GOOGLE SHEETS ----------
 @st.cache_resource
 def get_google_sheets_connection():
-    """Establish connection to Google Sheets."""
     try:
         if "gcp_service_account" not in st.secrets:
             return None
@@ -461,21 +446,18 @@ def get_google_sheets_connection():
         creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
         client = gspread.authorize(creds)
         
-        # Open the sheet
         sheet = client.open("SainsQuiz Leaderboard").sheet1
         
-        # Ensure headers exist
         headers = sheet.row_values(1)
         if headers != ['Name', 'Score', 'Date']:
             sheet.clear()
             sheet.append_row(['Name', 'Score', 'Date'])
         
         return sheet
-    except Exception as e:
+    except:
         return None
 
 def save_score_to_sheets(name, score):
-    """Save a score to Google Sheets."""
     try:
         sheet = get_google_sheets_connection()
         if sheet:
@@ -488,13 +470,10 @@ def save_score_to_sheets(name, score):
 
 @st.cache_data(ttl=30)
 def load_leaderboard_from_sheets():
-    """Load top scores from Google Sheets."""
     try:
         sheet = get_google_sheets_connection()
         if sheet:
             records = sheet.get_all_records()
-            
-            # Convert to list of (name, score)
             leaderboard = []
             for r in records:
                 if 'Name' in r and 'Score' in r:
@@ -505,8 +484,6 @@ def load_leaderboard_from_sheets():
                             leaderboard.append((name, score))
                     except:
                         pass
-            
-            # Sort and return top 10
             leaderboard.sort(key=lambda x: x[1], reverse=True)
             return leaderboard[:10]
     except:
@@ -526,11 +503,11 @@ with st.sidebar:
     
     # Subject selection
     subjects = ["All", "Physics", "Chemistry", "Biology"]
-    selected_subject = st.selectbox("📚 Choose Subject", subjects, 
-                                   index=subjects.index(st.session_state.subject))
+    selected = st.selectbox("📚 Choose Subject", subjects, 
+                          index=subjects.index(st.session_state.subject))
     
-    if selected_subject != st.session_state.subject:
-        st.session_state.subject = selected_subject
+    if selected != st.session_state.subject:
+        st.session_state.subject = selected
         st.session_state.quiz_started = False
         st.rerun()
     
@@ -542,7 +519,6 @@ with st.sidebar:
         st.session_state.answers = []
         st.session_state.feedback = None
         
-        # Filter and shuffle questions
         if st.session_state.subject == "All":
             st.session_state.questions = random.sample(questions_db, min(10, len(questions_db)))
         else:
@@ -554,76 +530,44 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Score during quiz
+    # Current score
     if st.session_state.quiz_started and st.session_state.total_questions > 0:
-        st.metric("📊 Current Score", 
+        st.metric("🎯 Current Score", 
                  f"{st.session_state.score}/{st.session_state.total_questions}")
         
-        # Progress bar
+        # Progress
         progress = st.session_state.q_index / st.session_state.total_questions
         st.progress(progress)
     
     # Leaderboard
     st.markdown("### 🏆 Top Players")
     
-    leaderboard_data = load_leaderboard_from_sheets()
+    leaderboard = load_leaderboard_from_sheets()
     
-    if leaderboard_data:
-        for i, (name, score) in enumerate(leaderboard_data, 1):
-            if i == 1:
-                st.markdown(f"""
-                <div class="leaderboard-item">
-                    <span class="leaderboard-rank">🥇</span>
-                    <span class="leaderboard-name">{name}</span>
-                    <span class="leaderboard-score">{score}</span>
-                </div>
-                """, unsafe_allow_html=True)
-            elif i == 2:
-                st.markdown(f"""
-                <div class="leaderboard-item">
-                    <span class="leaderboard-rank">🥈</span>
-                    <span class="leaderboard-name">{name}</span>
-                    <span class="leaderboard-score">{score}</span>
-                </div>
-                """, unsafe_allow_html=True)
-            elif i == 3:
-                st.markdown(f"""
-                <div class="leaderboard-item">
-                    <span class="leaderboard-rank">🥉</span>
-                    <span class="leaderboard-name">{name}</span>
-                    <span class="leaderboard-score">{score}</span>
-                </div>
-                """, unsafe_allow_html=True)
-            else:
-                st.markdown(f"""
-                <div class="leaderboard-item">
-                    <span class="leaderboard-rank">#{i}</span>
-                    <span class="leaderboard-name">{name}</span>
-                    <span class="leaderboard-score">{score}</span>
-                </div>
-                """, unsafe_allow_html=True)
-    elif st.session_state.leaderboard:
-        for i, (name, score) in enumerate(st.session_state.leaderboard[:5], 1):
+    if leaderboard:
+        for i, (name, score) in enumerate(leaderboard, 1):
+            medal = "🥇" if i == 1 else "🥈" if i == 2 else "🥉" if i == 3 else f"#{i}"
             st.markdown(f"""
             <div class="leaderboard-item">
-                <span class="leaderboard-rank">#{i}</span>
+                <span class="leaderboard-rank">{medal}</span>
                 <span class="leaderboard-name">{name}</span>
                 <span class="leaderboard-score">{score}</span>
             </div>
             """, unsafe_allow_html=True)
     else:
-        st.info("✨ No scores yet. Be the first!")
+        st.markdown('<div class="info-box">✨ No scores yet. Be the first!</div>', 
+                   unsafe_allow_html=True)
 
 # ---------- MAIN CONTENT ----------
 st.markdown("""
-<div class="main-header">
+<div class="header">
     <h1>🧪 SAINSQUIZ</h1>
-    <p>Master SPM Science • Compete with Friends • Top the Leaderboard</p>
+    <p>Master SPM Science • Compete with Friends</p>
 </div>
 """, unsafe_allow_html=True)
 
 if not st.session_state.quiz_started:
-    # Welcome screen with subject cards
+    # Subject cards
     col1, col2, col3 = st.columns(3)
     
     with col1:
@@ -653,41 +597,34 @@ if not st.session_state.quiz_started:
         </div>
         """, unsafe_allow_html=True)
     
-    st.markdown("---")
-    
-    with st.expander("ℹ️ How to Play", expanded=True):
+    # How to play
+    with st.expander("ℹ️ How to Play"):
         st.markdown("""
-        <div style="padding:1rem;">
-            <p>✨ <strong>Choose your subject</strong> from the sidebar</p>
-            <p>🎯 Click <strong>"New Quiz"</strong> to start</p>
-            <p>📝 Answer 10 randomly selected questions</p>
-            <p>💡 Get instant feedback with explanations</p>
-            <p>🏆 Save your score to the global leaderboard</p>
-            <p>👥 Challenge friends to beat your score!</p>
-            <p style="margin-top:1rem; color:#667eea;"><em>Questions are based on actual SPM syllabus.</em></p>
-        </div>
-        """, unsafe_allow_html=True)
+        1. **Choose your subject** from the sidebar
+        2. Click **New Quiz** to start
+        3. Answer 10 randomly selected questions
+        4. Get instant feedback with explanations
+        5. Save your score to the global leaderboard
+        """)
 
 else:
-    # Quiz active
     if st.session_state.q_index < st.session_state.total_questions:
         q = st.session_state.questions[st.session_state.q_index]
         
-        # Question box
+        # Question
         st.markdown(f"""
         <div class="question-box">
             <h3>Question {st.session_state.q_index + 1} of {st.session_state.total_questions}</h3>
             <p>{q['question']}</p>
-            <p style="font-size:0.9rem; opacity:0.8;">📚 {q['subject']}</p>
+            <span class="subject-tag">{q['subject']}</span>
         </div>
         """, unsafe_allow_html=True)
         
-        # Answer options
-        answer = st.radio("Select your answer:", q['options'], 
-                         key=f"q_{st.session_state.q_index}", 
-                         index=None)
+        # Options
+        answer = st.radio("", q['options'], key=f"q_{st.session_state.q_index}", 
+                         index=None, label_visibility="collapsed")
         
-        col1, col2 = st.columns([1, 1])
+        col1, col2 = st.columns(2)
         
         with col1:
             if st.button("✅ Submit Answer", use_container_width=True):
@@ -697,7 +634,6 @@ else:
                     correct = q['options'][q['correct_option']]
                     is_correct = (answer == correct)
                     
-                    # Store answer
                     st.session_state.answers.append({
                         'question': q['question'],
                         'user_answer': answer,
@@ -717,84 +653,84 @@ else:
         
         with col2:
             if st.session_state.show_feedback:
-                if st.button("➡️ Next Question", use_container_width=True, type="primary"):
+                st.markdown('<div class="secondary-button">', unsafe_allow_html=True)
+                if st.button("➡️ Next Question", use_container_width=True):
                     st.session_state.q_index += 1
                     st.session_state.show_feedback = False
                     st.session_state.feedback = None
                     st.rerun()
+                st.markdown('</div>', unsafe_allow_html=True)
         
-        # Show feedback
-        if st.session_state.show_feedback and st.session_state.feedback:
-            last_answer = st.session_state.answers[-1]
-            
-            if last_answer['correct']:
+        # Feedback
+        if st.session_state.show_feedback and st.session_state.answers:
+            last = st.session_state.answers[-1]
+            if last['correct']:
                 st.markdown(f"""
-                <div class="correct-answer">
+                <div class="correct-feedback">
                     ✅ <strong>Correct!</strong><br>
-                    {last_answer['explanation']}
+                    {last['explanation']}
                 </div>
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div class="wrong-answer">
-                    ❌ <strong>Not quite!</strong><br>
-                    Correct answer: <strong>{last_answer['correct_answer']}</strong><br>
-                    {last_answer['explanation']}
+                <div class="wrong-feedback">
+                    ❌ <strong>Incorrect</strong><br>
+                    Correct answer: <strong>{last['correct_answer']}</strong><br>
+                    {last['explanation']}
                 </div>
                 """, unsafe_allow_html=True)
     
     else:
-        # Quiz completed
+        # Quiz complete
         st.balloons()
         
         percentage = (st.session_state.score / st.session_state.total_questions) * 100
         
         st.markdown(f"""
-        <div class="question-box" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); color: #1a4731;">
-            <h1>🎉 Quiz Complete!</h1>
-            <h2>Your Score: {st.session_state.score}/{st.session_state.total_questions}</h2>
-            <h3>{percentage:.1f}%</h3>
+        <div class="question-box" style="background: #f0fdf4; border-left-color: #22c55e;">
+            <h3>🎉 Quiz Complete!</h3>
+            <p style="font-size: 2rem; margin: 1rem 0;">{st.session_state.score}/{st.session_state.total_questions}</p>
+            <p style="font-size: 1.2rem;">{percentage:.1f}%</p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Review answers
-        with st.expander("📋 Review Your Answers", expanded=True):
+        # Review
+        with st.expander("📋 Review Answers"):
             for i, ans in enumerate(st.session_state.answers):
                 if ans['correct']:
-                    st.markdown(f"**Q{i+1}:** ✅ {ans['question']}")
+                    st.markdown(f"✅ **Q{i+1}:** {ans['question']}")
                 else:
-                    st.markdown(f"**Q{i+1}:** ❌ {ans['question']}")
+                    st.markdown(f"❌ **Q{i+1}:** {ans['question']}")
                     st.markdown(f"*Correct: {ans['correct_answer']}*")
                     st.markdown(f"*{ans['explanation']}*")
                 st.markdown("---")
         
-        # Save score section
-        st.markdown("### 🏆 Save to Leaderboard")
-        
+        # Save score
+        st.markdown("### 🏆 Save Your Score")
         col1, col2 = st.columns([3, 1])
         
         with col1:
-            player_name = st.text_input("Your name:", max_chars=20, 
-                                       placeholder="Enter your name")
+            name = st.text_input("", placeholder="Enter your name", 
+                                label_visibility="collapsed", key="save_name")
         
         with col2:
-            if st.button("💾 Save", type="primary", use_container_width=True):
-                if player_name:
-                    if save_score_to_sheets(player_name, st.session_state.score):
-                        st.markdown('<div class="success-message">✅ Score saved to global leaderboard!</div>', 
+            if st.button("💾 Save", use_container_width=True):
+                if name:
+                    if save_score_to_sheets(name, st.session_state.score):
+                        st.markdown('<div class="success-message">✅ Saved to global leaderboard!</div>', 
                                   unsafe_allow_html=True)
                         st.cache_data.clear()
                     else:
-                        st.session_state.leaderboard.append((player_name, st.session_state.score))
+                        st.session_state.leaderboard.append((name, st.session_state.score))
                         st.session_state.leaderboard.sort(key=lambda x: x[1], reverse=True)
                         st.session_state.leaderboard = st.session_state.leaderboard[:10]
-                        st.markdown('<div class="success-message">✅ Score saved locally!</div>', 
+                        st.markdown('<div class="success-message">✅ Saved locally!</div>', 
                                   unsafe_allow_html=True)
                     st.rerun()
                 else:
                     st.warning("Please enter your name!")
         
-        # New quiz button
+        # New quiz
         if st.button("🔄 Take Another Quiz", use_container_width=True):
             st.session_state.quiz_started = False
             st.rerun()
@@ -803,6 +739,6 @@ else:
 st.markdown("""
 <div class="footer">
     <p>🇲🇾 <strong>SainsQuiz</strong> – Helping Malaysian students master SPM Science</p>
-    <p style="font-size:0.8rem; opacity:0.8;">Questions based on SPM syllabus • Not affiliated with MOE</p>
+    <p>Questions based on SPM syllabus</p>
 </div>
 """, unsafe_allow_html=True)
