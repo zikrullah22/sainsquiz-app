@@ -1,0 +1,44 @@
+[
+    {
+        "subject": "Physics",
+        "question": "What is the SI unit of force?",
+        "options": ["Joule", "Newton", "Watt", "Pascal"],
+        "correct_option": 1,
+        "explanation": "Newton (N) is the SI unit of force. 1 N = 1 kg·m/s²."
+    },
+    {
+        "subject": "Physics",
+        "question": "Which of the following is a scalar quantity?",
+        "options": ["Velocity", "Acceleration", "Mass", "Force"],
+        "correct_option": 2,
+        "explanation": "Mass is scalar (only magnitude). The others are vectors (magnitude + direction)."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "What is the pH of a neutral solution at 25°C?",
+        "options": ["0", "7", "14", "1"],
+        "correct_option": 1,
+        "explanation": "pH 7 is neutral. Below 7 is acidic, above 7 is alkaline."
+    },
+    {
+        "subject": "Chemistry",
+        "question": "Which element has the symbol 'Na'?",
+        "options": ["Nitrogen", "Neon", "Sodium", "Nickel"],
+        "correct_option": 2,
+        "explanation": "Na comes from the Latin 'natrium', meaning sodium."
+    },
+    {
+        "subject": "Biology",
+        "question": "What is the main function of red blood cells?",
+        "options": ["Fight infection", "Carry oxygen", "Clot blood", "Produce antibodies"],
+        "correct_option": 1,
+        "explanation": "Red blood cells contain hemoglobin, which binds oxygen and transports it around the body."
+    },
+    {
+        "subject": "Biology",
+        "question": "Which organelle is known as the 'powerhouse' of the cell?",
+        "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi apparatus"],
+        "correct_option": 2,
+        "explanation": "Mitochondria generate ATP, the cell's energy currency."
+    }
+]
