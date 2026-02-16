@@ -10,142 +10,237 @@ from oauth2client.service_account import ServiceAccountCredentials
 st.set_page_config(
     page_title="SainsQuiz - SPM Science",
     page_icon="🧪",
-    layout="centered"
+    layout="centered",
+    initial_sidebar_state="expanded"
 )
 
-# ---------- CUSTOM CSS ----------
+# ---------- CUSTOM CSS FOR MALAYSIA THEME ----------
 st.markdown("""
 <style>
-    .question-box {
-        background-color: #f0f2f6;
+    /* Malaysia flag colors theme */
+    .stApp {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    }
+    .main-header {
+        background: linear-gradient(90deg, #cc0000 0%, #010066 50%, #ffcc00 100%);
         padding: 1.5rem;
         border-radius: 15px;
-        margin-bottom: 1rem;
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
-    .correct {
-        background-color: #d4edda;
-        color: #155724;
+    .question-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 20px;
+        color: white;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .correct-answer {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
         padding: 1rem;
-        border-radius: 10px;
+        border-radius: 15px;
+        color: #1a4731;
+        font-weight: bold;
         border-left: 5px solid #28a745;
+        margin: 1rem 0;
     }
-    .incorrect {
-        background-color: #f8d7da;
-        color: #721c24;
+    .wrong-answer {
+        background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
         padding: 1rem;
-        border-radius: 10px;
+        border-radius: 15px;
+        color: #721c24;
+        font-weight: bold;
         border-left: 5px solid #dc3545;
+        margin: 1rem 0;
+    }
+    .leaderboard-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1rem;
+        border-radius: 15px;
+        color: white;
+        margin: 0.5rem 0;
+        text-align: center;
     }
     .stButton button {
-        width: 100%;
-        border-radius: 10px;
+        background: linear-gradient(90deg, #cc0000 0%, #010066 100%);
+        color: white;
         font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        padding: 0.75rem 2rem;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    .stButton button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .success-message {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        padding: 1rem;
+        border-radius: 10px;
+        color: #1a4731;
+        text-align: center;
+        font-weight: bold;
+    }
+    div[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 2rem 1rem;
+    }
+    .status-badge {
+        padding: 0.5rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    .status-connected {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        color: #1a4731;
+    }
+    .status-disconnected {
+        background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
+        color: #721c24;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- INIT SESSION STATE ----------
-if 'score' not in st.session_state:
-    st.session_state.score = 0
-if 'q_index' not in st.session_state:
-    st.session_state.q_index = 0
-if 'answers' not in st.session_state:
-    st.session_state.answers = []
-if 'quiz_started' not in st.session_state:
-    st.session_state.quiz_started = False
-if 'subject' not in st.session_state:
-    st.session_state.subject = "All"
-if 'feedback' not in st.session_state:
-    st.session_state.feedback = None
-if 'selected_option' not in st.session_state:
-    st.session_state.selected_option = None
-if 'leaderboard' not in st.session_state:
-    st.session_state.leaderboard = []  # local fallback
+# ---------- INITIALIZE SESSION STATE ----------
+def init_session_state():
+    """Initialize all session state variables."""
+    defaults = {
+        'score': 0,
+        'q_index': 0,
+        'answers': [],
+        'quiz_started': False,
+        'subject': "All",
+        'feedback': None,
+        'selected_option': None,
+        'leaderboard': [],
+        'questions': [],
+        'total_questions': 0,
+        'show_feedback': False
+    }
+    
+    for key, value in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = value
 
-# ---------- LOAD QUESTIONS ----------
-@st.cache_data
+init_session_state()
+
+# ---------- LOAD QUESTIONS FROM JSON ----------
+@st.cache_data(ttl=3600)
 def load_questions():
+    """Load questions from JSON file with fallback defaults."""
     try:
         with open("questions.json", "r") as f:
-            return json.load(f)
+            questions = json.load(f)
+            if questions:
+                return questions
     except:
-        # Default questions if file not found
-        return [
-            {
-                "subject": "Physics",
-                "question": "What is the SI unit of force?",
-                "options": ["Joule", "Newton", "Watt", "Pascal"],
-                "correct_option": 1,
-                "explanation": "Newton (N) is the SI unit of force."
-            },
-            {
-                "subject": "Chemistry",
-                "question": "What is the pH of a neutral solution?",
-                "options": ["0", "7", "14", "1"],
-                "correct_option": 1,
-                "explanation": "pH 7 is neutral."
-            },
-            {
-                "subject": "Biology",
-                "question": "Which organelle is the 'powerhouse' of the cell?",
-                "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi"],
-                "correct_option": 2,
-                "explanation": "Mitochondria produce ATP."
-            }
-        ]
+        pass
+    
+    # Default questions if file not found
+    return [
+        {
+            "subject": "Physics",
+            "question": "What is the SI unit of force?",
+            "options": ["Joule", "Newton", "Watt", "Pascal"],
+            "correct_option": 1,
+            "explanation": "Newton (N) is the SI unit of force. 1 N = 1 kg·m/s²."
+        },
+        {
+            "subject": "Physics",
+            "question": "Which of the following is a scalar quantity?",
+            "options": ["Velocity", "Acceleration", "Mass", "Force"],
+            "correct_option": 2,
+            "explanation": "Mass is scalar (only magnitude). The others are vectors (magnitude + direction)."
+        },
+        {
+            "subject": "Chemistry",
+            "question": "What is the pH of a neutral solution at 25°C?",
+            "options": ["0", "7", "14", "1"],
+            "correct_option": 1,
+            "explanation": "pH 7 is neutral. Below 7 is acidic, above 7 is alkaline."
+        },
+        {
+            "subject": "Chemistry",
+            "question": "Which element has the symbol 'Na'?",
+            "options": ["Nitrogen", "Neon", "Sodium", "Nickel"],
+            "correct_option": 2,
+            "explanation": "Na comes from the Latin 'natrium', meaning sodium."
+        },
+        {
+            "subject": "Biology",
+            "question": "What is the main function of red blood cells?",
+            "options": ["Fight infection", "Carry oxygen", "Clot blood", "Produce antibodies"],
+            "correct_option": 1,
+            "explanation": "Red blood cells contain hemoglobin, which binds oxygen and transports it."
+        },
+        {
+            "subject": "Biology",
+            "question": "Which organelle is known as the 'powerhouse' of the cell?",
+            "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi apparatus"],
+            "correct_option": 2,
+            "explanation": "Mitochondria generate ATP, the cell's energy currency."
+        }
+    ]
 
 questions_db = load_questions()
 
 # ---------- GOOGLE SHEETS CONNECTION ----------
-def init_google_sheets():
-    """Connect to Google Sheets for persistent leaderboard."""
+@st.cache_resource
+def get_google_sheets_connection():
+    """Establish connection to Google Sheets."""
     try:
-        # Check if secrets exist
         if "gcp_service_account" not in st.secrets:
-            st.sidebar.warning("⚠️ Google Sheets credentials not found in secrets")
             return None
             
         scope = ["https://spreadsheets.google.com/feeds", 
                  "https://www.googleapis.com/auth/drive"]
         
-        # Get credentials from secrets
         creds_dict = dict(st.secrets["gcp_service_account"])
-        
-        # Debug: show which email we're using
-        client_email = creds_dict.get("client_email", "Not found")
-        st.sidebar.info(f"🔑 Using account: {client_email}")
-        
         creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
         client = gspread.authorize(creds)
         
-        # Try to open the sheet
+        # Open the sheet
         sheet = client.open("SainsQuiz Leaderboard").sheet1
-        st.sidebar.success("✅ Connected to Google Sheets!")
+        
+        # Ensure headers exist
+        headers = sheet.row_values(1)
+        if headers != ['Name', 'Score', 'Date']:
+            sheet.clear()
+            sheet.append_row(['Name', 'Score', 'Date'])
+        
         return sheet
     except Exception as e:
-        st.sidebar.error(f"❌ Sheets connection failed: {str(e)}")
+        st.sidebar.error(f"❌ Sheets error: {str(e)}")
         return None
 
 def save_score_to_sheets(name, score):
     """Save a score to Google Sheets."""
-    sheet = init_google_sheets()
-    if sheet:
-        try:
+    try:
+        sheet = get_google_sheets_connection()
+        if sheet:
             today = datetime.now().strftime("%Y-%m-%d %H:%M")
             sheet.append_row([name, score, today])
             return True
-        except Exception as e:
-            st.error(f"Failed to save to leaderboard: {e}")
-            return False
+    except:
+        pass
     return False
 
-@st.cache_data(ttl=30)  # Refresh every 30 seconds
+@st.cache_data(ttl=30)
 def load_leaderboard_from_sheets():
     """Load top scores from Google Sheets."""
-    sheet = init_google_sheets()
-    if sheet:
-        try:
-            # Get all records
+    try:
+        sheet = get_google_sheets_connection()
+        if sheet:
             records = sheet.get_all_records()
             
             # Convert to list of (name, score)
@@ -154,195 +249,313 @@ def load_leaderboard_from_sheets():
                 if 'Name' in r and 'Score' in r:
                     try:
                         score = int(r['Score'])
-                        leaderboard.append((r['Name'], score))
+                        name = str(r['Name']).strip()
+                        if name and score > 0:
+                            leaderboard.append((name, score))
                     except:
                         pass
             
-            # Sort by score descending, take top 10
+            # Sort and return top 10
             leaderboard.sort(key=lambda x: x[1], reverse=True)
             return leaderboard[:10]
-        except Exception as e:
-            st.warning(f"Could not load leaderboard: {e}")
-            return None
+    except:
+        pass
     return None
 
 # ---------- SIDEBAR ----------
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg", width=100)
-    st.title("🧪 SainsQuiz")
-    st.caption("SPM Science Practice")
+    st.markdown("## 🧪 **SainsQuiz**")
+    st.markdown("### *SPM Science Practice*")
+    st.markdown("---")
+    
+    # Connection status
+    sheet = get_google_sheets_connection()
+    if sheet:
+        st.markdown('<div class="status-badge status-connected">✅ Connected to Global Leaderboard</div>', 
+                   unsafe_allow_html=True)
+        client_email = st.secrets["gcp_service_account"].get("client_email", "")
+        if client_email:
+            st.caption(f"📧 {client_email[:30]}...")
+    else:
+        st.markdown('<div class="status-badge status-disconnected">⚠️ Local Mode Only</div>', 
+                   unsafe_allow_html=True)
     
     st.markdown("---")
     
     # Subject selection
-    subject = st.selectbox("Choose subject", ["All", "Physics", "Chemistry", "Biology"])
-    st.session_state.subject = subject
+    subjects = ["All", "Physics", "Chemistry", "Biology"]
+    selected_subject = st.selectbox("📚 Choose Subject", subjects, 
+                                   index=subjects.index(st.session_state.subject))
+    
+    if selected_subject != st.session_state.subject:
+        st.session_state.subject = selected_subject
+        st.session_state.quiz_started = False
+        st.rerun()
     
     # New quiz button
-    if st.button("🔄 New Quiz", use_container_width=True):
-        st.session_state.score = 0
-        st.session_state.q_index = 0
-        st.session_state.answers = []
+    if st.button("🎯 New Quiz", use_container_width=True):
         st.session_state.quiz_started = True
+        st.session_state.q_index = 0
+        st.session_state.score = 0
+        st.session_state.answers = []
         st.session_state.feedback = None
+        
+        # Filter and shuffle questions
+        if st.session_state.subject == "All":
+            st.session_state.questions = random.sample(questions_db, min(10, len(questions_db)))
+        else:
+            filtered = [q for q in questions_db if q['subject'] == st.session_state.subject]
+            st.session_state.questions = random.sample(filtered, min(10, len(filtered)))
+        
+        st.session_state.total_questions = len(st.session_state.questions)
         st.rerun()
     
     st.markdown("---")
     
-    # Show score during quiz
-    if st.session_state.quiz_started:
-        st.metric("Current Score", f"{st.session_state.score}")
+    # Score during quiz
+    if st.session_state.quiz_started and st.session_state.total_questions > 0:
+        st.metric("📊 Current Score", 
+                 f"{st.session_state.score}/{st.session_state.total_questions}")
+        
+        # Progress bar
+        progress = st.session_state.q_index / st.session_state.total_questions
+        st.progress(progress)
     
-    # Leaderboard display
-    st.markdown("### 🏆 Top Players")
+    # Leaderboard
+    st.markdown("### 🏆 **Top Players**")
     
-    # Try to load from Google Sheets first
     leaderboard_data = load_leaderboard_from_sheets()
     
     if leaderboard_data:
         for i, (name, score) in enumerate(leaderboard_data, 1):
-            medal = "🥇" if i == 1 else "🥈" if i == 2 else "🥉" if i == 3 else f"{i}."
-            st.write(f"{medal} **{name}** – {score} pts")
+            if i == 1:
+                st.markdown(f"🥇 **{name}** – {score} pts")
+            elif i == 2:
+                st.markdown(f"🥈 **{name}** – {score} pts")
+            elif i == 3:
+                st.markdown(f"🥉 **{name}** – {score} pts")
+            else:
+                st.markdown(f"{i}. **{name}** – {score} pts")
     elif st.session_state.leaderboard:
-        st.caption("(Local scores - not shared)")
+        st.caption("📱 Local scores only")
         for i, (name, score) in enumerate(st.session_state.leaderboard[:5], 1):
-            medal = "🥇" if i == 1 else "🥈" if i == 2 else "🥉" if i == 3 else f"{i}."
-            st.write(f"{medal} **{name}** – {score} pts")
+            st.markdown(f"{i}. **{name}** – {score} pts")
     else:
-        st.write("No scores yet. Be the first!")
+        st.info("No scores yet. Be the first!")
 
-# ---------- MAIN QUIZ AREA ----------
-st.title("🧪 SainsQuiz – SPM Science")
-st.caption("Test your knowledge with SPM-style questions!")
+# ---------- MAIN CONTENT ----------
+st.markdown('<div class="main-header">🧪 SAINSQUIZ</div>', unsafe_allow_html=True)
+st.markdown("### *Master SPM Science • Compete with Friends • Top the Leaderboard*")
 
 if not st.session_state.quiz_started:
-    st.info("👋 Click **New Quiz** in the sidebar to begin!")
+    # Welcome screen
+    col1, col2, col3 = st.columns(3)
     
-    with st.expander("ℹ️ How to Play"):
-        st.write("""
-        - Choose a subject from the sidebar
-        - Click 'New Quiz' to start
-        - You'll get 10 random questions
-        - Each correct answer = 1 point
-        - After finishing, add your name to the leaderboard!
+    with col1:
+        st.markdown("""
+        <div style="text-align:center; padding:1rem;">
+            <h3>📚 Physics</h3>
+            <p>Forces, Motion, Heat, Light & Waves</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div style="text-align:center; padding:1rem;">
+            <h3>🧪 Chemistry</h3>
+            <p>Periodic Table, Chemical Bonds, Acids & Bases</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown("""
+        <div style="text-align:center; padding:1rem;">
+            <h3>🔬 Biology</h3>
+            <p>Cells, Human Body, Plants, Ecosystems</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    with st.expander("ℹ️ How to Play", expanded=True):
+        st.markdown("""
+        1. **Choose your subject** from the sidebar
+        2. Click **"New Quiz"** to start
+        3. Answer 10 randomly selected questions
+        4. Get instant feedback with explanations
+        5. Save your score to the global leaderboard
+        6. Challenge friends to beat your score!
+        
+        *Questions are based on actual SPM syllabus.*
         """)
+
 else:
-    # Filter questions by subject
-    if st.session_state.subject == "All":
-        questions = questions_db
-    else:
-        questions = [q for q in questions_db if q['subject'] == st.session_state.subject]
-    
-    if not questions:
-        st.error("No questions for this subject yet!")
-        st.stop()
-    
-    # Initialize quiz questions if starting
-    if st.session_state.q_index == 0 and not st.session_state.answers:
-        random.shuffle(questions)
-        st.session_state.quiz_questions = questions[:min(10, len(questions))]
-    
-    # Check if quiz finished
-    if st.session_state.q_index >= len(st.session_state.quiz_questions):
-        st.success(f"🎉 Quiz Complete! Your final score: {st.session_state.score}/{len(st.session_state.quiz_questions)}")
+    # Quiz active
+    if st.session_state.q_index < st.session_state.total_questions:
+        q = st.session_state.questions[st.session_state.q_index]
         
-        # Review answers
-        with st.expander("📋 Review Your Answers"):
-            for i, ans in enumerate(st.session_state.answers):
-                q = st.session_state.quiz_questions[i]
-                if ans['correct']:
-                    st.markdown(f"**Q{i+1}:** ✅ {q['question']}")
-                else:
-                    st.markdown(f"**Q{i+1}:** ❌ {q['question']}")
-                    st.markdown(f"*Correct answer:* {q['options'][q['correct_option']]}")
-                    st.markdown(f"*Explanation:* {q['explanation']}")
-                st.markdown("---")
-        
-        # Save score section
-        st.markdown("### 🏆 Save Your Score")
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            player_name = st.text_input("Enter your name:", max_chars=20, key="player_name")
-        
-        with col2:
-            if st.button("💾 Save Score", type="primary", use_container_width=True):
-                if player_name:
-                    # Try Google Sheets first
-                    if save_score_to_sheets(player_name, st.session_state.score):
-                        st.success("✅ Score saved to global leaderboard!")
-                        st.cache_data.clear()
-                    else:
-                        # Fallback to local
-                        st.session_state.leaderboard.append((player_name, st.session_state.score))
-                        st.session_state.leaderboard.sort(key=lambda x: x[1], reverse=True)
-                        st.session_state.leaderboard = st.session_state.leaderboard[:10]
-                        st.success("✅ Score saved locally!")
-                    st.rerun()
-                else:
-                    st.warning("Please enter a name.")
-        
-        # Share on WhatsApp
-        st.markdown("### 📱 Share Your Score")
-        share_text = f"I scored {st.session_state.score}/10 on SainsQuiz SPM Science! Can you beat me? https://sainsquiz.streamlit.app"
-        wa_link = f"https://wa.me/?text={share_text.replace(' ', '%20')}"
+        # Question box
         st.markdown(f"""
-        <a href="{wa_link}" target="_blank">
-            <button style="background-color:#25D366; color:white; border:none; padding:10px 20px; border-radius:10px; font-size:16px; width:100%;">
-            📱 Share on WhatsApp
-            </button>
-        </a>
+        <div class="question-box">
+            <h3>Question {st.session_state.q_index + 1} of {st.session_state.total_questions}</h3>
+            <p style="font-size:1.2rem;">{q['question']}</p>
+            <p style="font-size:0.9rem; opacity:0.8;">Subject: {q['subject']}</p>
+        </div>
         """, unsafe_allow_html=True)
         
-    else:
-        # Display current question
-        q = st.session_state.quiz_questions[st.session_state.q_index]
+        # Answer options
+        answer = st.radio("Select your answer:", q['options'], 
+                         key=f"q_{st.session_state.q_index}", 
+                         index=None)
         
-        with st.container():
-            st.markdown(f"### Question {st.session_state.q_index+1} of {len(st.session_state.quiz_questions)}")
-            st.markdown(f"**{q['question']}**")
-            
-            # Radio buttons for answer
-            choice = st.radio("Select your answer:", q['options'], key=f"q_{st.session_state.q_index}", index=None)
-            
-            col1, col2 = st.columns([1, 5])
-            with col1:
-                submit = st.button("✅ Submit")
-            
-            if submit:
-                if choice is None:
-                    st.warning("Please select an answer.")
+        col1, col2 = st.columns([1, 1])
+        
+        with col1:
+            if st.button("✅ Submit Answer", use_container_width=True):
+                if answer is None:
+                    st.warning("Please select an answer!")
                 else:
-                    # Check answer
-                    correct_option = q['correct_option']
-                    correct_text = q['options'][correct_option]
-                    is_correct = (choice == correct_text)
+                    correct = q['options'][q['correct_option']]
+                    is_correct = (answer == correct)
                     
                     # Store answer
                     st.session_state.answers.append({
                         'question': q['question'],
-                        'user_answer': choice,
-                        'correct': is_correct
+                        'user_answer': answer,
+                        'correct': is_correct,
+                        'correct_answer': correct,
+                        'explanation': q['explanation']
                     })
                     
-                    # Update score
                     if is_correct:
                         st.session_state.score += 1
-                        feedback = f"✅ Correct! {q['explanation']}"
+                        st.session_state.feedback = "correct"
                     else:
-                        feedback = f"❌ Incorrect. Correct answer: **{correct_text}**. {q['explanation']}"
+                        st.session_state.feedback = "wrong"
                     
-                    st.session_state.feedback = feedback
+                    st.session_state.show_feedback = True
                     st.rerun()
-            
-            # Show feedback and next button
-            if st.session_state.feedback:
-                st.markdown(st.session_state.feedback)
-                if st.button("➡️ Next Question", type="primary"):
+        
+        with col2:
+            if st.session_state.show_feedback:
+                if st.button("➡️ Next Question", use_container_width=True, type="primary"):
                     st.session_state.q_index += 1
+                    st.session_state.show_feedback = False
                     st.session_state.feedback = None
                     st.rerun()
+        
+        # Show feedback
+        if st.session_state.show_feedback and st.session_state.feedback:
+            last_answer = st.session_state.answers[-1]
+            
+            if last_answer['correct']:
+                st.markdown(f"""
+                <div class="correct-answer">
+                    ✅ <strong>Correct!</strong><br>
+                    {last_answer['explanation']}
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                <div class="wrong-answer">
+                    ❌ <strong>Not quite!</strong><br>
+                    Correct answer: <strong>{last_answer['correct_answer']}</strong><br>
+                    {last_answer['explanation']}
+                </div>
+                """, unsafe_allow_html=True)
+    
+    else:
+        # Quiz completed
+        st.balloons()
+        
+        percentage = (st.session_state.score / st.session_state.total_questions) * 100
+        
+        st.markdown(f"""
+        <div class="question-box" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); color: #1a4731;">
+            <h1>🎉 Quiz Complete!</h1>
+            <h2>Your Score: {st.session_state.score}/{st.session_state.total_questions}</h2>
+            <h3>{percentage:.1f}%</h3>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Review answers
+        with st.expander("📋 Review Your Answers", expanded=True):
+            for i, ans in enumerate(st.session_state.answers):
+                if ans['correct']:
+                    st.markdown(f"**Q{i+1}:** ✅ {ans['question']}")
+                else:
+                    st.markdown(f"**Q{i+1}:** ❌ {ans['question']}")
+                    st.markdown(f"*Correct: {ans['correct_answer']}*")
+                    st.markdown(f"*{ans['explanation']}*")
+                st.markdown("---")
+        
+        # Save score section
+        st.markdown("### 🏆 Save to Leaderboard")
+        
+        col1, col2, col3 = st.columns([2, 2, 1])
+        
+        with col1:
+            player_name = st.text_input("Your name:", max_chars=20, 
+                                       placeholder="Enter your name")
+        
+        with col2:
+            if st.button("💾 Save My Score", type="primary", use_container_width=True):
+                if player_name:
+                    if save_score_to_sheets(player_name, st.session_state.score):
+                        st.markdown('<div class="success-message">✅ Score saved to global leaderboard!</div>', 
+                                  unsafe_allow_html=True)
+                        st.cache_data.clear()
+                    else:
+                        st.session_state.leaderboard.append((player_name, st.session_state.score))
+                        st.session_state.leaderboard.sort(key=lambda x: x[1], reverse=True)
+                        st.session_state.leaderboard = st.session_state.leaderboard[:10]
+                        st.markdown('<div class="success-message">✅ Score saved locally!</div>', 
+                                  unsafe_allow_html=True)
+                    st.rerun()
+                else:
+                    st.warning("Please enter your name!")
+        
+        with col3:
+            st.markdown(" ")
+        
+        # Share buttons
+        st.markdown("### 📱 Share Your Achievement")
+        
+        share_text = f"I scored {st.session_state.score}/{st.session_state.total_questions} on SainsQuiz! Can you beat me?"
+        app_url = "https://sainsquiz.streamlit.app"
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            wa_link = f"https://wa.me/?text={share_text} {app_url}".replace(' ', '%20')
+            st.markdown(f"""
+            <a href="{wa_link}" target="_blank">
+                <button style="background-color:#25D366; color:white; border:none; padding:10px; border-radius:10px; width:100%;">
+                📱 WhatsApp
+                </button>
+            </a>
+            """, unsafe_allow_html=True)
+        
+        with col2:
+            tg_link = f"https://t.me/share/url?url={app_url}&text={share_text}".replace(' ', '%20')
+            st.markdown(f"""
+            <a href="{tg_link}" target="_blank">
+                <button style="background-color:#0088cc; color:white; border:none; padding:10px; border-radius:10px; width:100%;">
+                📨 Telegram
+                </button>
+            </a>
+            """, unsafe_allow_html=True)
+        
+        # New quiz button
+        if st.button("🔄 Take Another Quiz", use_container_width=True):
+            st.session_state.quiz_started = False
+            st.rerun()
 
 # ---------- FOOTER ----------
 st.markdown("---")
-st.caption("© 2025 SainsQuiz – For SPM students. Not affiliated with MOE.")
+st.markdown("""
+<div style="text-align:center; color:#666; padding:1rem;">
+    <p>🇲🇾 <strong>SainsQuiz</strong> – Helping Malaysian students master SPM Science</p>
+    <p style="font-size:0.8rem;">Questions based on SPM syllabus • Not affiliated with MOE • Data crowdsourced from students</p>
+</div>
+""", unsafe_allow_html=True)
