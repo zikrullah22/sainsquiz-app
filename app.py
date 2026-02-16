@@ -14,99 +14,351 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------- CUSTOM CSS FOR MALAYSIA THEME ----------
+# ---------- CUSTOM CSS FOR MODERN MALAYSIA THEME ----------
 st.markdown("""
 <style>
-    /* Malaysia flag colors theme */
-    .stApp {
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    
+    /* Global Styles */
+    * {
+        font-family: 'Poppins', sans-serif;
     }
+    
+    .stApp {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    /* Main container styling */
+    .main-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 30px;
+        padding: 2rem;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        backdrop-filter: blur(10px);
+        margin: 1rem 0;
+    }
+    
+    /* Header with Malaysia flag colors */
     .main-header {
-        background: linear-gradient(90deg, #cc0000 0%, #010066 50%, #ffcc00 100%);
-        padding: 1.5rem;
-        border-radius: 15px;
+        background: linear-gradient(135deg, #cc0000 0%, #010066 50%, #ffcc00 100%);
+        padding: 2rem;
+        border-radius: 25px;
         color: white;
         text-align: center;
         margin-bottom: 2rem;
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        animation: slideIn 0.5s ease-out;
     }
-    .question-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    .main-header h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin: 0;
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        letter-spacing: 2px;
+    }
+    
+    .main-header p {
+        font-size: 1.2rem;
+        opacity: 0.95;
+        margin: 0.5rem 0 0;
+        font-weight: 300;
+    }
+    
+    /* Subject cards */
+    .subject-card {
+        background: white;
         padding: 2rem;
         border-radius: 20px;
-        color: white;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        height: 100%;
+        border: 2px solid transparent;
     }
+    
+    .subject-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        border-color: #667eea;
+    }
+    
+    .subject-card h3 {
+        color: #333;
+        font-size: 1.8rem;
+        margin: 1rem 0 0.5rem;
+        font-weight: 600;
+    }
+    
+    .subject-card p {
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .subject-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Question box */
+    .question-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2.5rem;
+        border-radius: 25px;
+        color: white;
+        margin-bottom: 2rem;
+        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        animation: fadeIn 0.5s ease-out;
+    }
+    
+    .question-box h3 {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    .question-box p {
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.6;
+        margin: 1rem 0;
+    }
+    
+    /* Answer feedback */
     .correct-answer {
         background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-        padding: 1rem;
-        border-radius: 15px;
+        padding: 1.5rem;
+        border-radius: 20px;
         color: #1a4731;
-        font-weight: bold;
-        border-left: 5px solid #28a745;
-        margin: 1rem 0;
+        font-weight: 500;
+        margin: 1.5rem 0;
+        animation: slideUp 0.4s ease-out;
+        box-shadow: 0 10px 30px rgba(132, 250, 176, 0.3);
     }
+    
     .wrong-answer {
         background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
-        padding: 1rem;
-        border-radius: 15px;
+        padding: 1.5rem;
+        border-radius: 20px;
         color: #721c24;
-        font-weight: bold;
-        border-left: 5px solid #dc3545;
-        margin: 1rem 0;
+        font-weight: 500;
+        margin: 1.5rem 0;
+        animation: slideUp 0.4s ease-out;
+        box-shadow: 0 10px 30px rgba(250, 208, 196, 0.3);
     }
+    
+    /* Leaderboard styling */
     .leaderboard-card {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1rem;
+        padding: 1.2rem;
         border-radius: 15px;
         color: white;
         margin: 0.5rem 0;
         text-align: center;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
-    .stButton button {
-        background: linear-gradient(90deg, #cc0000 0%, #010066 100%);
-        color: white;
-        font-weight: bold;
-        border: none;
-        border-radius: 10px;
-        padding: 0.75rem 2rem;
+    
+    .leaderboard-item {
+        background: #f8f9fa;
+        padding: 0.8rem 1.2rem;
+        border-radius: 12px;
+        margin: 0.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         transition: all 0.3s ease;
-        width: 100%;
+        border: 2px solid transparent;
     }
+    
+    .leaderboard-item:hover {
+        transform: translateX(5px);
+        border-color: #667eea;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    }
+    
+    .leaderboard-rank {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #667eea;
+    }
+    
+    .leaderboard-name {
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .leaderboard-score {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        color: #1a4731;
+        font-weight: 700;
+    }
+    
+    /* Button styling */
+    .stButton button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-weight: 600;
+        border: none;
+        border-radius: 15px;
+        padding: 0.8rem 2rem;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.9rem;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    
     .stButton button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
     }
+    
+    /* Sidebar styling */
+    div[data-testid="stSidebar"] {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 2rem 1.5rem;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    }
+    
+    .sidebar-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .sidebar-header h2 {
+        color: #333;
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+    }
+    
+    .sidebar-header p {
+        color: #667eea;
+        font-weight: 500;
+    }
+    
+    /* Success message */
     .success-message {
         background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
         padding: 1rem;
+        border-radius: 15px;
+        color: #1a4731;
+        text-align: center;
+        font-weight: 600;
+        margin: 1rem 0;
+        animation: pulse 2s infinite;
+    }
+    
+    /* Animations */
+    @keyframes slideIn {
+        from {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideUp {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.02);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    /* Radio button styling */
+    .stRadio > div {
+        background: white;
+        padding: 1rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .stRadio label {
+        font-size: 1.1rem;
+        padding: 0.8rem;
         border-radius: 10px;
-        color: #1a4731;
-        text-align: center;
-        font-weight: bold;
+        transition: all 0.3s ease;
     }
-    div[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-        padding: 2rem 1rem;
+    
+    .stRadio label:hover {
+        background: #f0f2f6;
     }
-    .status-badge {
-        padding: 0.5rem;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        font-weight: bold;
-        text-align: center;
-        margin: 0.5rem 0;
-    }
-    .status-connected {
+    
+    /* Progress bar */
+    .stProgress > div > div {
         background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-        color: #1a4731;
+        border-radius: 10px;
     }
-    .status-disconnected {
-        background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
-        color: #721c24;
+    
+    /* Metric styling */
+    .stMetric {
+        background: white;
+        padding: 1rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .stMetric label {
+        color: #667eea;
+        font-weight: 600;
+    }
+    
+    /* Expander styling */
+    .streamlit-expanderHeader {
+        background: white;
+        border-radius: 15px;
+        font-weight: 600;
+        color: #667eea;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    /* Footer */
+    .footer {
+        text-align: center;
+        padding: 2rem;
+        color: rgba(255,255,255,0.9);
+        font-size: 0.9rem;
+    }
+    
+    .footer strong {
+        color: white;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -220,7 +472,6 @@ def get_google_sheets_connection():
         
         return sheet
     except Exception as e:
-        st.sidebar.error(f"❌ Sheets error: {str(e)}")
         return None
 
 def save_score_to_sheets(name, score):
@@ -264,21 +515,12 @@ def load_leaderboard_from_sheets():
 
 # ---------- SIDEBAR ----------
 with st.sidebar:
-    st.markdown("## 🧪 **SainsQuiz**")
-    st.markdown("### *SPM Science Practice*")
-    st.markdown("---")
-    
-    # Connection status
-    sheet = get_google_sheets_connection()
-    if sheet:
-        st.markdown('<div class="status-badge status-connected">✅ Connected to Global Leaderboard</div>', 
-                   unsafe_allow_html=True)
-        client_email = st.secrets["gcp_service_account"].get("client_email", "")
-        if client_email:
-            st.caption(f"📧 {client_email[:30]}...")
-    else:
-        st.markdown('<div class="status-badge status-disconnected">⚠️ Local Mode Only</div>', 
-                   unsafe_allow_html=True)
+    st.markdown("""
+    <div class="sidebar-header">
+        <h2>🧪 SainsQuiz</h2>
+        <p>SPM Science Practice</p>
+    </div>
+    """, unsafe_allow_html=True)
     
     st.markdown("---")
     
@@ -322,55 +564,91 @@ with st.sidebar:
         st.progress(progress)
     
     # Leaderboard
-    st.markdown("### 🏆 **Top Players**")
+    st.markdown("### 🏆 Top Players")
     
     leaderboard_data = load_leaderboard_from_sheets()
     
     if leaderboard_data:
         for i, (name, score) in enumerate(leaderboard_data, 1):
             if i == 1:
-                st.markdown(f"🥇 **{name}** – {score} pts")
+                st.markdown(f"""
+                <div class="leaderboard-item">
+                    <span class="leaderboard-rank">🥇</span>
+                    <span class="leaderboard-name">{name}</span>
+                    <span class="leaderboard-score">{score}</span>
+                </div>
+                """, unsafe_allow_html=True)
             elif i == 2:
-                st.markdown(f"🥈 **{name}** – {score} pts")
+                st.markdown(f"""
+                <div class="leaderboard-item">
+                    <span class="leaderboard-rank">🥈</span>
+                    <span class="leaderboard-name">{name}</span>
+                    <span class="leaderboard-score">{score}</span>
+                </div>
+                """, unsafe_allow_html=True)
             elif i == 3:
-                st.markdown(f"🥉 **{name}** – {score} pts")
+                st.markdown(f"""
+                <div class="leaderboard-item">
+                    <span class="leaderboard-rank">🥉</span>
+                    <span class="leaderboard-name">{name}</span>
+                    <span class="leaderboard-score">{score}</span>
+                </div>
+                """, unsafe_allow_html=True)
             else:
-                st.markdown(f"{i}. **{name}** – {score} pts")
+                st.markdown(f"""
+                <div class="leaderboard-item">
+                    <span class="leaderboard-rank">#{i}</span>
+                    <span class="leaderboard-name">{name}</span>
+                    <span class="leaderboard-score">{score}</span>
+                </div>
+                """, unsafe_allow_html=True)
     elif st.session_state.leaderboard:
-        st.caption("📱 Local scores only")
         for i, (name, score) in enumerate(st.session_state.leaderboard[:5], 1):
-            st.markdown(f"{i}. **{name}** – {score} pts")
+            st.markdown(f"""
+            <div class="leaderboard-item">
+                <span class="leaderboard-rank">#{i}</span>
+                <span class="leaderboard-name">{name}</span>
+                <span class="leaderboard-score">{score}</span>
+            </div>
+            """, unsafe_allow_html=True)
     else:
-        st.info("No scores yet. Be the first!")
+        st.info("✨ No scores yet. Be the first!")
 
 # ---------- MAIN CONTENT ----------
-st.markdown('<div class="main-header">🧪 SAINSQUIZ</div>', unsafe_allow_html=True)
-st.markdown("### *Master SPM Science • Compete with Friends • Top the Leaderboard*")
+st.markdown("""
+<div class="main-header">
+    <h1>🧪 SAINSQUIZ</h1>
+    <p>Master SPM Science • Compete with Friends • Top the Leaderboard</p>
+</div>
+""", unsafe_allow_html=True)
 
 if not st.session_state.quiz_started:
-    # Welcome screen
+    # Welcome screen with subject cards
     col1, col2, col3 = st.columns(3)
     
     with col1:
         st.markdown("""
-        <div style="text-align:center; padding:1rem;">
-            <h3>📚 Physics</h3>
+        <div class="subject-card">
+            <div class="subject-icon">📚</div>
+            <h3>Physics</h3>
             <p>Forces, Motion, Heat, Light & Waves</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
-        <div style="text-align:center; padding:1rem;">
-            <h3>🧪 Chemistry</h3>
+        <div class="subject-card">
+            <div class="subject-icon">🧪</div>
+            <h3>Chemistry</h3>
             <p>Periodic Table, Chemical Bonds, Acids & Bases</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
         st.markdown("""
-        <div style="text-align:center; padding:1rem;">
-            <h3>🔬 Biology</h3>
+        <div class="subject-card">
+            <div class="subject-icon">🔬</div>
+            <h3>Biology</h3>
             <p>Cells, Human Body, Plants, Ecosystems</p>
         </div>
         """, unsafe_allow_html=True)
@@ -379,15 +657,16 @@ if not st.session_state.quiz_started:
     
     with st.expander("ℹ️ How to Play", expanded=True):
         st.markdown("""
-        1. **Choose your subject** from the sidebar
-        2. Click **"New Quiz"** to start
-        3. Answer 10 randomly selected questions
-        4. Get instant feedback with explanations
-        5. Save your score to the global leaderboard
-        6. Challenge friends to beat your score!
-        
-        *Questions are based on actual SPM syllabus.*
-        """)
+        <div style="padding:1rem;">
+            <p>✨ <strong>Choose your subject</strong> from the sidebar</p>
+            <p>🎯 Click <strong>"New Quiz"</strong> to start</p>
+            <p>📝 Answer 10 randomly selected questions</p>
+            <p>💡 Get instant feedback with explanations</p>
+            <p>🏆 Save your score to the global leaderboard</p>
+            <p>👥 Challenge friends to beat your score!</p>
+            <p style="margin-top:1rem; color:#667eea;"><em>Questions are based on actual SPM syllabus.</em></p>
+        </div>
+        """, unsafe_allow_html=True)
 
 else:
     # Quiz active
@@ -398,8 +677,8 @@ else:
         st.markdown(f"""
         <div class="question-box">
             <h3>Question {st.session_state.q_index + 1} of {st.session_state.total_questions}</h3>
-            <p style="font-size:1.2rem;">{q['question']}</p>
-            <p style="font-size:0.9rem; opacity:0.8;">Subject: {q['subject']}</p>
+            <p>{q['question']}</p>
+            <p style="font-size:0.9rem; opacity:0.8;">📚 {q['subject']}</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -492,14 +771,14 @@ else:
         # Save score section
         st.markdown("### 🏆 Save to Leaderboard")
         
-        col1, col2, col3 = st.columns([2, 2, 1])
+        col1, col2 = st.columns([3, 1])
         
         with col1:
             player_name = st.text_input("Your name:", max_chars=20, 
                                        placeholder="Enter your name")
         
         with col2:
-            if st.button("💾 Save My Score", type="primary", use_container_width=True):
+            if st.button("💾 Save", type="primary", use_container_width=True):
                 if player_name:
                     if save_score_to_sheets(player_name, st.session_state.score):
                         st.markdown('<div class="success-message">✅ Score saved to global leaderboard!</div>', 
@@ -515,47 +794,15 @@ else:
                 else:
                     st.warning("Please enter your name!")
         
-        with col3:
-            st.markdown(" ")
-        
-        # Share buttons
-        st.markdown("### 📱 Share Your Achievement")
-        
-        share_text = f"I scored {st.session_state.score}/{st.session_state.total_questions} on SainsQuiz! Can you beat me?"
-        app_url = "https://sainsquiz.streamlit.app"
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            wa_link = f"https://wa.me/?text={share_text} {app_url}".replace(' ', '%20')
-            st.markdown(f"""
-            <a href="{wa_link}" target="_blank">
-                <button style="background-color:#25D366; color:white; border:none; padding:10px; border-radius:10px; width:100%;">
-                📱 WhatsApp
-                </button>
-            </a>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            tg_link = f"https://t.me/share/url?url={app_url}&text={share_text}".replace(' ', '%20')
-            st.markdown(f"""
-            <a href="{tg_link}" target="_blank">
-                <button style="background-color:#0088cc; color:white; border:none; padding:10px; border-radius:10px; width:100%;">
-                📨 Telegram
-                </button>
-            </a>
-            """, unsafe_allow_html=True)
-        
         # New quiz button
         if st.button("🔄 Take Another Quiz", use_container_width=True):
             st.session_state.quiz_started = False
             st.rerun()
 
 # ---------- FOOTER ----------
-st.markdown("---")
 st.markdown("""
-<div style="text-align:center; color:#666; padding:1rem;">
+<div class="footer">
     <p>🇲🇾 <strong>SainsQuiz</strong> – Helping Malaysian students master SPM Science</p>
-    <p style="font-size:0.8rem;">Questions based on SPM syllabus • Not affiliated with MOE • Data crowdsourced from students</p>
+    <p style="font-size:0.8rem; opacity:0.8;">Questions based on SPM syllabus • Not affiliated with MOE</p>
 </div>
 """, unsafe_allow_html=True)
