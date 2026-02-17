@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------- CLEAN PROFESSIONAL CSS ----------
+# ---------- FIXED CSS WITH VISIBLE OPTIONS ----------
 st.markdown("""
 <style>
     /* Import Google Font */
@@ -27,41 +27,35 @@ st.markdown("""
         box-sizing: border-box;
     }
     
-    /* Clean white background */
+    /* Clean background */
     .stApp {
-        background-color: #f8fafc;
+        background-color: #f3f4f6;
     }
     
-    /* Main container */
-    .main-container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    
-    /* Header - simple and clean */
+    /* Header */
     .header {
         background: white;
-        padding: 2rem;
-        border-radius: 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         margin-bottom: 2rem;
         text-align: center;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #e5e7eb;
     }
     
     .header h1 {
-        color: #0f172a;
-        font-size: 2.2rem;
+        color: #111827;
+        font-size: 2rem;
         font-weight: 700;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
     }
     
     .header p {
-        color: #475569;
-        font-size: 1rem;
+        color: #6b7280;
+        font-size: 0.9rem;
     }
     
-    /* Subject cards - simple cards */
+    /* Subject cards */
     .subject-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -72,207 +66,223 @@ st.markdown("""
     .subject-card {
         background: white;
         padding: 1.5rem;
-        border-radius: 16px;
+        border-radius: 12px;
         text-align: center;
-        border: 1px solid #e2e8f0;
-        transition: all 0.2s ease;
-        cursor: pointer;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
     
-    .subject-card:hover {
-        border-color: #2563eb;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+    .subject-card h3 {
+        color: #111827;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0.5rem 0 0.25rem;
+    }
+    
+    .subject-card p {
+        color: #6b7280;
+        font-size: 0.8rem;
     }
     
     .subject-icon {
         font-size: 2rem;
-        margin-bottom: 0.5rem;
     }
     
-    .subject-card h3 {
-        color: #0f172a;
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 0.25rem;
-    }
-    
-    .subject-card p {
-        color: #64748b;
-        font-size: 0.8rem;
-    }
-    
-    /* Question box - clean white */
+    /* Question box */
     .question-box {
         background: white;
-        padding: 2rem;
-        border-radius: 16px;
-        border: 1px solid #e2e8f0;
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         margin-bottom: 1.5rem;
     }
     
     .question-box h3 {
-        color: #2563eb;
-        font-size: 0.9rem;
+        color: #3b82f6;
+        font-size: 0.85rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
     
     .question-box p {
-        color: #0f172a;
+        color: #111827;
         font-size: 1.2rem;
         font-weight: 600;
         line-height: 1.5;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
     
     .subject-tag {
         display: inline-block;
-        background: #e2e8f0;
-        color: #475569;
-        padding: 0.25rem 1rem;
+        background: #e5e7eb;
+        color: #4b5563;
+        padding: 0.2rem 1rem;
         border-radius: 20px;
         font-size: 0.8rem;
         font-weight: 500;
     }
     
-    /* Radio buttons - clean */
-    .stRadio > div {
-        background: white;
-        padding: 1rem;
-        border-radius: 12px;
-        border: 1px solid #e2e8f0;
+    /* FIXED: Radio buttons - NOW VISIBLE */
+    div.row-widget.stRadio > div {
+        background-color: white !important;
+        padding: 1rem !important;
+        border-radius: 12px !important;
+        border: 1px solid #d1d5db !important;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
     }
     
-    .stRadio label {
-        background: #f8fafc !important;
-        border: 1px solid #e2e8f0 !important;
+    div.row-widget.stRadio > div[role="radiogroup"] {
+        background-color: white !important;
+    }
+    
+    /* Individual option styling */
+    div.row-widget.stRadio label {
+        background-color: #f9fafb !important;
+        border: 1px solid #e5e7eb !important;
         border-radius: 8px !important;
-        padding: 0.8rem 1rem !important;
-        margin: 0.3rem 0 !important;
-        color: #0f172a !important;
+        padding: 0.75rem 1rem !important;
+        margin: 0.4rem 0 !important;
+        color: #111827 !important;
         font-weight: 500 !important;
+        font-size: 1rem !important;
         transition: all 0.2s ease !important;
+        display: flex !important;
+        align-items: center !important;
+        cursor: pointer !important;
     }
     
-    .stRadio label:hover {
-        background: #e2e8f0 !important;
-        border-color: #2563eb !important;
+    div.row-widget.stRadio label:hover {
+        background-color: #e5e7eb !important;
+        border-color: #3b82f6 !important;
     }
     
-    /* Buttons - simple blue */
+    /* Selected option */
+    div.row-widget.stRadio label[data-baseweb="radio"] input:checked + div {
+        background-color: #3b82f6 !important;
+        border-color: #3b82f6 !important;
+    }
+    
+    /* Radio circle */
+    div.row-widget.stRadio label div:first-child {
+        background-color: white !important;
+        border-color: #d1d5db !important;
+    }
+    
+    /* FIXED: Buttons - VISIBLE */
     .stButton button {
-        background: #2563eb !important;
+        background-color: #3b82f6 !important;
         color: white !important;
         font-weight: 600 !important;
         border: none !important;
         border-radius: 8px !important;
-        padding: 0.6rem 1.5rem !important;
-        font-size: 0.9rem !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 0.95rem !important;
         transition: all 0.2s ease !important;
-    }
-    
-    .stButton button:hover {
-        background: #1d4ed8 !important;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
-    }
-    
-    .secondary-button button {
-        background: white !important;
-        color: #2563eb !important;
         border: 1px solid #2563eb !important;
     }
     
-    .secondary-button button:hover {
-        background: #f8fafc !important;
+    .stButton button:hover {
+        background-color: #2563eb !important;
+        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3) !important;
     }
     
-    /* Sidebar - clean */
+    .secondary-button button {
+        background-color: white !important;
+        color: #3b82f6 !important;
+        border: 1px solid #3b82f6 !important;
+    }
+    
+    .secondary-button button:hover {
+        background-color: #f9fafb !important;
+    }
+    
+    /* Sidebar */
     [data-testid="stSidebar"] {
-        background: white;
-        border-right: 1px solid #e2e8f0;
-        padding: 2rem 1rem;
+        background-color: white;
+        border-right: 1px solid #e5e7eb;
+        padding: 1.5rem 1rem;
     }
     
     .sidebar-header {
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .sidebar-header h2 {
-        color: #0f172a;
-        font-size: 1.8rem;
+        color: #111827;
+        font-size: 1.5rem;
         font-weight: 700;
     }
     
     .sidebar-header p {
-        color: #64748b;
-        font-size: 0.9rem;
+        color: #6b7280;
+        font-size: 0.85rem;
     }
     
-    /* Metric card */
+    /* Metric */
     [data-testid="stMetric"] {
-        background: #f8fafc;
+        background-color: #f9fafb;
         padding: 1rem;
-        border-radius: 12px;
-        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
     }
     
     [data-testid="stMetric"] label {
-        color: #64748b !important;
-        font-size: 0.9rem !important;
+        color: #6b7280 !important;
+        font-size: 0.85rem !important;
     }
     
     [data-testid="stMetric"] [data-testid="stMetricValue"] {
-        color: #0f172a !important;
-        font-size: 2rem !important;
+        color: #111827 !important;
+        font-size: 1.8rem !important;
         font-weight: 700 !important;
     }
     
     /* Progress bar */
     .stProgress > div > div {
-        background: #2563eb;
-        border-radius: 10px;
+        background-color: #3b82f6;
     }
     
-    /* Leaderboard items */
+    /* Leaderboard */
     .leaderboard-item {
-        background: #f8fafc;
-        padding: 0.7rem 1rem;
+        background-color: #f9fafb;
+        padding: 0.6rem 1rem;
         border-radius: 8px;
-        margin: 0.5rem 0;
+        margin: 0.4rem 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #e5e7eb;
     }
     
     .leaderboard-rank {
         font-weight: 700;
-        color: #2563eb;
+        color: #3b82f6;
         min-width: 35px;
     }
     
     .leaderboard-name {
-        color: #0f172a;
+        color: #111827;
         font-weight: 500;
         flex: 1;
     }
     
     .leaderboard-score {
-        background: #e2e8f0;
-        color: #0f172a;
+        background-color: #e5e7eb;
+        color: #111827;
         font-weight: 600;
-        padding: 0.2rem 1rem;
+        padding: 0.2rem 0.8rem;
         border-radius: 20px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     
     /* Success message */
     .success-message {
-        background: #dcfce7;
-        border: 1px solid #86efac;
-        color: #166534;
+        background-color: #d1fae5;
+        border: 1px solid #10b981;
+        color: #065f46;
         padding: 1rem;
         border-radius: 8px;
         margin: 1rem 0;
@@ -281,22 +291,33 @@ st.markdown("""
     
     /* Info box */
     .info-box {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        padding: 1.5rem;
-        border-radius: 12px;
-        color: #0f172a;
-        line-height: 1.8;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #111827;
+        line-height: 1.6;
     }
     
     /* Select box */
     .stSelectbox label {
-        color: #0f172a !important;
+        color: #111827 !important;
         font-weight: 600 !important;
+        font-size: 0.9rem !important;
     }
     
     .stSelectbox > div > div {
-        border: 1px solid #e2e8f0 !important;
+        background-color: white !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 8px !important;
+        color: #111827 !important;
+    }
+    
+    /* Warning message */
+    .stAlert {
+        background-color: #fee2e2 !important;
+        color: #991b1b !important;
+        border: 1px solid #fecaca !important;
         border-radius: 8px !important;
     }
     
@@ -304,15 +325,15 @@ st.markdown("""
     .footer {
         text-align: center;
         padding: 2rem 0 1rem;
-        color: #64748b;
-        font-size: 0.85rem;
-        border-top: 1px solid #e2e8f0;
-        margin-top: 3rem;
+        color: #6b7280;
+        font-size: 0.8rem;
+        border-top: 1px solid #e5e7eb;
+        margin-top: 2rem;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- SIMPLE ICONS (TEXT ONLY - NO IMAGES) ----------
+# ---------- SIMPLE ICONS ----------
 PHYSICS_ICON = "📚"
 CHEMISTRY_ICON = "🧪"
 BIOLOGY_ICON = "🔬"
@@ -368,10 +389,17 @@ def load_questions():
         },
         {
             "subject": "Biology",
-            "question": "Which organelle is the 'powerhouse'?",
-            "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi"],
+            "question": "Which organelle is the 'powerhouse' of the cell?",
+            "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi apparatus"],
             "correct_option": 2,
             "explanation": "Mitochondria produce ATP."
+        },
+        {
+            "subject": "Chemistry",
+            "question": "What is the most abundant element in the universe?",
+            "options": ["Oxygen", "Carbon", "Helium", "Hydrogen"],
+            "correct_option": 3,
+            "explanation": "Hydrogen makes up about 75% of the universe's elemental mass."
         }
     ]
 
@@ -519,7 +547,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 if not st.session_state.quiz_started:
-    # Subject cards with emojis only
+    # Subject cards
     col1, col2, col3 = st.columns(3)
     
     with col1:
@@ -550,7 +578,7 @@ if not st.session_state.quiz_started:
         """, unsafe_allow_html=True)
     
     # How to play
-    with st.expander("How to Play", expanded=True):
+    with st.expander("How to Play"):
         st.markdown("""
         <div class="info-box">
             • Choose your subject from the sidebar<br>
@@ -574,9 +602,11 @@ else:
         </div>
         """, unsafe_allow_html=True)
         
-        # Options
-        answer = st.radio("", q['options'], key=f"q_{st.session_state.q_index}", 
-                         index=None, label_visibility="collapsed")
+        # Options - NOW VISIBLE with light gray background
+        st.write("")  # Small spacer
+        answer = st.radio("Select your answer:", q['options'], 
+                         key=f"q_{st.session_state.q_index}", 
+                         index=None)
         
         col1, col2 = st.columns(2)
         
@@ -627,9 +657,9 @@ else:
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div class="info-box" style="background: #fef2f2; border-color: #fecaca; color: #991b1b;">
+                <div style="background-color:#fee2e2; border:1px solid #fecaca; color:#991b1b; padding:1rem; border-radius:8px; margin:1rem 0;">
                     ❌ <strong>Incorrect</strong><br>
-                    Correct: <strong>{last['correct_answer']}</strong><br>
+                    Correct answer: <strong>{last['correct_answer']}</strong><br>
                     {last['explanation']}
                 </div>
                 """, unsafe_allow_html=True)
@@ -641,10 +671,10 @@ else:
         percentage = (st.session_state.score / st.session_state.total_questions) * 100
         
         st.markdown(f"""
-        <div class="question-box" style="background: #f0fdf4;">
-            <h3 style="color: #166534;">🎉 Quiz Complete!</h3>
-            <p style="font-size: 3rem; color: #166534;">{st.session_state.score}/{st.session_state.total_questions}</p>
-            <p style="font-size: 1.2rem; color: #166534;">{percentage:.1f}%</p>
+        <div class="question-box" style="background-color:#d1fae5;">
+            <h3 style="color:#065f46;">🎉 Quiz Complete!</h3>
+            <p style="font-size: 3rem; color:#065f46;">{st.session_state.score}/{st.session_state.total_questions}</p>
+            <p style="font-size: 1.2rem; color:#065f46;">{percentage:.1f}%</p>
         </div>
         """, unsafe_allow_html=True)
         
