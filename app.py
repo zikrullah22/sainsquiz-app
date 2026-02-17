@@ -14,230 +14,239 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------- CLEAN, PROFESSIONAL CSS ----------
+# ---------- AMAZING CSS WITH ONLINE IMAGES ----------
 st.markdown("""
 <style>
-    /* Import Google Font */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
     
-    /* Global Reset */
+    /* Global Styles */
     * {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Poppins', sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
     
-    /* Main app background */
+    /* Animated Gradient Background */
     .stApp {
-        background: #f0f2f6;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        min-height: 100vh;
     }
     
-    /* Main container */
-    .main-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 1rem;
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
     
-    /* Header with Malaysia flag */
-    .header {
-        background: white;
+    /* Floating Animation for Cards */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    /* Pulse Animation */
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    /* Glow Animation */
+    @keyframes glow {
+        0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+        50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+        100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+    }
+    
+    /* Main Header with Online Image */
+    .main-header {
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 30px;
         padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        margin-bottom: 2rem;
+        margin: 1rem 0 2rem 0;
         text-align: center;
-        border-bottom: 4px solid #010066;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        animation: float 3s ease-in-out infinite;
     }
     
-    .header h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #cc0000 0%, #010066 50%, #ffcc00 100%);
+    .main-header h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #fff 0%, #ffd700 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
     
-    .header p {
-        color: #4a5568;
-        font-size: 1.1rem;
+    .main-header p {
+        color: white;
+        font-size: 1.2rem;
         font-weight: 500;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
     
-    /* Subject Cards */
-    .subject-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin: 2rem 0;
-    }
-    
+    /* Cool Subject Cards with Images */
     .subject-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 30px;
+        padding: 2rem;
         text-align: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         transition: all 0.3s ease;
-        cursor: pointer;
-        border: 1px solid #e2e8f0;
+        border: 2px solid rgba(255,255,255,0.5);
+        height: 100%;
+        animation: float 4s ease-in-out infinite;
     }
     
     .subject-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
-        border-color: #010066;
+        transform: scale(1.05) translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        border-color: #ffd700;
+        animation: pulse 1s ease-in-out;
     }
     
-    .subject-icon {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
+    .subject-card img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
+        border-radius: 50%;
+        border: 4px solid #ffd700;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     
     .subject-card h3 {
-        color: #1e293b;
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 0.25rem;
+        color: #333;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0.5rem 0;
     }
     
     .subject-card p {
-        color: #64748b;
-        font-size: 0.85rem;
-        line-height: 1.4;
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.6;
     }
     
-    /* Question Box */
+    /* Question Box with Glass Effect */
     .question-box {
-        background: white;
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        margin-bottom: 1.5rem;
-        border-left: 4px solid #010066;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 40px;
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        border: 2px solid rgba(255,255,255,0.5);
+        animation: glow 2s ease-in-out infinite;
     }
     
     .question-box h3 {
-        color: #64748b;
-        font-size: 0.9rem;
+        color: #e73c7e;
+        font-size: 1rem;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 2px;
         margin-bottom: 1rem;
     }
     
     .question-box p {
-        color: #1e293b;
-        font-size: 1.3rem;
+        color: #333;
+        font-size: 1.5rem;
         font-weight: 600;
-        line-height: 1.5;
+        line-height: 1.6;
+        margin-bottom: 1rem;
     }
     
     .subject-tag {
         display: inline-block;
-        background: #f1f5f9;
-        color: #475569;
-        padding: 0.3rem 1rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        margin-top: 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 0.5rem 2rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
     
-    /* Options styling */
+    /* Cool Radio Buttons */
     .stRadio > div {
-        background: white;
-        padding: 1rem;
-        border-radius: 16px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        margin: 1rem 0;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 30px;
+        padding: 1.5rem;
+        border: 2px solid rgba(255,255,255,0.5);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     
     .stRadio label {
-        color: #1e293b !important;
-        font-size: 1rem !important;
-        font-weight: 500 !important;
-        padding: 0.75rem !important;
-        background: #f8fafc;
-        border-radius: 12px;
-        margin: 0.25rem 0 !important;
-        border: 1px solid #e2e8f0;
-        transition: all 0.2s ease;
+        background: white !important;
+        border: 2px solid #e0e0e0 !important;
+        border-radius: 20px !important;
+        padding: 1rem 1.5rem !important;
+        margin: 0.5rem 0 !important;
+        color: #333 !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.05) !important;
     }
     
     .stRadio label:hover {
-        background: #e2e8f0;
-        border-color: #010066;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        border-color: transparent !important;
+        transform: translateX(10px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3) !important;
     }
     
     .stRadio [data-testid="StyledFullScreenButton"] {
         display: none;
     }
     
-    /* Feedback messages */
-    .correct-feedback {
-        background: #f0fdf4;
-        border-left: 4px solid #22c55e;
-        padding: 1.2rem;
-        border-radius: 12px;
-        margin: 1rem 0;
-        color: #166534;
-        font-weight: 500;
-        box-shadow: 0 2px 4px rgba(34, 197, 94, 0.1);
-    }
-    
-    .wrong-feedback {
-        background: #fef2f2;
-        border-left: 4px solid #ef4444;
-        padding: 1.2rem;
-        border-radius: 12px;
-        margin: 1rem 0;
-        color: #991b1b;
-        font-weight: 500;
-        box-shadow: 0 2px 4px rgba(239, 68, 68, 0.1);
-    }
-    
-    /* Button styling */
+    /* Awesome Buttons */
     .stButton button {
-        background: #010066 !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         color: white !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
+        font-size: 1.1rem !important;
         border: none !important;
-        border-radius: 12px !important;
-        padding: 0.75rem 2rem !important;
-        font-size: 1rem !important;
+        border-radius: 50px !important;
+        padding: 1rem 2rem !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 4px 6px rgba(1, 0, 102, 0.2) !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4) !important;
+        border: 2px solid rgba(255,255,255,0.2) !important;
     }
     
     .stButton button:hover {
-        background: #020180 !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 12px rgba(1, 0, 102, 0.3) !important;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 20px 30px rgba(102, 126, 234, 0.6) !important;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
     }
     
     .stButton button:active {
-        transform: translateY(0) !important;
+        transform: translateY(0);
     }
     
-    /* Secondary button */
+    /* Secondary Button */
     .secondary-button button {
-        background: white !important;
-        color: #010066 !important;
-        border: 2px solid #010066 !important;
-        box-shadow: none !important;
+        background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%) !important;
+        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4) !important;
     }
     
-    .secondary-button button:hover {
-        background: #f8fafc !important;
-    }
-    
-    /* Sidebar styling */
+    /* Sidebar with Glass Effect */
     [data-testid="stSidebar"] {
-        background: white;
-        padding: 2rem 1rem;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-right: 2px solid rgba(255,255,255,0.2);
+        padding: 2rem;
     }
     
     .sidebar-header {
@@ -246,131 +255,155 @@ st.markdown("""
     }
     
     .sidebar-header h2 {
-        color: #010066;
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin: 0;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
     
     .sidebar-header p {
-        color: #64748b;
-        font-size: 0.9rem;
+        color: rgba(255,255,255,0.9);
+        font-size: 1rem;
     }
     
-    /* Metric styling */
+    /* Score Card */
     [data-testid="stMetric"] {
-        background: #f8fafc;
-        padding: 1rem;
-        border-radius: 16px;
-        border: 1px solid #e2e8f0;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 30px;
+        padding: 1.5rem;
+        text-align: center;
     }
     
     [data-testid="stMetric"] label {
-        color: #64748b !important;
-        font-size: 0.9rem !important;
+        color: white !important;
+        font-size: 1rem !important;
         font-weight: 500 !important;
     }
     
     [data-testid="stMetric"] [data-testid="stMetricValue"] {
-        color: #010066 !important;
-        font-size: 2rem !important;
-        font-weight: 700 !important;
+        color: #ffd700 !important;
+        font-size: 3rem !important;
+        font-weight: 800 !important;
     }
     
-    /* Progress bar */
+    /* Progress Bar */
     .stProgress > div > div {
-        background: linear-gradient(90deg, #010066, #4f46e5);
-        border-radius: 10px;
+        background: linear-gradient(90deg, #ffd700, #ffa500);
+        border-radius: 20px;
+        height: 15px !important;
     }
     
-    /* Leaderboard items */
+    .stProgress > div {
+        background: rgba(255,255,255,0.2);
+        border-radius: 20px;
+    }
+    
+    /* Leaderboard Items */
     .leaderboard-item {
-        background: #f8fafc;
-        padding: 0.75rem 1rem;
-        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 50px;
+        padding: 0.8rem 1.2rem;
         margin: 0.5rem 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid #e2e8f0;
-        transition: all 0.2s ease;
+        transition: all 0.3s ease;
     }
     
     .leaderboard-item:hover {
-        border-color: #010066;
-        background: white;
+        transform: translateX(10px);
+        background: rgba(255, 255, 255, 0.3);
+        border-color: #ffd700;
     }
     
     .leaderboard-rank {
-        font-weight: 700;
-        color: #010066;
-        min-width: 40px;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #ffd700;
+        min-width: 50px;
     }
     
     .leaderboard-name {
-        color: #1e293b;
+        color: white;
         font-weight: 600;
+        font-size: 1.1rem;
         flex: 1;
     }
     
     .leaderboard-score {
-        background: #010066;
-        color: white;
-        padding: 0.2rem 1rem;
-        border-radius: 20px;
-        font-weight: 600;
-        font-size: 0.9rem;
+        background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+        color: #333;
+        font-weight: 800;
+        padding: 0.3rem 1.2rem;
+        border-radius: 50px;
+        font-size: 1rem;
     }
     
-    /* Success message */
+    /* Success Message */
     .success-message {
-        background: #f0fdf4;
-        border: 1px solid #86efac;
-        color: #166534;
-        padding: 1rem;
-        border-radius: 12px;
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        color: #1a4731;
+        padding: 1.5rem;
+        border-radius: 30px;
+        text-align: center;
+        font-weight: 700;
+        margin: 1rem 0;
+        animation: pulse 2s infinite;
+        border: 2px solid white;
+    }
+    
+    /* Info Box */
+    .info-box {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        border: 2px solid rgba(255,255,255,0.3);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 30px;
         text-align: center;
         font-weight: 500;
-        margin: 1rem 0;
     }
     
-    /* Info box */
-    .info-box {
-        background: #f0f9ff;
-        border: 1px solid #bae6fd;
-        color: #0369a1;
-        padding: 1rem;
-        border-radius: 12px;
-        margin: 1rem 0;
-    }
-    
-    /* Select box */
+    /* Select Box */
     .stSelectbox label {
-        color: #1e293b !important;
+        color: white !important;
         font-weight: 600 !important;
+        font-size: 1rem !important;
     }
     
     .stSelectbox > div > div {
-        background: white !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 12px !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        backdrop-filter: blur(5px) !important;
+        border: 2px solid rgba(255,255,255,0.3) !important;
+        border-radius: 30px !important;
+        color: white !important;
     }
     
     /* Footer */
     .footer {
         text-align: center;
-        padding: 2rem 0 1rem;
-        color: #64748b;
-        font-size: 0.85rem;
-        border-top: 1px solid #e2e8f0;
-        margin-top: 2rem;
+        padding: 2rem;
+        margin-top: 3rem;
+        color: white;
+        font-size: 0.9rem;
+        border-top: 2px solid rgba(255,255,255,0.2);
     }
     
     .footer strong {
-        color: #010066;
+        color: #ffd700;
     }
 </style>
 """, unsafe_allow_html=True)
+
+# ---------- ONLINE IMAGES FOR SUBJECTS ----------
+PHYSICS_IMG = "https://cdn-icons-png.flaticon.com/512/2917/2917996.png"
+CHEMISTRY_IMG = "https://cdn-icons-png.flaticon.com/512/2917/2917995.png"
+BIOLOGY_IMG = "https://cdn-icons-png.flaticon.com/512/2917/2917990.png"
+LOGO_IMG = "https://cdn-icons-png.flaticon.com/512/2810/2810051.png"
 
 # ---------- INITIALIZE SESSION STATE ----------
 def init_session_state():
@@ -384,8 +417,7 @@ def init_session_state():
         'leaderboard': [],
         'questions': [],
         'total_questions': 0,
-        'show_feedback': False,
-        'selected_subject': None
+        'show_feedback': False
     }
     
     for key, value in defaults.items():
@@ -492,8 +524,9 @@ def load_leaderboard_from_sheets():
 
 # ---------- SIDEBAR ----------
 with st.sidebar:
-    st.markdown("""
+    st.markdown(f"""
     <div class="sidebar-header">
+        <img src="{LOGO_IMG}" style="width: 80px; height: 80px; margin-bottom: 1rem;">
         <h2>🧪 SainsQuiz</h2>
         <p>SPM Science Practice</p>
     </div>
@@ -546,10 +579,18 @@ with st.sidebar:
     
     if leaderboard:
         for i, (name, score) in enumerate(leaderboard, 1):
-            medal = "🥇" if i == 1 else "🥈" if i == 2 else "🥉" if i == 3 else f"#{i}"
+            if i == 1:
+                rank = "🥇"
+            elif i == 2:
+                rank = "🥈"
+            elif i == 3:
+                rank = "🥉"
+            else:
+                rank = f"#{i}"
+                
             st.markdown(f"""
             <div class="leaderboard-item">
-                <span class="leaderboard-rank">{medal}</span>
+                <span class="leaderboard-rank">{rank}</span>
                 <span class="leaderboard-name">{name}</span>
                 <span class="leaderboard-score">{score}</span>
             </div>
@@ -560,52 +601,55 @@ with st.sidebar:
 
 # ---------- MAIN CONTENT ----------
 st.markdown("""
-<div class="header">
+<div class="main-header">
     <h1>🧪 SAINSQUIZ</h1>
-    <p>Master SPM Science • Compete with Friends</p>
+    <p>Master SPM Science • Compete with Friends • Win the Leaderboard</p>
 </div>
 """, unsafe_allow_html=True)
 
 if not st.session_state.quiz_started:
-    # Subject cards
+    # Subject cards with online images
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="subject-card">
-            <div class="subject-icon">📚</div>
+            <img src="{PHYSICS_IMG}" alt="Physics">
             <h3>Physics</h3>
             <p>Forces, Motion, Heat, Light & Waves</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("""
+        st.markdown(f"""
         <div class="subject-card">
-            <div class="subject-icon">🧪</div>
+            <img src="{CHEMISTRY_IMG}" alt="Chemistry">
             <h3>Chemistry</h3>
             <p>Periodic Table, Chemical Bonds, Acids & Bases</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
-        st.markdown("""
+        st.markdown(f"""
         <div class="subject-card">
-            <div class="subject-icon">🔬</div>
+            <img src="{BIOLOGY_IMG}" alt="Biology">
             <h3>Biology</h3>
             <p>Cells, Human Body, Plants, Ecosystems</p>
         </div>
         """, unsafe_allow_html=True)
     
     # How to play
-    with st.expander("ℹ️ How to Play"):
+    with st.expander("ℹ️ How to Play", expanded=True):
         st.markdown("""
-        1. **Choose your subject** from the sidebar
-        2. Click **New Quiz** to start
-        3. Answer 10 randomly selected questions
-        4. Get instant feedback with explanations
-        5. Save your score to the global leaderboard
-        """)
+        <div class="info-box">
+            ✨ Choose your subject from the sidebar<br>
+            🎯 Click New Quiz to start<br>
+            📝 Answer 10 randomly selected questions<br>
+            💡 Get instant feedback with explanations<br>
+            🏆 Save your score to the global leaderboard<br>
+            👥 Challenge friends to beat your score!
+        </div>
+        """, unsafe_allow_html=True)
 
 else:
     if st.session_state.q_index < st.session_state.total_questions:
@@ -666,15 +710,15 @@ else:
             last = st.session_state.answers[-1]
             if last['correct']:
                 st.markdown(f"""
-                <div class="correct-feedback">
+                <div class="success-message">
                     ✅ <strong>Correct!</strong><br>
                     {last['explanation']}
                 </div>
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div class="wrong-feedback">
-                    ❌ <strong>Incorrect</strong><br>
+                <div class="info-box" style="background: rgba(239, 68, 68, 0.2);">
+                    ❌ <strong>Not quite!</strong><br>
                     Correct answer: <strong>{last['correct_answer']}</strong><br>
                     {last['explanation']}
                 </div>
@@ -683,19 +727,20 @@ else:
     else:
         # Quiz complete
         st.balloons()
+        st.snow()
         
         percentage = (st.session_state.score / st.session_state.total_questions) * 100
         
         st.markdown(f"""
-        <div class="question-box" style="background: #f0fdf4; border-left-color: #22c55e;">
-            <h3>🎉 Quiz Complete!</h3>
-            <p style="font-size: 2rem; margin: 1rem 0;">{st.session_state.score}/{st.session_state.total_questions}</p>
-            <p style="font-size: 1.2rem;">{percentage:.1f}%</p>
+        <div class="question-box" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);">
+            <h3 style="color: #1a4731;">🎉 QUIZ COMPLETE! 🎉</h3>
+            <p style="font-size: 4rem; color: #1a4731;">{st.session_state.score}/{st.session_state.total_questions}</p>
+            <p style="font-size: 2rem; color: #1a4731;">{percentage:.1f}%</p>
         </div>
         """, unsafe_allow_html=True)
         
         # Review
-        with st.expander("📋 Review Answers"):
+        with st.expander("📋 Review Your Answers"):
             for i, ans in enumerate(st.session_state.answers):
                 if ans['correct']:
                     st.markdown(f"✅ **Q{i+1}:** {ans['question']}")
@@ -739,6 +784,6 @@ else:
 st.markdown("""
 <div class="footer">
     <p>🇲🇾 <strong>SainsQuiz</strong> – Helping Malaysian students master SPM Science</p>
-    <p>Questions based on SPM syllabus</p>
+    <p>Made with ❤️ for SPM students • Questions based on SPM syllabus</p>
 </div>
 """, unsafe_allow_html=True)
