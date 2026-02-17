@@ -11,155 +11,123 @@ st.set_page_config(
     page_title="SainsQuiz - SPM Science",
     page_icon="🧪",
     layout="centered",
-    initial_sidebar_state="expanded"
 )
 
-# ---------- FINAL CSS (FORCED READABILITY & NEUBRUTALISM) ----------
+# ---------- THE "THEME-PROOF" CSS (FORCES BLACK TEXT ON WHITE) ----------
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    /* 1. Force the main background and sidebar to be Light */
+    .stApp { background-color: #f3f4f6 !important; }
+    [data-testid="stSidebar"] { 
+        background-color: #ffffff !important; 
+        border-right: 3px solid #000000 !important; 
+    }
 
-    /* Global Text Reset: Force EVERYTHING to be black to fix visibility issues */
-    * { font-family: 'Inter', sans-serif; }
-    
-    .stApp { background-color: #f3f4f6; }
-
-    /* Force visibility on all headers and paragraphs in white boxes */
-    .header h1, .header p, .question-box h3, .question-box p, 
-    .subject-card h3, .subject-card p,
-    .leaderboard-item span, .info-box {
+    /* 2. FORCE ALL TEXT TO BE DEEP BLACK regardless of system theme */
+    h1, h2, h3, h4, h5, h6, p, span, label, li, div, .stMarkdown, .stSelectbox label {
         color: #000000 !important;
+        font-family: 'Inter', sans-serif !important;
     }
 
-    /* Header */
-    .header {
-        background: white !important;
-        padding: 1.5rem;
-        border-radius: 16px;
-        box-shadow: 0 4px 0px #000000;
-        text-align: center;
-        margin-bottom: 2rem;
-        border: 3px solid #000000;
-    }
-
-    /* Subject Cards */
-    .subject-card {
-        background: white !important;
-        padding: 1.5rem;
-        border-radius: 16px;
-        text-align: center;
-        border: 3px solid #000000;
-        box-shadow: 0 4px 0px #000000;
-        transition: 0.2s;
-    }
-    .subject-card:hover { transform: translateY(-3px); }
-
-    /* Question Box */
-    .question-box {
-        background: white !important;
-        padding: 1.8rem;
-        border-radius: 16px;
-        border: 3px solid #000000;
-        margin-bottom: 1.8rem;
-        box-shadow: 0 6px 0px #000000;
-    }
-
-    .subject-tag {
-        background: #2563eb !important;
-        color: white !important;
-        padding: 0.3rem 1.2rem;
-        border-radius: 30px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-
-    /* ===== RADIO BUTTONS – FORCED VISIBILITY ===== */
+    /* 3. FIX RADIO BUTTON OPTIONS (The White-on-White Issue) */
     div.row-widget.stRadio > div[role="radiogroup"] {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
+        background-color: transparent !important;
     }
-    
+
     div.row-widget.stRadio label {
         background-color: #ffffff !important;
         border: 3px solid #000000 !important;
-        border-radius: 14px !important;
-        padding: 1.2rem 1.5rem !important;
-        margin: 0px !important;
-        box-shadow: 0 4px 0px #000000 !important;
-        transition: all 0.2s ease !important;
+        border-radius: 12px !important;
+        padding: 1rem !important;
+        margin-bottom: 10px !important;
+        box-shadow: 4px 4px 0px #000000 !important;
+        display: flex !important;
+        align-items: center !important;
     }
 
-    /* Target the text inside the radio option labels */
-    div.row-widget.stRadio label p {
+    /* Target the text inside the radio labels specifically */
+    div.row-widget.stRadio label div[data-testid="stMarkdownContainer"] p {
         color: #000000 !important;
         font-weight: 800 !important;
-        font-size: 1.2rem !important;
-        margin: 0 !important;
+        font-size: 1.1rem !important;
+        margin: 0px !important;
     }
 
-    div.row-widget.stRadio label:hover {
-        background-color: #f0f7ff !important;
-        border-color: #2563eb !important;
-        box-shadow: 0 6px 0px #2563eb !important;
-    }
-
-    /* Radio Selection Circle */
+    /* Selection circle visibility */
     div.row-widget.stRadio [data-baseweb="radio"] > div:first-child {
-        border: 2px solid black !important;
-        background-color: white !important;
+        border: 2px solid #000000 !important;
     }
 
-    /* ===== BUTTONS ===== */
-    .stButton button {
-        background: #000000 !important;
-        color: white !important;
-        font-weight: 800 !important;
-        border-radius: 12px !important;
-        padding: 0.7rem 1.5rem !important;
-        border: 3px solid #000000 !important;
-        box-shadow: 0 4px 0px #2563eb !important;
-        width: 100%;
-        transition: 0.2s;
-    }
-    .stButton button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 0px #2563eb !important;
+    /* 4. FIX CARDS AND HEADERS */
+    .header-box {
+        background: #ffffff !important;
+        border: 4px solid #000000 !important;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 8px 8px 0px #2563eb !important;
+        text-align: center;
+        margin-bottom: 25px;
     }
 
-    /* Sidebar Fixes */
-    [data-testid="stSidebar"] { background-color: #ffffff; }
-    .leaderboard-item {
-        background: white !important;
-        padding: 0.7rem 1rem;
-        border-radius: 10px;
-        margin: 0.5rem 0;
+    .question-card {
+        background: #ffffff !important;
+        border: 4px solid #000000 !important;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 8px 8px 0px #000000 !important;
+        margin-bottom: 20px;
+    }
+
+    /* 5. LEADERBOARD STYLING */
+    .lb-item {
+        background: #ffffff !important;
+        border: 2px solid #000000 !important;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 8px 0;
         display: flex;
         justify-content: space-between;
-        border: 2px solid #000000;
-        font-weight: 700;
+        font-weight: 800;
+        color: #000000 !important;
+        box-shadow: 2px 2px 0px #000000 !important;
     }
+
+    /* 6. BUTTONS */
+    .stButton>button {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 2px solid #000000 !important;
+        border-radius: 10px !important;
+        font-weight: bold !important;
+        padding: 10px 20px !important;
+        box-shadow: 4px 4px 0px #2563eb !important;
+        width: 100% !important;
+    }
+    
+    .stButton>button:hover {
+        background-color: #2563eb !important;
+        color: white !important;
+        transform: translate(-2px, -2px);
+    }
+
+    /* Hide Streamlit elements that cause color confusion */
+    #MainMenu, footer, header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
 # ---------- SESSION STATE ----------
-def init_session_state():
-    defaults = {
-        'score': 0, 'q_index': 0, 'answers': [], 'quiz_started': False,
-        'subject': "All", 'feedback': None, 'leaderboard': [],
-        'questions': [], 'total_questions': 0, 'show_feedback': False
-    }
-    for k, v in defaults.items():
-        if k not in st.session_state:
-            st.session_state[k] = v
+def init_state():
+    if 'score' not in st.session_state:
+        st.session_state.update({
+            'score': 0, 'q_index': 0, 'quiz_started': False,
+            'subject': "All", 'questions': [], 'total_questions': 0, 'show_feedback': False
+        })
 
-init_session_state()
+init_state()
 
-# ---------- GOOGLE SHEETS CONNECTION ----------
+# ---------- GOOGLE SHEETS SETUP ----------
 @st.cache_resource
-def get_google_sheets_connection():
+def get_sheet():
     try:
         if "gcp_service_account" not in st.secrets: return None
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -168,154 +136,124 @@ def get_google_sheets_connection():
         return client.open("SainsQuiz Leaderboard").sheet1
     except: return None
 
-def save_score_to_sheets(name, score):
-    sheet = get_google_sheets_connection()
-    if sheet:
+def save_score(name, score):
+    s = get_sheet()
+    if s:
         try:
-            sheet.append_row([name, score, datetime.now().strftime("%Y-%m-%d %H:%M")])
+            s.append_row([name, score, datetime.now().strftime("%Y-%m-%d %H:%M")])
             return True
         except: return False
     return False
 
 @st.cache_data(ttl=30)
-def load_leaderboard_from_sheets():
-    sheet = get_google_sheets_connection()
-    if sheet:
+def get_leaderboard():
+    s = get_sheet()
+    if s:
         try:
-            records = sheet.get_all_records()
+            records = s.get_all_records()
             lb = [(str(r['Name']), int(r['Score'])) for r in records if 'Name' in r and 'Score' in r]
-            return sorted(lb, key=lambda x: x[1], reverse=True)[:10]
-        except: return None
-    return None
+            return sorted(lb, key=lambda x: x[1], reverse=True)[:5]
+        except: return []
+    return []
 
-# ---------- LOAD QUESTIONS ----------
+# ---------- QUESTIONS DB ----------
 @st.cache_data
 def load_questions():
-    try:
-        with open("questions.json", "r") as f: return json.load(f)
-    except:
-        return [
-            {"subject": "Chemistry", "question": "What is the chemical symbol for gold?", "options": ["Go", "Gd", "Au", "Ag"], "correct_option": 2, "explanation": "Au comes from the Latin word 'Aurum'."},
-            {"subject": "Physics", "question": "Which law states that F = ma?", "options": ["Newton's 1st", "Newton's 2nd", "Newton's 3rd", "Hooke's Law"], "correct_option": 1, "explanation": "Newton's Second Law describes the relationship between force, mass, and acceleration."},
-            {"subject": "Biology", "question": "Which organelle is known as the powerhouse of the cell?", "options": ["Nucleus", "Ribosome", "Mitochondria", "Vacuole"], "correct_option": 2, "explanation": "Mitochondria generate cellular energy (ATP)."}
-        ]
+    return [
+        {"subject": "Chemistry", "question": "What is the chemical symbol for gold?", "options": ["Go", "Gd", "Au", "Ag"], "correct_option": 2, "explanation": "Au comes from the Latin word 'Aurum'."},
+        {"subject": "Physics", "question": "What type of energy does a moving car have?", "options": ["Potential energy", "Kinetic energy", "Chemical energy", "Nuclear energy"], "correct_option": 1, "explanation": "Kinetic energy is the energy possessed by an object due to its motion."},
+        {"subject": "Biology", "question": "Which organelle is known as the powerhouse of the cell?", "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi Body"], "correct_option": 2, "explanation": "Mitochondria are the sites of aerobic respiration which produces ATP (energy)."}
+    ]
 
 questions_db = load_questions()
 
 # ---------- SIDEBAR ----------
 with st.sidebar:
-    st.markdown("## 🧪 SainsQuiz")
-    st.divider()
+    st.markdown('<h1 style="font-size: 1.8rem;">🧪 SainsQuiz</h1>', unsafe_allow_html=True)
+    subj = st.selectbox("Choose Subject", ["All", "Physics", "Chemistry", "Biology"])
     
-    subj_list = ["All", "Physics", "Chemistry", "Biology"]
-    selected = st.selectbox("Choose Subject", subj_list, index=subj_list.index(st.session_state.subject))
-    
-    if selected != st.session_state.subject:
-        st.session_state.subject = selected
-        st.session_state.quiz_started = False
-
-    if st.button("New Quiz 🚀", use_container_width=True):
+    if st.button("New Quiz 🚀"):
         st.session_state.quiz_started = True
         st.session_state.q_index = 0
         st.session_state.score = 0
         st.session_state.show_feedback = False
-        st.session_state.answers = []
-        
-        pool = questions_db if selected == "All" else [q for q in questions_db if q['subject'] == selected]
+        pool = questions_db if subj == "All" else [q for q in questions_db if q['subject'] == subj]
         st.session_state.questions = random.sample(pool, min(10, len(pool)))
         st.session_state.total_questions = len(st.session_state.questions)
         st.rerun()
 
-    if st.session_state.quiz_started:
-        st.divider()
-        st.metric("Progress", f"{st.session_state.q_index}/{st.session_state.total_questions}")
-        st.progress(st.session_state.q_index / st.session_state.total_questions if st.session_state.total_questions > 0 else 0)
-
-    st.markdown("### 🏆 Top Players")
-    lb = load_leaderboard_from_sheets()
-    if lb:
-        for i, (name, score) in enumerate(lb, 1):
-            st.markdown(f'<div class="leaderboard-item"><span>{i}. {name}</span><span>{score}</span></div>', unsafe_allow_html=True)
+    st.markdown("<br><h3 style='margin-bottom:0;'>🏆 Top Players</h3>", unsafe_allow_html=True)
+    lb_data = get_leaderboard()
+    if lb_data:
+        for p, s in lb_data:
+            st.markdown(f'<div class="lb-item"><span>{p}</span><span>{s} pts</span></div>', unsafe_allow_html=True)
     else:
-        st.info("No scores yet!")
+        st.write("No scores yet!")
 
 # ---------- MAIN CONTENT ----------
-st.markdown('<div class="header"><h1>🧪 SainsQuiz</h1><p>Master SPM Science • Compete with Friends</p></div>', unsafe_allow_html=True)
-
 if not st.session_state.quiz_started:
-    col1, col2, col3 = st.columns(3)
-    with col1: st.markdown('<div class="subject-card"><h3>Physics</h3><p>Forces & Motion</p></div>', unsafe_allow_html=True)
-    with col2: st.markdown('<div class="subject-card"><h3>Chemistry</h3><p>Acids & Bonds</p></div>', unsafe_allow_html=True)
-    with col3: st.markdown('<div class="subject-card"><h3>Biology</h3><p>Cells & Human Body</p></div>', unsafe_allow_html=True)
-    
+    st.markdown('<div class="header-box"><h1>🧪 SainsQuiz</h1><p>Master SPM Science with Ease</p></div>', unsafe_allow_html=True)
     st.markdown("""
-    <div class="header" style="margin-top:20px; text-align:left;">
-        <h3 style="margin-bottom:10px;">How to Play:</h3>
-        <p>1. Choose your subject in the sidebar.<br>2. Click 'New Quiz' to start.<br>3. Earn points and save your name to the leaderboard!</p>
-    </div>
+        <div style="background:white; border:3px solid black; padding:20px; border-radius:15px; box-shadow:5px 5px 0px black;">
+            <h4>Ready to test your knowledge?</h4>
+            <p>1. Select a subject in the sidebar.<br>2. Complete 10 questions.<br>3. Save your score to the global leaderboard!</p>
+        </div>
     """, unsafe_allow_html=True)
-
 else:
     if st.session_state.q_index < st.session_state.total_questions:
         q = st.session_state.questions[st.session_state.q_index]
         
         st.markdown(f"""
-        <div class="question-box">
-            <span class="subject-tag">{q['subject']}</span>
-            <h3>Question {st.session_state.q_index + 1} of {st.session_state.total_questions}</h3>
-            <p style="font-size:1.4rem;">{q['question']}</p>
+        <div class="question-card">
+            <span style="background:#2563eb; color:white; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:bold;">{q['subject']}</span>
+            <h3 style="margin-top:10px;">Question {st.session_state.q_index + 1} of {st.session_state.total_questions}</h3>
+            <p style="font-size:1.3rem; font-weight:700;">{q['question']}</p>
         </div>
         """, unsafe_allow_html=True)
 
-        user_choice = st.radio("Options", q['options'], key=f"q_{st.session_state.q_index}", index=None, label_visibility="collapsed")
+        # Radio options
+        user_choice = st.radio("Choose answer:", q['options'], key=f"q_{st.session_state.q_index}", index=None, label_visibility="collapsed")
 
-        col_a, col_b = st.columns(2)
+        col_left, col_right = st.columns(2)
         
         if not st.session_state.show_feedback:
-            with col_a:
+            with col_left:
                 if st.button("Submit Answer"):
                     if user_choice:
-                        correct_val = q['options'][q['correct_option']]
-                        is_correct = (user_choice == correct_val)
-                        if is_correct: st.session_state.score += 1
-                        st.session_state.answers.append({'correct': is_correct, 'exp': q['explanation'], 'val': correct_val})
                         st.session_state.show_feedback = True
+                        if user_choice == q['options'][q['correct_option']]:
+                            st.session_state.score += 1
                         st.rerun()
-                    else: st.error("Please select an answer!")
+                    else:
+                        st.warning("Please choose an answer first!")
         else:
-            feedback = st.session_state.answers[-1]
-            f_bg = "#dcfce7" if feedback['correct'] else "#fee2e2"
-            f_txt = "#166534" if feedback['correct'] else "#991b1b"
+            is_correct = (user_choice == q['options'][q['correct_option']])
+            bg_col = "#dcfce7" if is_correct else "#fee2e2"
+            border_col = "#166534" if is_correct else "#991b1b"
             
             st.markdown(f"""
-            <div style="background:{f_bg}; border:3px solid #000000; padding:1.2rem; border-radius:12px; margin-bottom:1rem; color:{f_txt}; font-weight:700;">
-                {"✅ Correct!" if feedback['correct'] else "❌ Incorrect. Correct: " + feedback['val']}<br>
-                <p style="color:black; font-weight:400; margin-top:5px;">{feedback['exp']}</p>
+            <div style="background:{bg_col}; border:3px solid {border_col}; padding:15px; border-radius:12px; color:black; margin-bottom:15px;">
+                <h4 style="margin:0; color:{border_col};">{"✅ Correct!" if is_correct else "❌ Incorrect"}</h4>
+                <p style="margin:5px 0 0 0;"><strong>Correct Answer:</strong> {q['options'][q['correct_option']]}</p>
+                <p style="font-size:0.9rem; margin-top:5px;">{q['explanation']}</p>
             </div>
             """, unsafe_allow_html=True)
             
-            with col_b:
+            with col_right:
                 if st.button("Next Question ➡️"):
                     st.session_state.q_index += 1
                     st.session_state.show_feedback = False
                     st.rerun()
     else:
         st.balloons()
-        st.markdown(f'<div class="header"><h1>🎉 Quiz Complete!</h1><p style="font-size:3rem; font-weight:800;">{st.session_state.score} / {st.session_state.total_questions}</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="header-box"><h1>🎊 Quiz Complete!</h1><h2>Your Score: {st.session_state.score} / {st.session_state.total_questions}</h2></div>', unsafe_allow_html=True)
         
-        col_name, col_save = st.columns([3, 1])
-        with col_name:
-            player_name = st.text_input("Enter your name to save score:", placeholder="Your Name")
-        with col_save:
-            st.write("") # Spacer
-            if st.button("Save"):
-                if player_name:
-                    if save_score_to_sheets(player_name, st.session_state.score):
-                        st.success("Saved!")
-                        st.cache_data.clear()
-                        st.session_state.quiz_started = False
-                        st.rerun()
-                    else: st.error("Save failed.")
-                else: st.warning("Enter name!")
+        name_input = st.text_input("Enter your name for the leaderboard:", placeholder="Ex: Einstein Jr")
+        if st.button("Save & Return Home"):
+            if name_input:
+                save_score(name_input, st.session_state.score)
+                st.cache_data.clear()
+            st.session_state.quiz_started = False
+            st.rerun()
 
-st.markdown('<div style="text-align:center; padding:30px; color:#6b7280;">SainsQuiz 🇲🇾 Master SPM Science</div>', unsafe_allow_html=True)
+st.markdown('<p style="text-align:center; margin-top:50px; color:#6b7280 !important;">SainsQuiz 🇲🇾 Master SPM Science</p>', unsafe_allow_html=True)
