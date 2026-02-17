@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------- FIXED CSS WITH HIGH-CONTRAST OPTIONS ----------
+# ---------- CLEAN PROFESSIONAL CSS ----------
 st.markdown("""
 <style>
     /* Import Google Font */
@@ -117,44 +117,44 @@ st.markdown("""
         font-weight: 500;
     }
     
-    /* ===== FIXED: RADIO BUTTONS - NOW DARK WITH WHITE TEXT ===== */
+    /* ===== RADIO BUTTONS - LIGHT BACKGROUND, DARK TEXT ===== */
     div.row-widget.stRadio > div {
         background-color: transparent !important;
         padding: 0 !important;
         border: none !important;
     }
     
-    /* Style each option as a dark card */
+    /* Style each option as a light card */
     div.row-widget.stRadio label {
-          background-color: #f9fafb !important;  
-        border: 1px solid #374151 !important;
+        background-color: white !important;      /* Light background */
+        border: 1px solid #d1d5db !important;    /* Light gray border */
         border-radius: 10px !important;
         padding: 1rem 1.2rem !important;
         margin: 0.6rem 0 !important;
-       color: #111827 !important;  
+        color: #111827 !important;                /* Dark text */
         font-weight: 500 !important;
         font-size: 1.1rem !important;
         transition: all 0.2s ease !important;
         display: flex !important;
         align-items: center !important;
         cursor: pointer !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
     }
     
     div.row-widget.stRadio label:hover {
-        background-color: #2d3748 !important;
+        background-color: #f9fafb !important;    /* Slightly darker on hover */
         border-color: #3b82f6 !important;
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
     }
     
-    /* Selected option */
+    /* Selected option highlight */
     div.row-widget.stRadio label[data-baseweb="radio"] input:checked + div {
         background-color: #3b82f6 !important;
         border-color: #3b82f6 !important;
     }
     
-    /* Radio circle - make it visible */
+    /* Radio circle */
     div.row-widget.stRadio label div:first-child {
         background-color: white !important;
         border-color: #9ca3af !important;
@@ -295,7 +295,7 @@ st.markdown("""
         line-height: 1.6;
     }
     
-    /* Select box (matches the dark style) */
+    /* Select box */
     .stSelectbox label {
         color: #111827 !important;
         font-weight: 600 !important;
@@ -303,14 +303,10 @@ st.markdown("""
     }
     
     .stSelectbox > div > div {
-        background-color: #1f2937 !important;
-        border: 1px solid #374151 !important;
+        background-color: white !important;
+        border: 1px solid #d1d5db !important;
         border-radius: 8px !important;
-        color: white !important;
-    }
-    
-    .stSelectbox svg {
-        fill: white !important;
+        color: #111827 !important;
     }
     
     /* Warning message */
@@ -609,7 +605,7 @@ else:
         </div>
         """, unsafe_allow_html=True)
         
-        # Options - NOW DARK BACKGROUND, WHITE TEXT, HIGHLY VISIBLE
+        # Options - NOW LIGHT BACKGROUND, DARK TEXT
         answer = st.radio("", q['options'], key=f"q_{st.session_state.q_index}", 
                          index=None, label_visibility="collapsed")
         
@@ -730,4 +726,3 @@ st.markdown("""
     <p>🇲🇾 SainsQuiz – Helping Malaysian students master SPM Science</p>
 </div>
 """, unsafe_allow_html=True)
-
