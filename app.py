@@ -109,33 +109,33 @@ st.markdown("""
         display: inline-block;
     }
 
-    /* ===== RADIO BUTTONS – MAXIMUM VISIBILITY ===== */
+    /* ===== RADIO BUTTONS – FIXED FOR MAXIMUM VISIBILITY ===== */
     div.row-widget.stRadio > div {
         background: transparent !important;
         padding: 0 !important;
     }
     
     div.row-widget.stRadio label {
-        background: #f9fafb !important;        /* Light gray background */
-        border: 2px solid #d1d5db !important;  /* Dark gray border */
+        background: #ffffff !important;        /* PURE WHITE background */
+        border: 3px solid #000000 !important;  /* THICK BLACK border */
         border-radius: 14px !important;
-        padding: 1rem 1.5rem !important;
-        margin: 0.7rem 0 !important;
-        color: #111827 !important;              /* Very dark text */
-        font-weight: 700 !important;             /* Bold text */
-        font-size: 1.15rem !important;
+        padding: 1.2rem 1.5rem !important;
+        margin: 0.8rem 0 !important;
+        color: #000000 !important;              /* PURE BLACK text */
+        font-weight: 800 !important;             /* EXTRA BOLD text */
+        font-size: 1.2rem !important;
         display: flex !important;
         align-items: center !important;
         cursor: pointer !important;
         transition: all 0.2s ease !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.08) !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
     }
     
     div.row-widget.stRadio label:hover {
-        background: #ffffff !important;
+        background: #f0f0f0 !important;
         border-color: #2563eb !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(37,99,235,0.15) !important;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3) !important;
     }
     
     /* Selected option */
@@ -144,20 +144,19 @@ st.markdown("""
         border-color: #2563eb !important;
     }
     
-    /* Radio circle - bigger and visible */
+    /* Radio circle - BIG and VISIBLE */
     div.row-widget.stRadio label div:first-child {
         background-color: white !important;
-        border: 2px solid #4b5563 !important;
+        border: 3px solid #000000 !important;   /* BLACK border */
         margin-right: 15px !important;
-        width: 22px !important;
-        height: 22px !important;
-        transform: scale(1.1) !important;
+        width: 24px !important;
+        height: 24px !important;
     }
     
     div.row-widget.stRadio label input:checked + div div {
         background-color: #2563eb !important;
-        width: 14px !important;
-        height: 14px !important;
+        width: 16px !important;
+        height: 16px !important;
     }
 
     /* ===== BUTTONS ===== */
@@ -358,6 +357,10 @@ def load_questions():
         {"subject": "Chemistry", "question": "What is the pH of a neutral solution?",
          "options": ["0", "7", "14", "1"], "correct_option": 1,
          "explanation": "pH 7 is neutral."},
+        {"subject": "Chemistry", "question": "What is the pH of lemon juice?",
+         "options": ["Acidic (~2-3)", "Neutral (7)", "Alkaline (~8-9)", "Basic (~12)"], 
+         "correct_option": 0,
+         "explanation": "Lemon juice is acidic with pH around 2-3."},
         {"subject": "Chemistry", "question": "What is the chemical formula for water?",
          "options": ["H2O", "CO2", "O2", "H2O2"], "correct_option": 0,
          "explanation": "Water is H₂O – two hydrogen atoms and one oxygen atom."},
@@ -534,7 +537,7 @@ else:
         </div>
         """, unsafe_allow_html=True)
 
-        # RADIO BUTTONS – 100% VISIBLE with light background and dark text
+        # RADIO BUTTONS – 100% VISIBLE with WHITE background and BLACK text
         answer = st.radio("", q['options'], key=f"q_{st.session_state.q_index}",
                           index=None, label_visibility="collapsed")
 
