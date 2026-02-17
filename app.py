@@ -14,239 +14,184 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------- AMAZING CSS WITH ONLINE IMAGES ----------
+# ---------- CLEAN PROFESSIONAL CSS ----------
 st.markdown("""
 <style>
-    /* Import Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+    /* Import Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     
-    /* Global Styles */
     * {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Inter', sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
     
-    /* Animated Gradient Background */
+    /* Clean white background */
     .stApp {
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
-        min-height: 100vh;
+        background-color: #f8fafc;
     }
     
-    @keyframes gradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+    /* Main container */
+    .main-container {
+        max-width: 800px;
+        margin: 0 auto;
     }
     
-    /* Floating Animation for Cards */
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0px); }
-    }
-    
-    /* Pulse Animation */
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-    
-    /* Glow Animation */
-    @keyframes glow {
-        0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
-        50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
-        100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
-    }
-    
-    /* Main Header with Online Image */
-    .main-header {
-        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255,255,255,0.3);
-        border-radius: 30px;
+    /* Header - simple and clean */
+    .header {
+        background: white;
         padding: 2rem;
-        margin: 1rem 0 2rem 0;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
         text-align: center;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        animation: float 3s ease-in-out infinite;
+        border: 1px solid #e2e8f0;
     }
     
-    .main-header h1 {
-        font-size: 4rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #fff 0%, #ffd700 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    .header h1 {
+        color: #0f172a;
+        font-size: 2.2rem;
+        font-weight: 700;
         margin-bottom: 0.5rem;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
     
-    .main-header p {
-        color: white;
-        font-size: 1.2rem;
-        font-weight: 500;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    .header p {
+        color: #475569;
+        font-size: 1rem;
     }
     
-    /* Cool Subject Cards with Images */
+    /* Subject cards - simple cards */
+    .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
     .subject-card {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        border-radius: 30px;
-        padding: 2rem;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 16px;
         text-align: center;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        transition: all 0.3s ease;
-        border: 2px solid rgba(255,255,255,0.5);
-        height: 100%;
-        animation: float 4s ease-in-out infinite;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s ease;
+        cursor: pointer;
     }
     
     .subject-card:hover {
-        transform: scale(1.05) translateY(-10px);
-        box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-        border-color: #ffd700;
-        animation: pulse 1s ease-in-out;
+        border-color: #2563eb;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
     }
     
-    .subject-card img {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 1rem;
-        border-radius: 50%;
-        border: 4px solid #ffd700;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    .subject-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
     }
     
     .subject-card h3 {
-        color: #333;
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin: 0.5rem 0;
+        color: #0f172a;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
     }
     
     .subject-card p {
-        color: #666;
-        font-size: 1rem;
-        line-height: 1.6;
+        color: #64748b;
+        font-size: 0.8rem;
     }
     
-    /* Question Box with Glass Effect */
+    /* Question box - clean white */
     .question-box {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 40px;
-        padding: 2.5rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        border: 2px solid rgba(255,255,255,0.5);
-        animation: glow 2s ease-in-out infinite;
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 1.5rem;
     }
     
     .question-box h3 {
-        color: #e73c7e;
-        font-size: 1rem;
+        color: #2563eb;
+        font-size: 0.9rem;
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 0.5px;
         margin-bottom: 1rem;
     }
     
     .question-box p {
-        color: #333;
-        font-size: 1.5rem;
+        color: #0f172a;
+        font-size: 1.2rem;
         font-weight: 600;
-        line-height: 1.6;
+        line-height: 1.5;
         margin-bottom: 1rem;
     }
     
     .subject-tag {
         display: inline-block;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 0.5rem 2rem;
-        border-radius: 50px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        background: #e2e8f0;
+        color: #475569;
+        padding: 0.25rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
     }
     
-    /* Cool Radio Buttons */
+    /* Radio buttons - clean */
     .stRadio > div {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        border-radius: 30px;
-        padding: 1.5rem;
-        border: 2px solid rgba(255,255,255,0.5);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        background: white;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
     }
     
     .stRadio label {
-        background: white !important;
-        border: 2px solid #e0e0e0 !important;
-        border-radius: 20px !important;
-        padding: 1rem 1.5rem !important;
-        margin: 0.5rem 0 !important;
-        color: #333 !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.05) !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+        padding: 0.8rem 1rem !important;
+        margin: 0.3rem 0 !important;
+        color: #0f172a !important;
+        font-weight: 500 !important;
+        transition: all 0.2s ease !important;
     }
     
     .stRadio label:hover {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        color: white !important;
-        border-color: transparent !important;
-        transform: translateX(10px);
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3) !important;
+        background: #e2e8f0 !important;
+        border-color: #2563eb !important;
     }
     
-    .stRadio [data-testid="StyledFullScreenButton"] {
-        display: none;
-    }
-    
-    /* Awesome Buttons */
+    /* Buttons - simple blue */
     .stButton button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        background: #2563eb !important;
         color: white !important;
-        font-weight: 700 !important;
-        font-size: 1.1rem !important;
+        font-weight: 600 !important;
         border: none !important;
-        border-radius: 50px !important;
-        padding: 1rem 2rem !important;
-        transition: all 0.3s ease !important;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4) !important;
-        border: 2px solid rgba(255,255,255,0.2) !important;
+        border-radius: 8px !important;
+        padding: 0.6rem 1.5rem !important;
+        font-size: 0.9rem !important;
+        transition: all 0.2s ease !important;
     }
     
     .stButton button:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 20px 30px rgba(102, 126, 234, 0.6) !important;
-        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+        background: #1d4ed8 !important;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
     }
     
-    .stButton button:active {
-        transform: translateY(0);
-    }
-    
-    /* Secondary Button */
     .secondary-button button {
-        background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%) !important;
-        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4) !important;
+        background: white !important;
+        color: #2563eb !important;
+        border: 1px solid #2563eb !important;
     }
     
-    /* Sidebar with Glass Effect */
+    .secondary-button button:hover {
+        background: #f8fafc !important;
+    }
+    
+    /* Sidebar - clean */
     [data-testid="stSidebar"] {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-right: 2px solid rgba(255,255,255,0.2);
-        padding: 2rem;
+        background: white;
+        border-right: 1px solid #e2e8f0;
+        padding: 2rem 1rem;
     }
     
     .sidebar-header {
@@ -255,155 +200,123 @@ st.markdown("""
     }
     
     .sidebar-header h2 {
-        color: white;
-        font-size: 2.5rem;
-        font-weight: 800;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        color: #0f172a;
+        font-size: 1.8rem;
+        font-weight: 700;
     }
     
     .sidebar-header p {
-        color: rgba(255,255,255,0.9);
-        font-size: 1rem;
+        color: #64748b;
+        font-size: 0.9rem;
     }
     
-    /* Score Card */
+    /* Metric card */
     [data-testid="stMetric"] {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
-        border: 2px solid rgba(255,255,255,0.3);
-        border-radius: 30px;
-        padding: 1.5rem;
-        text-align: center;
+        background: #f8fafc;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
     }
     
     [data-testid="stMetric"] label {
-        color: white !important;
-        font-size: 1rem !important;
-        font-weight: 500 !important;
+        color: #64748b !important;
+        font-size: 0.9rem !important;
     }
     
     [data-testid="stMetric"] [data-testid="stMetricValue"] {
-        color: #ffd700 !important;
-        font-size: 3rem !important;
-        font-weight: 800 !important;
+        color: #0f172a !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
     }
     
-    /* Progress Bar */
+    /* Progress bar */
     .stProgress > div > div {
-        background: linear-gradient(90deg, #ffd700, #ffa500);
-        border-radius: 20px;
-        height: 15px !important;
+        background: #2563eb;
+        border-radius: 10px;
     }
     
-    .stProgress > div {
-        background: rgba(255,255,255,0.2);
-        border-radius: 20px;
-    }
-    
-    /* Leaderboard Items */
+    /* Leaderboard items */
     .leaderboard-item {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
-        border: 2px solid rgba(255,255,255,0.3);
-        border-radius: 50px;
-        padding: 0.8rem 1.2rem;
+        background: #f8fafc;
+        padding: 0.7rem 1rem;
+        border-radius: 8px;
         margin: 0.5rem 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        transition: all 0.3s ease;
-    }
-    
-    .leaderboard-item:hover {
-        transform: translateX(10px);
-        background: rgba(255, 255, 255, 0.3);
-        border-color: #ffd700;
+        border: 1px solid #e2e8f0;
     }
     
     .leaderboard-rank {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #ffd700;
-        min-width: 50px;
+        font-weight: 700;
+        color: #2563eb;
+        min-width: 35px;
     }
     
     .leaderboard-name {
-        color: white;
-        font-weight: 600;
-        font-size: 1.1rem;
+        color: #0f172a;
+        font-weight: 500;
         flex: 1;
     }
     
     .leaderboard-score {
-        background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
-        color: #333;
-        font-weight: 800;
-        padding: 0.3rem 1.2rem;
-        border-radius: 50px;
-        font-size: 1rem;
+        background: #e2e8f0;
+        color: #0f172a;
+        font-weight: 600;
+        padding: 0.2rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
     }
     
-    /* Success Message */
+    /* Success message */
     .success-message {
-        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-        color: #1a4731;
-        padding: 1.5rem;
-        border-radius: 30px;
-        text-align: center;
-        font-weight: 700;
+        background: #dcfce7;
+        border: 1px solid #86efac;
+        color: #166534;
+        padding: 1rem;
+        border-radius: 8px;
         margin: 1rem 0;
-        animation: pulse 2s infinite;
-        border: 2px solid white;
-    }
-    
-    /* Info Box */
-    .info-box {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(5px);
-        border: 2px solid rgba(255,255,255,0.3);
-        color: white;
-        padding: 1.5rem;
-        border-radius: 30px;
-        text-align: center;
         font-weight: 500;
     }
     
-    /* Select Box */
+    /* Info box */
+    .info-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 1.5rem;
+        border-radius: 12px;
+        color: #0f172a;
+        line-height: 1.8;
+    }
+    
+    /* Select box */
     .stSelectbox label {
-        color: white !important;
+        color: #0f172a !important;
         font-weight: 600 !important;
-        font-size: 1rem !important;
     }
     
     .stSelectbox > div > div {
-        background: rgba(255, 255, 255, 0.2) !important;
-        backdrop-filter: blur(5px) !important;
-        border: 2px solid rgba(255,255,255,0.3) !important;
-        border-radius: 30px !important;
-        color: white !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
     }
     
     /* Footer */
     .footer {
         text-align: center;
-        padding: 2rem;
+        padding: 2rem 0 1rem;
+        color: #64748b;
+        font-size: 0.85rem;
+        border-top: 1px solid #e2e8f0;
         margin-top: 3rem;
-        color: white;
-        font-size: 0.9rem;
-        border-top: 2px solid rgba(255,255,255,0.2);
-    }
-    
-    .footer strong {
-        color: #ffd700;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- ONLINE IMAGES FOR SUBJECTS ----------
-PHYSICS_IMG = "https://cdn-icons-png.flaticon.com/512/2917/2917996.png"
-CHEMISTRY_IMG = "https://cdn-icons-png.flaticon.com/512/2917/2917995.png"
-BIOLOGY_IMG = "https://cdn-icons-png.flaticon.com/512/2917/2917990.png"
-LOGO_IMG = "https://cdn-icons-png.flaticon.com/512/2810/2810051.png"
+# ---------- SIMPLE ICONS (TEXT ONLY - NO IMAGES) ----------
+PHYSICS_ICON = "📚"
+CHEMISTRY_ICON = "🧪"
+BIOLOGY_ICON = "🔬"
+LOGO_ICON = "🧪"
 
 # ---------- INITIALIZE SESSION STATE ----------
 def init_session_state():
@@ -526,8 +439,7 @@ def load_leaderboard_from_sheets():
 with st.sidebar:
     st.markdown(f"""
     <div class="sidebar-header">
-        <img src="{LOGO_IMG}" style="width: 80px; height: 80px; margin-bottom: 1rem;">
-        <h2>🧪 SainsQuiz</h2>
+        <h2>{LOGO_ICON} SainsQuiz</h2>
         <p>SPM Science Practice</p>
     </div>
     """, unsafe_allow_html=True)
@@ -536,7 +448,7 @@ with st.sidebar:
     
     # Subject selection
     subjects = ["All", "Physics", "Chemistry", "Biology"]
-    selected = st.selectbox("📚 Choose Subject", subjects, 
+    selected = st.selectbox("Choose Subject", subjects, 
                           index=subjects.index(st.session_state.subject))
     
     if selected != st.session_state.subject:
@@ -545,7 +457,7 @@ with st.sidebar:
         st.rerun()
     
     # New quiz button
-    if st.button("🎯 New Quiz", use_container_width=True):
+    if st.button("New Quiz", use_container_width=True):
         st.session_state.quiz_started = True
         st.session_state.q_index = 0
         st.session_state.score = 0
@@ -565,7 +477,7 @@ with st.sidebar:
     
     # Current score
     if st.session_state.quiz_started and st.session_state.total_questions > 0:
-        st.metric("🎯 Current Score", 
+        st.metric("Current Score", 
                  f"{st.session_state.score}/{st.session_state.total_questions}")
         
         # Progress
@@ -573,7 +485,7 @@ with st.sidebar:
         st.progress(progress)
     
     # Leaderboard
-    st.markdown("### 🏆 Top Players")
+    st.markdown("### Top Players")
     
     leaderboard = load_leaderboard_from_sheets()
     
@@ -586,7 +498,7 @@ with st.sidebar:
             elif i == 3:
                 rank = "🥉"
             else:
-                rank = f"#{i}"
+                rank = f"{i}."
                 
             st.markdown(f"""
             <div class="leaderboard-item">
@@ -596,58 +508,56 @@ with st.sidebar:
             </div>
             """, unsafe_allow_html=True)
     else:
-        st.markdown('<div class="info-box">✨ No scores yet. Be the first!</div>', 
-                   unsafe_allow_html=True)
+        st.info("No scores yet. Be the first!")
 
 # ---------- MAIN CONTENT ----------
 st.markdown("""
-<div class="main-header">
-    <h1>🧪 SAINSQUIZ</h1>
-    <p>Master SPM Science • Compete with Friends • Win the Leaderboard</p>
+<div class="header">
+    <h1>🧪 SainsQuiz</h1>
+    <p>Practice SPM Science • Compete with Friends</p>
 </div>
 """, unsafe_allow_html=True)
 
 if not st.session_state.quiz_started:
-    # Subject cards with online images
+    # Subject cards with emojis only
     col1, col2, col3 = st.columns(3)
     
     with col1:
         st.markdown(f"""
         <div class="subject-card">
-            <img src="{PHYSICS_IMG}" alt="Physics">
+            <div class="subject-icon">{PHYSICS_ICON}</div>
             <h3>Physics</h3>
-            <p>Forces, Motion, Heat, Light & Waves</p>
+            <p>Forces, Motion, Heat, Light</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown(f"""
         <div class="subject-card">
-            <img src="{CHEMISTRY_IMG}" alt="Chemistry">
+            <div class="subject-icon">{CHEMISTRY_ICON}</div>
             <h3>Chemistry</h3>
-            <p>Periodic Table, Chemical Bonds, Acids & Bases</p>
+            <p>Periodic Table, Bonds, Acids</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
         st.markdown(f"""
         <div class="subject-card">
-            <img src="{BIOLOGY_IMG}" alt="Biology">
+            <div class="subject-icon">{BIOLOGY_ICON}</div>
             <h3>Biology</h3>
-            <p>Cells, Human Body, Plants, Ecosystems</p>
+            <p>Cells, Human Body, Plants</p>
         </div>
         """, unsafe_allow_html=True)
     
     # How to play
-    with st.expander("ℹ️ How to Play", expanded=True):
+    with st.expander("How to Play", expanded=True):
         st.markdown("""
         <div class="info-box">
-            ✨ Choose your subject from the sidebar<br>
-            🎯 Click New Quiz to start<br>
-            📝 Answer 10 randomly selected questions<br>
-            💡 Get instant feedback with explanations<br>
-            🏆 Save your score to the global leaderboard<br>
-            👥 Challenge friends to beat your score!
+            • Choose your subject from the sidebar<br>
+            • Click "New Quiz" to start<br>
+            • Answer 10 random questions<br>
+            • Get instant feedback<br>
+            • Save your score to leaderboard
         </div>
         """, unsafe_allow_html=True)
 
@@ -671,7 +581,7 @@ else:
         col1, col2 = st.columns(2)
         
         with col1:
-            if st.button("✅ Submit Answer", use_container_width=True):
+            if st.button("Submit Answer", use_container_width=True):
                 if answer is None:
                     st.warning("Please select an answer!")
                 else:
@@ -698,7 +608,7 @@ else:
         with col2:
             if st.session_state.show_feedback:
                 st.markdown('<div class="secondary-button">', unsafe_allow_html=True)
-                if st.button("➡️ Next Question", use_container_width=True):
+                if st.button("Next Question", use_container_width=True):
                     st.session_state.q_index += 1
                     st.session_state.show_feedback = False
                     st.session_state.feedback = None
@@ -717,9 +627,9 @@ else:
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div class="info-box" style="background: rgba(239, 68, 68, 0.2);">
-                    ❌ <strong>Not quite!</strong><br>
-                    Correct answer: <strong>{last['correct_answer']}</strong><br>
+                <div class="info-box" style="background: #fef2f2; border-color: #fecaca; color: #991b1b;">
+                    ❌ <strong>Incorrect</strong><br>
+                    Correct: <strong>{last['correct_answer']}</strong><br>
                     {last['explanation']}
                 </div>
                 """, unsafe_allow_html=True)
@@ -727,20 +637,19 @@ else:
     else:
         # Quiz complete
         st.balloons()
-        st.snow()
         
         percentage = (st.session_state.score / st.session_state.total_questions) * 100
         
         st.markdown(f"""
-        <div class="question-box" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);">
-            <h3 style="color: #1a4731;">🎉 QUIZ COMPLETE! 🎉</h3>
-            <p style="font-size: 4rem; color: #1a4731;">{st.session_state.score}/{st.session_state.total_questions}</p>
-            <p style="font-size: 2rem; color: #1a4731;">{percentage:.1f}%</p>
+        <div class="question-box" style="background: #f0fdf4;">
+            <h3 style="color: #166534;">🎉 Quiz Complete!</h3>
+            <p style="font-size: 3rem; color: #166534;">{st.session_state.score}/{st.session_state.total_questions}</p>
+            <p style="font-size: 1.2rem; color: #166534;">{percentage:.1f}%</p>
         </div>
         """, unsafe_allow_html=True)
         
         # Review
-        with st.expander("📋 Review Your Answers"):
+        with st.expander("Review Your Answers"):
             for i, ans in enumerate(st.session_state.answers):
                 if ans['correct']:
                     st.markdown(f"✅ **Q{i+1}:** {ans['question']}")
@@ -751,18 +660,18 @@ else:
                 st.markdown("---")
         
         # Save score
-        st.markdown("### 🏆 Save Your Score")
+        st.markdown("### Save Your Score")
         col1, col2 = st.columns([3, 1])
         
         with col1:
             name = st.text_input("", placeholder="Enter your name", 
-                                label_visibility="collapsed", key="save_name")
+                                label_visibility="collapsed")
         
         with col2:
-            if st.button("💾 Save", use_container_width=True):
+            if st.button("Save", use_container_width=True):
                 if name:
                     if save_score_to_sheets(name, st.session_state.score):
-                        st.markdown('<div class="success-message">✅ Saved to global leaderboard!</div>', 
+                        st.markdown('<div class="success-message">✅ Saved to leaderboard!</div>', 
                                   unsafe_allow_html=True)
                         st.cache_data.clear()
                     else:
@@ -776,14 +685,13 @@ else:
                     st.warning("Please enter your name!")
         
         # New quiz
-        if st.button("🔄 Take Another Quiz", use_container_width=True):
+        if st.button("Take Another Quiz", use_container_width=True):
             st.session_state.quiz_started = False
             st.rerun()
 
 # ---------- FOOTER ----------
 st.markdown("""
 <div class="footer">
-    <p>🇲🇾 <strong>SainsQuiz</strong> – Helping Malaysian students master SPM Science</p>
-    <p>Made with ❤️ for SPM students • Questions based on SPM syllabus</p>
+    <p>🇲🇾 SainsQuiz – Helping Malaysian students master SPM Science</p>
 </div>
 """, unsafe_allow_html=True)
