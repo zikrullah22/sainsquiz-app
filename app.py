@@ -14,36 +14,37 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------- FORCE VISIBLE OPTIONS WITH HIGH CONTRAST ----------
+# ---------- FINAL CSS WITH MAXIMUM VISIBILITY ----------
 st.markdown("""
 <style>
     /* Import Google Font */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
     * { font-family: 'Inter', sans-serif; }
 
     /* Background */
-    .stApp { background-color: #f8fafc; }
+    .stApp { background-color: #f3f4f6; }
 
     /* Header */
     .header {
         background: white;
         padding: 1.5rem;
         border-radius: 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         text-align: center;
         margin-bottom: 2rem;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #e5e7eb;
     }
     .header h1 {
-        color: #0f172a;
-        font-size: 2rem;
-        font-weight: 700;
+        color: #111827;
+        font-size: 2.2rem;
+        font-weight: 800;
         margin-bottom: 0.25rem;
     }
     .header p {
-        color: #475569;
+        color: #4b5563;
         font-size: 1rem;
+        font-weight: 500;
     }
 
     /* Subject Cards */
@@ -52,202 +53,261 @@ st.markdown("""
         padding: 1.5rem;
         border-radius: 16px;
         text-align: center;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #e5e7eb;
         transition: 0.2s;
         height: 100%;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
     .subject-card:hover {
         border-color: #2563eb;
-        box-shadow: 0 4px 12px rgba(37,99,235,0.1);
+        box-shadow: 0 8px 16px rgba(37,99,235,0.1);
     }
-    .subject-icon { font-size: 2.5rem; }
+    .subject-icon { font-size: 2.8rem; }
     .subject-card h3 {
-        color: #0f172a;
-        font-size: 1.2rem;
-        font-weight: 600;
+        color: #111827;
+        font-size: 1.3rem;
+        font-weight: 700;
         margin: 0.5rem 0 0.25rem;
     }
     .subject-card p {
-        color: #64748b;
+        color: #6b7280;
         font-size: 0.85rem;
+        font-weight: 500;
     }
 
     /* Question Box */
     .question-box {
         background: white;
-        padding: 1.5rem;
+        padding: 1.8rem;
         border-radius: 16px;
-        border: 1px solid #e2e8f0;
-        margin-bottom: 1.5rem;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 1.8rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.03);
     }
     .question-box h3 {
         color: #2563eb;
         font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        margin-bottom: 0.5rem;
-    }
-    .question-box p {
-        color: #0f172a;
-        font-size: 1.2rem;
-        font-weight: 600;
-        line-height: 1.5;
+        font-weight: 700;
         margin-bottom: 0.75rem;
     }
+    .question-box p {
+        color: #111827;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
     .subject-tag {
-        background: #e2e8f0;
-        color: #334155;
-        padding: 0.25rem 1rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 500;
+        background: #e5e7eb;
+        color: #1f2937;
+        padding: 0.3rem 1.2rem;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 600;
         display: inline-block;
     }
 
-    /* ===== RADIO BUTTONS – FULLY VISIBLE ===== */
+    /* ===== RADIO BUTTONS – MAXIMUM VISIBILITY ===== */
     div.row-widget.stRadio > div {
         background: transparent !important;
         padding: 0 !important;
     }
+    
     div.row-widget.stRadio label {
-        background: black !important;           /* Light background */
-        border: 1px solid #cbd5e1 !important;   /* Visible border */
-        border-radius: 12px !important;
-        padding: 1rem 1.2rem !important;
-        margin: 0.6rem 0 !important;
-       color: #111111 !important;            /* Dark text */
-        font-weight: 500 !important;
-        font-size: 1.05rem !important;
+        background: #f9fafb !important;        /* Light gray background */
+        border: 2px solid #d1d5db !important;  /* Dark gray border */
+        border-radius: 14px !important;
+        padding: 1rem 1.5rem !important;
+        margin: 0.7rem 0 !important;
+        color: #111827 !important;              /* Very dark text */
+        font-weight: 700 !important;             /* Bold text */
+        font-size: 1.15rem !important;
         display: flex !important;
         align-items: center !important;
         cursor: pointer !important;
         transition: all 0.2s ease !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08) !important;
     }
+    
     div.row-widget.stRadio label:hover {
-        background: #f8fafc !important;
+        background: #ffffff !important;
         border-color: #2563eb !important;
-        box-shadow: 0 4px 8px rgba(37,99,235,0.1) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(37,99,235,0.15) !important;
     }
-    /* Radio circle (the dot) */
+    
+    /* Selected option */
+    div.row-widget.stRadio label[data-baseweb="radio"] input:checked + div {
+        background-color: #2563eb !important;
+        border-color: #2563eb !important;
+    }
+    
+    /* Radio circle - bigger and visible */
     div.row-widget.stRadio label div:first-child {
         background-color: white !important;
-        border-color: #94a3b8 !important;
-        margin-right: 12px !important;
+        border: 2px solid #4b5563 !important;
+        margin-right: 15px !important;
+        width: 22px !important;
+        height: 22px !important;
+        transform: scale(1.1) !important;
     }
+    
     div.row-widget.stRadio label input:checked + div div {
         background-color: #2563eb !important;
+        width: 14px !important;
+        height: 14px !important;
     }
 
-    /* Buttons */
+    /* ===== BUTTONS ===== */
     .stButton button {
         background: #2563eb !important;
         color: white !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         border: none !important;
-        border-radius: 10px !important;
-        padding: 0.6rem 1.2rem !important;
-        font-size: 0.95rem !important;
+        border-radius: 12px !important;
+        padding: 0.7rem 1.5rem !important;
+        font-size: 1rem !important;
         transition: 0.2s !important;
         border: 1px solid #1d4ed8 !important;
+        box-shadow: 0 4px 6px rgba(37,99,235,0.2) !important;
     }
     .stButton button:hover {
         background: #1d4ed8 !important;
-        box-shadow: 0 4px 10px rgba(37,99,235,0.3) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 12px rgba(37,99,235,0.3) !important;
     }
     .secondary-button button {
         background: white !important;
         color: #2563eb !important;
-        border: 1px solid #2563eb !important;
+        border: 2px solid #2563eb !important;
+        box-shadow: none !important;
     }
     .secondary-button button:hover {
-        background: #f1f5f9 !important;
+        background: #f0f9ff !important;
     }
 
     /* Sidebar */
     [data-testid="stSidebar"] {
         background: white;
-        border-right: 1px solid #e2e8f0;
-        padding: 1.5rem 1rem;
+        border-right: 1px solid #e5e7eb;
+        padding: 2rem 1rem;
     }
-    .sidebar-header { text-align: center; margin-bottom: 1.5rem; }
-    .sidebar-header h2 { color: #0f172a; font-size: 1.8rem; font-weight: 700; }
-    .sidebar-header p { color: #64748b; font-size: 0.9rem; }
+    .sidebar-header { text-align: center; margin-bottom: 2rem; }
+    .sidebar-header h2 { 
+        color: #111827; 
+        font-size: 2rem; 
+        font-weight: 800; 
+    }
+    .sidebar-header p { 
+        color: #6b7280; 
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
 
     /* Metric */
     [data-testid="stMetric"] {
-        background: #f8fafc;
-        padding: 1rem;
+        background: #f9fafb;
+        padding: 1.2rem;
         border-radius: 12px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #e5e7eb;
     }
-    [data-testid="stMetric"] label { color: #475569 !important; }
+    [data-testid="stMetric"] label { 
+        color: #4b5563 !important;
+        font-weight: 600 !important;
+    }
     [data-testid="stMetric"] [data-testid="stMetricValue"] {
-        color: #0f172a !important;
-        font-size: 2rem !important;
-        font-weight: 700 !important;
+        color: #111827 !important;
+        font-size: 2.2rem !important;
+        font-weight: 800 !important;
     }
 
     /* Progress bar */
-    .stProgress > div > div { background: #2563eb; }
+    .stProgress > div > div { 
+        background: #2563eb;
+        border-radius: 10px;
+    }
+    .stProgress > div {
+        background: #e5e7eb;
+        border-radius: 10px;
+    }
 
     /* Leaderboard */
     .leaderboard-item {
-        background: #f8fafc;
-        padding: 0.6rem 1rem;
-        border-radius: 8px;
-        margin: 0.4rem 0;
+        background: #f9fafb;
+        padding: 0.7rem 1rem;
+        border-radius: 10px;
+        margin: 0.5rem 0;
         display: flex;
         justify-content: space-between;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #e5e7eb;
+        font-weight: 500;
     }
-    .leaderboard-rank { font-weight: 700; color: #2563eb; min-width: 35px; }
-    .leaderboard-name { color: #0f172a; font-weight: 500; flex: 1; }
+    .leaderboard-rank { 
+        font-weight: 800; 
+        color: #2563eb; 
+        min-width: 40px; 
+    }
+    .leaderboard-name { 
+        color: #111827; 
+        font-weight: 600; 
+        flex: 1; 
+    }
     .leaderboard-score {
-        background: #e2e8f0;
-        color: #0f172a;
-        font-weight: 600;
-        padding: 0.2rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
+        background: #e5e7eb;
+        color: #111827;
+        font-weight: 700;
+        padding: 0.2rem 1rem;
+        border-radius: 30px;
+        font-size: 0.9rem;
     }
 
     /* Success & Info boxes */
     .success-message {
-        background: #d1fae5;
-        border: 1px solid #10b981;
-        color: #065f46;
-        padding: 1rem;
-        border-radius: 8px;
+        background: #dcfce7;
+        border: 2px solid #86efac;
+        color: #166534;
+        padding: 1.2rem;
+        border-radius: 12px;
         margin: 1rem 0;
+        font-weight: 600;
     }
     .info-box {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        padding: 1rem;
-        border-radius: 8px;
-        color: #0f172a;
-        line-height: 1.6;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        padding: 1.2rem;
+        border-radius: 12px;
+        color: #111827;
+        line-height: 1.8;
+        font-weight: 500;
     }
 
     /* Select box */
-    .stSelectbox label { color: #0f172a !important; font-weight: 600 !important; }
+    .stSelectbox label { 
+        color: #111827 !important; 
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
+    }
     .stSelectbox > div > div {
         background: white !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 8px !important;
-        color: #0f172a !important;
+        border: 2px solid #d1d5db !important;
+        border-radius: 10px !important;
+        color: #111827 !important;
+        font-weight: 600 !important;
     }
 
     /* Footer */
     .footer {
         text-align: center;
         padding: 2rem 0 1rem;
-        color: #64748b;
-        font-size: 0.85rem;
-        border-top: 1px solid #e2e8f0;
+        color: #6b7280;
+        font-size: 0.9rem;
+        border-top: 1px solid #e5e7eb;
         margin-top: 3rem;
+        font-weight: 500;
     }
+    .footer strong { color: #2563eb; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -474,7 +534,7 @@ else:
         </div>
         """, unsafe_allow_html=True)
 
-        # RADIO BUTTONS – NOW VISIBLE (light background, dark text)
+        # RADIO BUTTONS – 100% VISIBLE with light background and dark text
         answer = st.radio("", q['options'], key=f"q_{st.session_state.q_index}",
                           index=None, label_visibility="collapsed")
 
@@ -522,7 +582,7 @@ else:
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div style="background:#fee2e2; border:1px solid #fecaca; color:#991b1b; padding:1rem; border-radius:8px; margin:1rem 0;">
+                <div style="background:#fee2e2; border:2px solid #fecaca; color:#991b1b; padding:1.2rem; border-radius:12px; margin:1rem 0; font-weight:600;">
                     ❌ <strong>Incorrect</strong><br>
                     Correct answer: <strong>{last['correct_answer']}</strong><br>
                     {last['explanation']}
@@ -534,10 +594,10 @@ else:
         st.balloons()
         percentage = (st.session_state.score / st.session_state.total_questions) * 100
         st.markdown(f"""
-        <div class="question-box" style="background:#d1fae5;">
-            <h3 style="color:#065f46;">🎉 Quiz Complete!</h3>
-            <p style="font-size: 3rem; color:#065f46;">{st.session_state.score}/{st.session_state.total_questions}</p>
-            <p style="font-size: 1.2rem; color:#065f46;">{percentage:.1f}%</p>
+        <div class="question-box" style="background:#dcfce7;">
+            <h3 style="color:#166534;">🎉 Quiz Complete!</h3>
+            <p style="font-size: 3.5rem; color:#166534; font-weight:800;">{st.session_state.score}/{st.session_state.total_questions}</p>
+            <p style="font-size: 1.5rem; color:#166534; font-weight:700;">{percentage:.1f}%</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -579,8 +639,6 @@ else:
 # ---------- FOOTER ----------
 st.markdown("""
 <div class="footer">
-    <p>🇲🇾 SainsQuiz – Helping Malaysian students master SPM Science</p>
+    <p>🇲🇾 <strong>SainsQuiz</strong> – Helping Malaysian students master SPM Science</p>
 </div>
 """, unsafe_allow_html=True)
-
-
