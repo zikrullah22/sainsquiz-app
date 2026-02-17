@@ -110,7 +110,7 @@ st.markdown("""
         padding: 0 !important;
     }
     div.row-widget.stRadio label {
-        background: white !important;           /* Light background */
+        background: black !important;           /* Light background */
         border: 1px solid #cbd5e1 !important;   /* Visible border */
         border-radius: 12px !important;
         padding: 1rem 1.2rem !important;
@@ -582,4 +582,5 @@ st.markdown("""
     <p>🇲🇾 SainsQuiz – Helping Malaysian students master SPM Science</p>
 </div>
 """, unsafe_allow_html=True)
+
 
