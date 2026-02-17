@@ -29,311 +29,390 @@ st.markdown("""
     
     /* Clean background */
     .stApp {
-        background-color: #f3f4f6;
+        background-color: #f8fafc;
     }
     
     /* Header */
     .header {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         margin-bottom: 2rem;
         text-align: center;
-        border: 1px solid #e5e7eb;
+        color: white;
     }
     
     .header h1 {
-        color: #111827;
-        font-size: 2rem;
+        color: white;
+        font-size: 2.5rem;
         font-weight: 700;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
     
     .header p {
-        color: #6b7280;
-        font-size: 0.9rem;
+        color: rgba(255,255,255,0.9);
+        font-size: 1rem;
     }
     
     /* Subject cards */
     .subject-card {
         background: white;
         padding: 1.5rem;
-        border-radius: 12px;
+        border-radius: 16px;
         text-align: center;
         border: 1px solid #e5e7eb;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .subject-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
     
     .subject-card h3 {
-        color: #111827;
-        font-size: 1.1rem;
+        color: #1f2937;
+        font-size: 1.2rem;
         font-weight: 600;
-        margin: 0.5rem 0 0.25rem;
+        margin: 0.75rem 0 0.25rem;
     }
     
     .subject-card p {
         color: #6b7280;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
     
     .subject-icon {
-        font-size: 2rem;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
     }
     
     /* Question box */
     .question-box {
         background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
+        padding: 2rem;
+        border-radius: 20px;
         border: 1px solid #e5e7eb;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         margin-bottom: 1.5rem;
     }
     
+    .question-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .question-number {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 5px rgba(102, 126, 234, 0.3);
+    }
+    
+    .question-progress {
+        background: #f1f5f9;
+        color: #475569;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+    
     .question-box h3 {
-        color: #3b82f6;
-        font-size: 0.85rem;
+        color: #667eea;
+        font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         margin-bottom: 0.75rem;
     }
     
-    .question-box p {
-        color: #111827;
-        font-size: 1.2rem;
+    .question-text {
+        color: #1e293b;
+        font-size: 1.3rem;
         font-weight: 600;
-        line-height: 1.5;
-        margin-bottom: 0.75rem;
+        line-height: 1.6;
+        margin: 1rem 0;
     }
     
     .subject-tag {
         display: inline-block;
-        background: #e5e7eb;
-        color: #4b5563;
-        padding: 0.2rem 1rem;
-        border-radius: 20px;
+        background: #f1f5f9;
+        color: #475569;
+        padding: 0.3rem 1.2rem;
+        border-radius: 30px;
         font-size: 0.8rem;
-        font-weight: 500;
+        font-weight: 600;
+        margin-top: 0.5rem;
     }
     
-    /* ===== RADIO BUTTONS - LIGHT BACKGROUND, DARK TEXT ===== */
+    /* Options styling */
     div.row-widget.stRadio > div {
-        background-color: transparent !important;
-        padding: 0 !important;
-        border: none !important;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.5rem 0;
     }
     
-    /* Style each option as a light card */
     div.row-widget.stRadio label {
-        background-color: white !important;      /* Light background */
-        border: 1px solid #d1d5db !important;    /* Light gray border */
-        border-radius: 10px !important;
-        padding: 1rem 1.2rem !important;
-        margin: 0.6rem 0 !important;
-        color: #111827 !important;                /* Dark text */
+        background: white !important;
+        border: 2px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        padding: 1rem 1.5rem !important;
+        color: #1e293b !important;
         font-weight: 500 !important;
-        font-size: 1.1rem !important;
-        transition: all 0.2s ease !important;
-        display: flex !important;
-        align-items: center !important;
-        cursor: pointer !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
     }
     
     div.row-widget.stRadio label:hover {
-        background-color: #f9fafb !important;    /* Slightly darker on hover */
-        border-color: #3b82f6 !important;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+        border-color: #667eea !important;
+        background: #f8fafc !important;
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1) !important;
     }
     
-    /* Selected option highlight */
     div.row-widget.stRadio label[data-baseweb="radio"] input:checked + div {
-        background-color: #3b82f6 !important;
-        border-color: #3b82f6 !important;
+        background-color: #667eea !important;
+        border-color: #667eea !important;
     }
     
-    /* Radio circle */
-    div.row-widget.stRadio label div:first-child {
-        background-color: white !important;
-        border-color: #9ca3af !important;
-        margin-right: 12px !important;
+    /* Button container */
+    .button-container {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
     }
     
-    /* Selected radio circle */
-    div.row-widget.stRadio label input:checked + div div {
-        background-color: #3b82f6 !important;
-    }
-    
-    /* ===== BUTTONS ===== */
+    /* Primary button */
     .stButton button {
-        background-color: #3b82f6 !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         color: white !important;
         font-weight: 600 !important;
         border: none !important;
-        border-radius: 8px !important;
-        padding: 0.6rem 1rem !important;
-        font-size: 0.95rem !important;
-        transition: all 0.2s ease !important;
-        border: 1px solid #2563eb !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 1.5rem !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+        width: 100%;
     }
     
     .stButton button:hover {
-        background-color: #2563eb !important;
-        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
     }
     
+    .stButton button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    /* Secondary button */
     .secondary-button button {
-        background-color: white !important;
-        color: #3b82f6 !important;
-        border: 1px solid #3b82f6 !important;
+        background: white !important;
+        color: #667eea !important;
+        border: 2px solid #667eea !important;
+        box-shadow: none !important;
     }
     
     .secondary-button button:hover {
-        background-color: #f9fafb !important;
+        background: #f8fafc !important;
+        transform: translateY(-2px) !important;
     }
     
     /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: white;
-        border-right: 1px solid #e5e7eb;
-        padding: 1.5rem 1rem;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        border-right: 1px solid #e2e8f0;
+        padding: 2rem 1rem;
     }
     
     .sidebar-header {
         text-align: center;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
     
     .sidebar-header h2 {
-        color: #111827;
-        font-size: 1.5rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 2rem;
         font-weight: 700;
     }
     
-    .sidebar-header p {
-        color: #6b7280;
-        font-size: 0.85rem;
-    }
-    
-    /* Metric */
+    /* Metric cards */
     [data-testid="stMetric"] {
-        background-color: #f9fafb;
-        padding: 1rem;
-        border-radius: 8px;
-        border: 1px solid #e5e7eb;
+        background: white;
+        padding: 1.2rem;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
     }
     
     [data-testid="stMetric"] label {
-        color: #6b7280 !important;
-        font-size: 0.85rem !important;
+        color: #64748b !important;
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
     }
     
     [data-testid="stMetric"] [data-testid="stMetricValue"] {
-        color: #111827 !important;
-        font-size: 1.8rem !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 2rem !important;
         font-weight: 700 !important;
     }
     
     /* Progress bar */
     .stProgress > div > div {
-        background-color: #3b82f6;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
     }
     
     /* Leaderboard */
+    .leaderboard-title {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+    
     .leaderboard-item {
-        background-color: #f9fafb;
-        padding: 0.6rem 1rem;
-        border-radius: 8px;
-        margin: 0.4rem 0;
+        background: white;
+        padding: 0.8rem 1rem;
+        border-radius: 12px;
+        margin: 0.5rem 0;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        border: 1px solid #e5e7eb;
+        border: 1px solid #e2e8f0;
+        transition: transform 0.2s ease;
+    }
+    
+    .leaderboard-item:hover {
+        transform: translateX(5px);
+        border-color: #667eea;
     }
     
     .leaderboard-rank {
         font-weight: 700;
-        color: #3b82f6;
-        min-width: 35px;
+        min-width: 40px;
+        text-align: center;
     }
     
+    .rank-1 { color: #FFD700; font-size: 1.2rem; }
+    .rank-2 { color: #C0C0C0; font-size: 1.1rem; }
+    .rank-3 { color: #CD7F32; font-size: 1.1rem; }
+    
     .leaderboard-name {
-        color: #111827;
+        color: #1e293b;
         font-weight: 500;
         flex: 1;
+        margin: 0 0.5rem;
     }
     
     .leaderboard-score {
-        background-color: #e5e7eb;
-        color: #111827;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
         font-weight: 600;
-        padding: 0.2rem 0.8rem;
-        border-radius: 20px;
+        padding: 0.3rem 0.8rem;
+        border-radius: 30px;
         font-size: 0.85rem;
+        min-width: 45px;
+        text-align: center;
     }
     
-    /* Success message */
-    .success-message {
-        background-color: #d1fae5;
-        border: 1px solid #10b981;
-        color: #065f46;
-        padding: 1rem;
-        border-radius: 8px;
+    .leaderboard-empty {
+        background: #f8fafc;
+        border: 2px dashed #cbd5e1;
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        color: #64748b;
+    }
+    
+    /* Feedback messages */
+    .feedback-correct {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        padding: 1.2rem;
+        border-radius: 12px;
         margin: 1rem 0;
-        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
     }
     
-    /* Info box */
-    .info-box {
-        background-color: #f9fafb;
-        border: 1px solid #e5e7eb;
+    .feedback-wrong {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+        padding: 1.2rem;
+        border-radius: 12px;
+        margin: 1rem 0;
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+    }
+    
+    /* Score card */
+    .score-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+    
+    .score-number {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1;
+        margin: 1rem 0;
+    }
+    
+    .score-percentage {
+        font-size: 1.5rem;
+        opacity: 0.9;
+    }
+    
+    /* Review section */
+    .review-item {
+        background: white;
         padding: 1rem;
-        border-radius: 8px;
-        color: #111827;
-        line-height: 1.6;
+        border-radius: 12px;
+        margin: 0.5rem 0;
+        border-left: 4px solid;
     }
     
-    /* Select box */
-    .stSelectbox label {
-        color: #111827 !important;
-        font-weight: 600 !important;
-        font-size: 0.9rem !important;
-    }
-    
-    .stSelectbox > div > div {
-        background-color: white !important;
-        border: 1px solid #d1d5db !important;
-        border-radius: 8px !important;
-        color: #111827 !important;
-    }
-    
-    /* Warning message */
-    .stAlert {
-        background-color: #fee2e2 !important;
-        color: #991b1b !important;
-        border: 1px solid #fecaca !important;
-        border-radius: 8px !important;
-    }
+    .review-correct { border-left-color: #10b981; }
+    .review-wrong { border-left-color: #ef4444; }
     
     /* Footer */
     .footer {
         text-align: center;
         padding: 2rem 0 1rem;
-        color: #6b7280;
-        font-size: 0.8rem;
-        border-top: 1px solid #e5e7eb;
+        color: #94a3b8;
+        font-size: 0.85rem;
+        border-top: 1px solid #e2e8f0;
         margin-top: 2rem;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ---------- SIMPLE ICONS ----------
-PHYSICS_ICON = "📚"
+PHYSICS_ICON = "⚡"
 CHEMISTRY_ICON = "🧪"
-BIOLOGY_ICON = "🔬"
-LOGO_ICON = "🧪"
+BIOLOGY_ICON = "🧬"
+LOGO_ICON = "🎓"
 
 # ---------- INITIALIZE SESSION STATE ----------
 def init_session_state():
@@ -347,7 +426,9 @@ def init_session_state():
         'leaderboard': [],
         'questions': [],
         'total_questions': 0,
-        'show_feedback': False
+        'show_feedback': False,
+        'current_answer': None,
+        'answer_submitted': False
     }
     
     for key, value in defaults.items():
@@ -374,35 +455,35 @@ def load_questions():
             "question": "What is the SI unit of force?",
             "options": ["Joule", "Newton", "Watt", "Pascal"],
             "correct_option": 1,
-            "explanation": "Newton (N) is the SI unit of force."
+            "explanation": "Newton (N) is the SI unit of force. It's named after Sir Isaac Newton for his work in classical mechanics."
         },
         {
             "subject": "Physics",
             "question": "Which of the following is a scalar quantity?",
             "options": ["Velocity", "Acceleration", "Mass", "Force"],
             "correct_option": 2,
-            "explanation": "Mass is scalar (only magnitude). The others are vectors."
+            "explanation": "Mass is scalar (only magnitude). Velocity, acceleration, and force are vectors (have both magnitude and direction)."
         },
         {
             "subject": "Chemistry",
             "question": "What is the pH of a neutral solution?",
             "options": ["0", "7", "14", "1"],
             "correct_option": 1,
-            "explanation": "pH 7 is neutral."
+            "explanation": "pH 7 is neutral. Values below 7 are acidic, above 7 are alkaline/basic."
         },
         {
             "subject": "Biology",
             "question": "Which organelle is the 'powerhouse' of the cell?",
             "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi apparatus"],
             "correct_option": 2,
-            "explanation": "Mitochondria produce ATP."
+            "explanation": "Mitochondria produce ATP (energy) through cellular respiration, making them the cell's powerhouse."
         },
         {
             "subject": "Chemistry",
             "question": "What is the most abundant element in the universe?",
             "options": ["Oxygen", "Carbon", "Helium", "Hydrogen"],
             "correct_option": 3,
-            "explanation": "Hydrogen makes up about 75% of the universe's elemental mass."
+            "explanation": "Hydrogen makes up about 75% of the universe's elemental mass. Helium is second at about 23%."
         }
     ]
 
@@ -471,29 +552,37 @@ with st.sidebar:
     st.markdown(f"""
     <div class="sidebar-header">
         <h2>{LOGO_ICON} SainsQuiz</h2>
-        <p>SPM Science Practice</p>
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("---")
+    # Subject selection with icons
+    subjects = ["All", "Physics ⚡", "Chemistry 🧪", "Biology 🧬"]
+    subject_map = {"All": "All", "Physics ⚡": "Physics", 
+                   "Chemistry 🧪": "Chemistry", "Biology 🧬": "Biology"}
     
-    # Subject selection
-    subjects = ["All", "Physics", "Chemistry", "Biology"]
-    selected = st.selectbox("Choose Subject", subjects, 
-                          index=subjects.index(st.session_state.subject))
+    selected_display = st.selectbox("📚 Choose Subject", subjects, 
+                                  index=subjects.index(st.session_state.subject + " ⚡" 
+                                                      if st.session_state.subject != "All" 
+                                                      else "All"))
+    
+    selected = subject_map[selected_display]
     
     if selected != st.session_state.subject:
         st.session_state.subject = selected
         st.session_state.quiz_started = False
         st.rerun()
     
-    # New quiz button
-    if st.button("New Quiz", use_container_width=True):
+    st.markdown("---")
+    
+    # New quiz button with icon
+    if st.button("🎯 New Quiz", use_container_width=True):
         st.session_state.quiz_started = True
         st.session_state.q_index = 0
         st.session_state.score = 0
         st.session_state.answers = []
         st.session_state.feedback = None
+        st.session_state.answer_submitted = False
+        st.session_state.current_answer = None
         
         if st.session_state.subject == "All":
             st.session_state.questions = random.sample(questions_db, min(10, len(questions_db)))
@@ -504,52 +593,85 @@ with st.sidebar:
         st.session_state.total_questions = len(st.session_state.questions)
         st.rerun()
     
-    st.markdown("---")
-    
-    # Current score
+    # Current progress in sidebar (if quiz started)
     if st.session_state.quiz_started and st.session_state.total_questions > 0:
+        st.markdown("---")
+        st.markdown("### 📊 Your Progress")
+        
+        # Metric
         st.metric("Current Score", 
                  f"{st.session_state.score}/{st.session_state.total_questions}")
         
-        # Progress
+        # Progress with emoji
         progress = st.session_state.q_index / st.session_state.total_questions
         st.progress(progress)
+        
+        questions_left = st.session_state.total_questions - st.session_state.q_index
+        st.caption(f"🎯 {questions_left} questions remaining")
     
-    # Leaderboard
-    st.markdown("### Top Players")
+    # Leaderboard with motivational design
+    st.markdown("---")
+    st.markdown("""
+    <div class="leaderboard-title">
+        🏆 TOP PLAYERS 🏆
+    </div>
+    """, unsafe_allow_html=True)
     
     leaderboard = load_leaderboard_from_sheets()
     
     if leaderboard:
         for i, (name, score) in enumerate(leaderboard, 1):
             if i == 1:
-                rank = "🥇"
+                rank_emoji = "👑"
+                rank_class = "rank-1"
             elif i == 2:
-                rank = "🥈"
+                rank_emoji = "⭐"
+                rank_class = "rank-2"
             elif i == 3:
-                rank = "🥉"
+                rank_emoji = "🌟"
+                rank_class = "rank-3"
             else:
-                rank = f"{i}."
-                
+                rank_emoji = f"{i}"
+                rank_class = ""
+            
             st.markdown(f"""
             <div class="leaderboard-item">
-                <span class="leaderboard-rank">{rank}</span>
+                <span class="leaderboard-rank {rank_class}">{rank_emoji}</span>
                 <span class="leaderboard-name">{name}</span>
                 <span class="leaderboard-score">{score}</span>
             </div>
             """, unsafe_allow_html=True)
     else:
-        st.info("No scores yet. Be the first!")
+        st.markdown("""
+        <div class="leaderboard-empty">
+            🎯 Be the first champion!<br>
+            <small>Complete a quiz to claim your spot</small>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Motivational quote
+    st.markdown("---")
+    quotes = [
+        "✨ Science is magic that works!",
+        "🚀 Dream it. Science it. Do it.",
+        "💡 Stay curious, keep learning!",
+        "🎓 Your future is bright!",
+        "⭐ Every expert was once a beginner."
+    ]
+    st.caption(random.choice(quotes))
 
 # ---------- MAIN CONTENT ----------
 st.markdown("""
 <div class="header">
-    <h1>🧪 SainsQuiz</h1>
-    <p>Practice SPM Science • Compete with Friends</p>
+    <h1>🎓 SainsQuiz</h1>
+    <p>Master SPM Science • Challenge Friends • Be a Champion</p>
 </div>
 """, unsafe_allow_html=True)
 
 if not st.session_state.quiz_started:
+    # Welcome message
+    st.markdown("### 🌟 Ready to test your knowledge?")
+    
     # Subject cards
     col1, col2, col3 = st.columns(3)
     
@@ -558,7 +680,7 @@ if not st.session_state.quiz_started:
         <div class="subject-card">
             <div class="subject-icon">{PHYSICS_ICON}</div>
             <h3>Physics</h3>
-            <p>Forces, Motion, Heat, Light</p>
+            <p>Forces, Motion, Energy, Waves</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -567,7 +689,7 @@ if not st.session_state.quiz_started:
         <div class="subject-card">
             <div class="subject-icon">{CHEMISTRY_ICON}</div>
             <h3>Chemistry</h3>
-            <p>Periodic Table, Bonds, Acids</p>
+            <p>Periodic Table, Reactions, Acids</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -576,19 +698,19 @@ if not st.session_state.quiz_started:
         <div class="subject-card">
             <div class="subject-icon">{BIOLOGY_ICON}</div>
             <h3>Biology</h3>
-            <p>Cells, Human Body, Plants</p>
+            <p>Cells, Systems, Genetics, Ecology</p>
         </div>
         """, unsafe_allow_html=True)
     
     # How to play
-    with st.expander("How to Play"):
+    with st.expander("📖 How to Play"):
         st.markdown("""
-        <div class="info-box">
-            • Choose your subject from the sidebar<br>
-            • Click "New Quiz" to start<br>
-            • Answer 10 random questions<br>
-            • Get instant feedback<br>
-            • Save your score to leaderboard
+        <div style="background: white; padding: 1.5rem; border-radius: 12px;">
+            <p style="margin: 0.5rem 0;">✨ <strong>Step 1:</strong> Choose your favorite subject from the sidebar</p>
+            <p style="margin: 0.5rem 0;">✨ <strong>Step 2:</strong> Click "New Quiz" to start your journey</p>
+            <p style="margin: 0.5rem 0;">✨ <strong>Step 3:</strong> Answer 10 exciting questions</p>
+            <p style="margin: 0.5rem 0;">✨ <strong>Step 4:</strong> Learn from instant explanations</p>
+            <p style="margin: 0.5rem 0;">✨ <strong>Step 5:</strong> Save your score and climb the leaderboard</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -596,25 +718,33 @@ else:
     if st.session_state.q_index < st.session_state.total_questions:
         q = st.session_state.questions[st.session_state.q_index]
         
-        # Question
+        # Question header with clear progress
         st.markdown(f"""
         <div class="question-box">
-            <h3>Question {st.session_state.q_index + 1} of {st.session_state.total_questions}</h3>
-            <p>{q['question']}</p>
+            <div class="question-header">
+                <span class="question-number">📝 Question {st.session_state.q_index + 1}</span>
+                <span class="question-progress">{st.session_state.q_index + 1}/{st.session_state.total_questions}</span>
+            </div>
+            <div class="question-text">
+                {q['question']}
+            </div>
             <span class="subject-tag">{q['subject']}</span>
         </div>
         """, unsafe_allow_html=True)
         
-        # Options - NOW LIGHT BACKGROUND, DARK TEXT
+        # Options
         answer = st.radio("", q['options'], key=f"q_{st.session_state.q_index}", 
-                         index=None, label_visibility="collapsed")
+                         index=None, label_visibility="collapsed",
+                         disabled=st.session_state.answer_submitted)
         
+        # Button container
         col1, col2 = st.columns(2)
         
         with col1:
-            if st.button("Submit Answer", use_container_width=True):
+            button_label = "✅ Check Answer" if not st.session_state.answer_submitted else "✅ Answer Submitted"
+            if st.button(button_label, use_container_width=True, disabled=st.session_state.answer_submitted):
                 if answer is None:
-                    st.warning("Please select an answer!")
+                    st.warning("🎯 Please select an answer first!")
                 else:
                     correct = q['options'][q['correct_option']]
                     is_correct = (answer == correct)
@@ -629,100 +759,119 @@ else:
                     
                     if is_correct:
                         st.session_state.score += 1
-                        st.session_state.feedback = "correct"
-                    else:
-                        st.session_state.feedback = "wrong"
                     
-                    st.session_state.show_feedback = True
+                    st.session_state.answer_submitted = True
+                    st.session_state.current_answer = answer
                     st.rerun()
         
         with col2:
-            if st.session_state.show_feedback:
-                st.markdown('<div class="secondary-button">', unsafe_allow_html=True)
-                if st.button("Next Question", use_container_width=True):
+            if st.session_state.answer_submitted:
+                if st.button("➡️ Next Question", use_container_width=True, type="primary"):
                     st.session_state.q_index += 1
-                    st.session_state.show_feedback = False
-                    st.session_state.feedback = None
+                    st.session_state.answer_submitted = False
+                    st.session_state.current_answer = None
                     st.rerun()
-                st.markdown('</div>', unsafe_allow_html=True)
         
         # Feedback
-        if st.session_state.show_feedback and st.session_state.answers:
+        if st.session_state.answer_submitted and st.session_state.answers:
             last = st.session_state.answers[-1]
             if last['correct']:
                 st.markdown(f"""
-                <div class="success-message">
-                    ✅ <strong>Correct!</strong><br>
-                    {last['explanation']}
+                <div class="feedback-correct">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎉 Correct!</div>
+                    <div>{last['explanation']}</div>
                 </div>
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div style="background-color:#fee2e2; border:1px solid #fecaca; color:#991b1b; padding:1rem; border-radius:8px; margin:1rem 0;">
-                    ❌ <strong>Incorrect</strong><br>
-                    Correct answer: <strong>{last['correct_answer']}</strong><br>
-                    {last['explanation']}
+                <div class="feedback-wrong">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📚 Keep Learning!</div>
+                    <div><strong>Correct answer:</strong> {last['correct_answer']}</div>
+                    <div style="margin-top: 0.5rem;">{last['explanation']}</div>
                 </div>
                 """, unsafe_allow_html=True)
     
     else:
-        # Quiz complete
+        # Quiz complete - Celebratory screen
         st.balloons()
         
         percentage = (st.session_state.score / st.session_state.total_questions) * 100
         
+        # Motivational message based on score
+        if percentage >= 80:
+            msg = "🏆 Excellent! You're a Science Champion!"
+            emoji = "🌟"
+        elif percentage >= 60:
+            msg = "🎯 Good job! You're on the right track!"
+            emoji = "📚"
+        else:
+            msg = "💪 Keep practicing! Every attempt makes you stronger!"
+            emoji = "🌱"
+        
         st.markdown(f"""
-        <div class="question-box" style="background-color:#d1fae5;">
-            <h3 style="color:#065f46;">🎉 Quiz Complete!</h3>
-            <p style="font-size: 3rem; color:#065f46;">{st.session_state.score}/{st.session_state.total_questions}</p>
-            <p style="font-size: 1.2rem; color:#065f46;">{percentage:.1f}%</p>
+        <div class="score-card">
+            <div style="font-size: 1.5rem;">{emoji} {msg}</div>
+            <div class="score-number">{st.session_state.score}/{st.session_state.total_questions}</div>
+            <div class="score-percentage">{percentage:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
         
-        # Review
-        with st.expander("Review Your Answers"):
+        # Review answers
+        with st.expander("📋 Review Your Answers"):
             for i, ans in enumerate(st.session_state.answers):
                 if ans['correct']:
-                    st.markdown(f"✅ **Q{i+1}:** {ans['question']}")
+                    st.markdown(f"""
+                    <div class="review-item review-correct">
+                        <strong>✅ Question {i+1}:</strong> {ans['question']}<br>
+                        <small>✨ {ans['explanation']}</small>
+                    </div>
+                    """, unsafe_allow_html=True)
                 else:
-                    st.markdown(f"❌ **Q{i+1}:** {ans['question']}")
-                    st.markdown(f"*Correct: {ans['correct_answer']}*")
-                    st.markdown(f"*{ans['explanation']}*")
-                st.markdown("---")
+                    st.markdown(f"""
+                    <div class="review-item review-wrong">
+                        <strong>📚 Question {i+1}:</strong> {ans['question']}<br>
+                        <strong>Correct answer:</strong> {ans['correct_answer']}<br>
+                        <small>💡 {ans['explanation']}</small>
+                    </div>
+                    """, unsafe_allow_html=True)
         
-        # Save score
-        st.markdown("### Save Your Score")
+        # Save score with motivation
+        st.markdown("### 🏆 Save Your Achievement")
         col1, col2 = st.columns([3, 1])
         
         with col1:
-            name = st.text_input("", placeholder="Enter your name", 
+            name = st.text_input("", placeholder="Enter your name to join the leaderboard", 
                                 label_visibility="collapsed")
         
         with col2:
-            if st.button("Save", use_container_width=True):
+            if st.button("💾 Save Score", use_container_width=True):
                 if name:
                     if save_score_to_sheets(name, st.session_state.score):
-                        st.markdown('<div class="success-message">✅ Saved to leaderboard!</div>', 
-                                  unsafe_allow_html=True)
+                        st.success("✨ Congratulations! You're on the leaderboard!")
+                        st.balloons()
                         st.cache_data.clear()
                     else:
                         st.session_state.leaderboard.append((name, st.session_state.score))
                         st.session_state.leaderboard.sort(key=lambda x: x[1], reverse=True)
                         st.session_state.leaderboard = st.session_state.leaderboard[:10]
-                        st.markdown('<div class="success-message">✅ Saved locally!</div>', 
-                                  unsafe_allow_html=True)
+                        st.success("✨ Saved successfully!")
                     st.rerun()
                 else:
-                    st.warning("Please enter your name!")
+                    st.warning("Please enter your name to save your score!")
         
-        # New quiz
-        if st.button("Take Another Quiz", use_container_width=True):
-            st.session_state.quiz_started = False
-            st.rerun()
+        # Play again
+        st.markdown("---")
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            if st.button("🔄 Take Another Quiz", use_container_width=True):
+                st.session_state.quiz_started = False
+                st.session_state.answer_submitted = False
+                st.rerun()
 
 # ---------- FOOTER ----------
 st.markdown("""
 <div class="footer">
-    <p>🇲🇾 SainsQuiz – Helping Malaysian students master SPM Science</p>
+    <p>🇲🇾 SainsQuiz – Empowering Malaysian students to excel in SPM Science</p>
+    <p style="margin-top: 0.5rem;">✨ Keep learning, keep growing! ✨</p>
 </div>
 """, unsafe_allow_html=True)
