@@ -391,6 +391,13 @@ def load_questions():
             "explanation": "pH 7 is neutral."
         },
         {
+            "subject": "Chemistry",
+            "question": "What is the chemical formula for water?",
+            "options": ["H2O", "CO2", "O2", "H2O2"],
+            "correct_option": 0,
+            "explanation": "Water is H₂O - two hydrogen atoms and one oxygen atom."
+        },
+        {
             "subject": "Biology",
             "question": "Which organelle is the 'powerhouse' of the cell?",
             "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi apparatus"],
@@ -605,7 +612,7 @@ else:
         </div>
         """, unsafe_allow_html=True)
         
-        # Options - NOW LIGHT BACKGROUND, DARK TEXT
+        # Options - LIGHT BACKGROUND, DARK TEXT (clearly visible)
         answer = st.radio("", q['options'], key=f"q_{st.session_state.q_index}", 
                          index=None, label_visibility="collapsed")
         
