@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------- FIXED CSS WITH VISIBLE OPTIONS ----------
+# ---------- FIXED CSS WITH HIGH-CONTRAST OPTIONS ----------
 st.markdown("""
 <style>
     /* Import Google Font */
@@ -56,13 +56,6 @@ st.markdown("""
     }
     
     /* Subject cards */
-    .subject-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin: 2rem 0;
-    }
-    
     .subject-card {
         background: white;
         padding: 1.5rem;
@@ -124,38 +117,35 @@ st.markdown("""
         font-weight: 500;
     }
     
-    /* FIXED: Radio buttons - NOW VISIBLE */
+    /* ===== FIXED: RADIO BUTTONS - NOW DARK WITH WHITE TEXT ===== */
     div.row-widget.stRadio > div {
-        background-color: white !important;
-        padding: 1rem !important;
-        border-radius: 12px !important;
-        border: 1px solid #d1d5db !important;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        border: none !important;
     }
     
-    div.row-widget.stRadio > div[role="radiogroup"] {
-        background-color: white !important;
-    }
-    
-    /* Individual option styling */
+    /* Style each option as a dark card */
     div.row-widget.stRadio label {
-        background-color: #f9fafb !important;
-        border: 1px solid #e5e7eb !important;
-        border-radius: 8px !important;
-        padding: 0.75rem 1rem !important;
-        margin: 0.4rem 0 !important;
-        color: #111827 !important;
+        background-color: #1f2937 !important;  /* dark gray */
+        border: 1px solid #374151 !important;
+        border-radius: 10px !important;
+        padding: 1rem 1.2rem !important;
+        margin: 0.6rem 0 !important;
+        color: white !important;
         font-weight: 500 !important;
-        font-size: 1rem !important;
+        font-size: 1.1rem !important;
         transition: all 0.2s ease !important;
         display: flex !important;
         align-items: center !important;
         cursor: pointer !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
     }
     
     div.row-widget.stRadio label:hover {
-        background-color: #e5e7eb !important;
+        background-color: #2d3748 !important;
         border-color: #3b82f6 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
     }
     
     /* Selected option */
@@ -164,13 +154,19 @@ st.markdown("""
         border-color: #3b82f6 !important;
     }
     
-    /* Radio circle */
+    /* Radio circle - make it visible */
     div.row-widget.stRadio label div:first-child {
         background-color: white !important;
-        border-color: #d1d5db !important;
+        border-color: #9ca3af !important;
+        margin-right: 12px !important;
     }
     
-    /* FIXED: Buttons - VISIBLE */
+    /* Selected radio circle */
+    div.row-widget.stRadio label input:checked + div div {
+        background-color: #3b82f6 !important;
+    }
+    
+    /* ===== BUTTONS ===== */
     .stButton button {
         background-color: #3b82f6 !important;
         color: white !important;
@@ -299,7 +295,7 @@ st.markdown("""
         line-height: 1.6;
     }
     
-    /* Select box */
+    /* Select box (matches the dark style) */
     .stSelectbox label {
         color: #111827 !important;
         font-weight: 600 !important;
@@ -307,10 +303,14 @@ st.markdown("""
     }
     
     .stSelectbox > div > div {
-        background-color: white !important;
-        border: 1px solid #d1d5db !important;
+        background-color: #1f2937 !important;
+        border: 1px solid #374151 !important;
         border-radius: 8px !important;
-        color: #111827 !important;
+        color: white !important;
+    }
+    
+    .stSelectbox svg {
+        fill: white !important;
     }
     
     /* Warning message */
@@ -379,6 +379,13 @@ def load_questions():
             "options": ["Joule", "Newton", "Watt", "Pascal"],
             "correct_option": 1,
             "explanation": "Newton (N) is the SI unit of force."
+        },
+        {
+            "subject": "Physics",
+            "question": "Which of the following is a scalar quantity?",
+            "options": ["Velocity", "Acceleration", "Mass", "Force"],
+            "correct_option": 2,
+            "explanation": "Mass is scalar (only magnitude). The others are vectors."
         },
         {
             "subject": "Chemistry",
@@ -602,11 +609,9 @@ else:
         </div>
         """, unsafe_allow_html=True)
         
-        # Options - NOW VISIBLE with light gray background
-        st.write("")  # Small spacer
-        answer = st.radio("Select your answer:", q['options'], 
-                         key=f"q_{st.session_state.q_index}", 
-                         index=None)
+        # Options - NOW DARK BACKGROUND, WHITE TEXT, HIGHLY VISIBLE
+        answer = st.radio("", q['options'], key=f"q_{st.session_state.q_index}", 
+                         index=None, label_visibility="collapsed")
         
         col1, col2 = st.columns(2)
         
