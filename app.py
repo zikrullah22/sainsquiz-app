@@ -556,16 +556,25 @@ with st.sidebar:
     """, unsafe_allow_html=True)
     
     # Subject selection with icons
-    subjects = ["All", "Physics ⚡", "Chemistry 🧪", "Biology 🧬"]
-    subject_map = {"All": "All", "Physics ⚡": "Physics", 
-                   "Chemistry 🧪": "Chemistry", "Biology 🧬": "Biology"}
-    
-    selected_display = st.selectbox("📚 Choose Subject", subjects, 
-                                  index=subjects.index(st.session_state.subject + " ⚡" 
-                                                      if st.session_state.subject != "All" 
-                                                      else "All"))
-    
-    selected = subject_map[selected_display]
+  # Subject selection with icons
+subjects = ["All", "Physics ⚡", "Chemistry 🧪", "Biology 🧬"]
+subject_map = {"All": "All", "Physics ⚡": "Physics", 
+               "Chemistry 🧪": "Chemistry", "Biology 🧬": "Biology"}
+
+# Fix: Map current subject to display version
+if st.session_state.subject == "All":
+    default_display = "All"
+elif st.session_state.subject == "Physics":
+    default_display = "Physics ⚡"
+elif st.session_state.subject == "Chemistry":
+    default_display = "Chemistry 🧪"
+elif st.session_state.subject == "Biology":
+    default_display = "Biology 🧬"
+
+selected_display = st.selectbox("📚 Choose Subject", subjects, 
+                              index=subjects.index(default_display))
+
+selected = subject_map[selected_display]
     
     if selected != st.session_state.subject:
         st.session_state.subject = selected
@@ -875,3 +884,4 @@ st.markdown("""
     <p style="margin-top: 0.5rem;">✨ Keep learning, keep growing! ✨</p>
 </div>
 """, unsafe_allow_html=True)
+
