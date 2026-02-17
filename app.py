@@ -115,7 +115,7 @@ st.markdown("""
         border-radius: 12px !important;
         padding: 1rem 1.2rem !important;
         margin: 0.6rem 0 !important;
-        color: #0f172a !important;              /* Dark text */
+       color: #111111 !important;            /* Dark text */
         font-weight: 500 !important;
         font-size: 1.05rem !important;
         display: flex !important;
@@ -582,3 +582,4 @@ st.markdown("""
     <p>🇲🇾 SainsQuiz – Helping Malaysian students master SPM Science</p>
 </div>
 """, unsafe_allow_html=True)
+
