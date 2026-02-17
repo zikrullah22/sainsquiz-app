@@ -126,12 +126,12 @@ st.markdown("""
     
     /* Style each option as a dark card */
     div.row-widget.stRadio label {
-        background-color: #1f2937 !important;  /* dark gray */
+          background-color: #f9fafb !important;  
         border: 1px solid #374151 !important;
         border-radius: 10px !important;
         padding: 1rem 1.2rem !important;
         margin: 0.6rem 0 !important;
-        color: white !important;
+       color: #111827 !important;  
         font-weight: 500 !important;
         font-size: 1.1rem !important;
         transition: all 0.2s ease !important;
@@ -730,3 +730,4 @@ st.markdown("""
     <p>🇲🇾 SainsQuiz – Helping Malaysian students master SPM Science</p>
 </div>
 """, unsafe_allow_html=True)
+
